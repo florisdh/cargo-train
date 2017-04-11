@@ -6,9 +6,11 @@ module ExamAssignmentMA {
         private bg: Phaser.Image;
 
         public init(): void {
-            console.log('init splash');
             this.bg = this.game.add.image(0, 0, Images.MA_Logo);
             this.resize();
+
+            // Skip state for now
+            this.game.state.start(Tutorial.Name);
         }
 
         public resize(): void {

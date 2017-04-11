@@ -5,7 +5,6 @@
         public game: Phaser.Game;
 
         public init(): void {
-            console.log('init gameover');
             this.resize();
         }
 

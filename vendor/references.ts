@@ -7,6 +7,7 @@
 /// <reference path="../ts/Data/Images.ts" />
 /// <reference path="../ts/Data/Sounds.ts" />
 /// <reference path="../ts/Game.ts" />
+/// <reference path="../ts/Objects/Wagon.ts" />
 /// <reference path="../ts/States/Boot.ts" />
 /// <reference path="../ts/States/GameOver.ts" />
 /// <reference path="../ts/States/GamePlay.ts" />

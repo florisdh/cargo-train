@@ -5,8 +5,10 @@
         public game: Phaser.Game;
 
         public init(): void {
-            console.log('init tutorial');
             this.resize();
+
+            // Skip state for now
+            this.game.state.start(GamePlay.Name);
         }
 
         public resize(): void {

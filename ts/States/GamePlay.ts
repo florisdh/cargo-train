@@ -4,13 +4,21 @@
         public name: string = GamePlay.Name;
         public game: Phaser.Game;
 
+        private background: Phaser.Image;
+        private wagon: Wagon;
+
         public init(): void {
-            console.log('init gameplay');
+            this.background = this.game.add.image(0, 0, Images.WhitePixel);
+            this.wagon = new Wagon(this.game);
+            this.game.add.existing(this.wagon);
+
             this.resize();
         }
 
         public resize(): void {
-            console.log('resize gameplay');
+            this.background.width = this.game.width;
+            this.background.height = this.game.height;
+            this.wagon.resize();
         }
     }
 }
