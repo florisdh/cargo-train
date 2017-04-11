@@ -10,14 +10,19 @@
         public init(): void {
             this.background = this.game.add.image(0, 0, Images.WhitePixel);
             this.train = new Train(this.game);
-            this.train.spawnNext();
             this.resize();
+            this.start();
         }
 
         public resize(): void {
             this.background.width = this.game.width;
             this.background.height = this.game.height;
             this.train.resize();
+        }
+
+        private start(): void {
+            this.train.reset(2);
+            this.train.start();
         }
     }
 }
