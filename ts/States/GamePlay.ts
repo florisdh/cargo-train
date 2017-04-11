@@ -5,20 +5,19 @@
         public game: Phaser.Game;
 
         private background: Phaser.Image;
-        private wagon: Wagon;
+        private train: Train;
 
         public init(): void {
             this.background = this.game.add.image(0, 0, Images.WhitePixel);
-            this.wagon = new Wagon(this.game);
-            this.game.add.existing(this.wagon);
-
+            this.train = new Train(this.game);
+            this.train.spawnNext();
             this.resize();
         }
 
         public resize(): void {
             this.background.width = this.game.width;
             this.background.height = this.game.height;
-            this.wagon.resize();
+            this.train.resize();
         }
     }
 }
