@@ -7,6 +7,8 @@ module ExamAssignmentMA {
         public static CargoCircle: string = 'cargoPlaceholderCirkel';
         public static CargoCube: string = 'cargoPlaceholderCube';
         public static CargoTriangle: string = 'cargoPlaceholderTriangle';
+        public static TimeContainer: string = 'timebar';
+        public static TimeFill: string = 'timebarFill';
 
         // Add all images here
         public static preloadList: string[] = [
@@ -15,7 +17,9 @@ module ExamAssignmentMA {
             Images.Wagon,
             Images.CargoCircle,
             Images.CargoCube,
-            Images.CargoTriangle
+            Images.CargoTriangle,
+            Images.TimeContainer,
+            Images.TimeFill
         ];
     }
 }

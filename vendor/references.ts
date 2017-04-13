@@ -18,6 +18,7 @@
 /// <reference path="../ts/Objects/Train/WagonTypes.ts" />
 /// <reference path="../ts/Objects/Train/Wagons/Caboose.ts" />
 /// <reference path="../ts/Objects/Train/Wagons/Locomotive.ts" />
+/// <reference path="../ts/Objects/UI/Timer.ts" />
 /// <reference path="../ts/States/Boot.ts" />
 /// <reference path="../ts/States/GameOver.ts" />
 /// <reference path="../ts/States/GamePlay.ts" />

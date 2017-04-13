@@ -5,14 +5,20 @@
         public game: Phaser.Game;
 
         private background: Phaser.Image;
+        private timeIndicator: Timer;
         private train: Train;
         private cargo: CargoGrid;
 
         public init(): void {
             this.background = this.game.add.image(0, 0, Images.WhitePixel);
             this.train = new Train(this.game);
+
             this.cargo = new CargoGrid(this.game);
+            this.timeIndicator = new Timer(this.game);
+
             this.game.add.existing(this.cargo);
+            this.game.add.existing(this.timeIndicator);
+
             this.resize();
             this.start();
         }
@@ -20,8 +26,10 @@
         public resize(): void {
             this.background.width = this.game.width;
             this.background.height = this.game.height;
+
             this.train.resize();
             this.cargo.resize();
+            this.timeIndicator.resize();
         }
 
         private start(): void {
