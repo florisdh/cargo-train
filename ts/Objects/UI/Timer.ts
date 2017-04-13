@@ -43,6 +43,7 @@
                 this.timerMask.scale.set(this.timeFill.width * (this.timeLeft / this.timeTotal), this.timeFill.height);
 
                 if (this.timeLeft <= 0) {
+                    this.timeOut.dispatch();
 
                     // Debug time
                     this.setTime(5000);
