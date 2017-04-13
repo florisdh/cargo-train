@@ -6,12 +6,12 @@
 
         private background: Phaser.Image;
         private train: Train;
-        private cargo: Cargo;
+        private cargo: CargoGrid;
 
         public init(): void {
             this.background = this.game.add.image(0, 0, Images.WhitePixel);
             this.train = new Train(this.game);
-            this.cargo = new Cargo(this.game, CargoTypes.Circle);
+            this.cargo = new CargoGrid(this.game);
             this.game.add.existing(this.cargo);
             this.resize();
             this.start();
@@ -27,6 +27,7 @@
         private start(): void {
             this.train.reset(2);
             this.train.start();
+            this.cargo.spawnCargo([ CargoTypes.Circle ]);
         }
     }
 }

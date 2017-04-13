@@ -11,6 +11,7 @@
 /// <reference path="../ts/Game.ts" />
 /// <reference path="../ts/Objects/Cargo/Cargo.ts" />
 /// <reference path="../ts/Objects/Cargo/CargoFactory.ts" />
+/// <reference path="../ts/Objects/Cargo/CargoGrid.ts" />
 /// <reference path="../ts/Objects/Cargo/CargoTypes.ts" />
 /// <reference path="../ts/Objects/Train/Train.ts" />
 /// <reference path="../ts/Objects/Train/WagonFactory.ts" />

@@ -6,7 +6,7 @@
             this.game = game;
         }
 
-        public getWagon(type: CargoTypes): Cargo {
+        public getCargo(type: CargoTypes): Cargo {
             return new Cargo(this.game, type);
         }
     }
