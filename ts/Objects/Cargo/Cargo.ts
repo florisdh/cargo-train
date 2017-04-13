@@ -16,6 +16,18 @@
                     break;
             }
             super(game, 0, 0, image);
+            this.inputEnabled = true;
+            this.input.enableDrag(false, true);
+            this.events.onDragStart.add(this.onDragStart, this);
+            this.events.onDragStop.add(this.onDragStop, this);
+        }
+
+        private onDragStart(e: Cargo): void {
+            console.log(e.worldPosition);
+        }
+        
+        private onDragStop(e: Cargo): void {
+            console.log(e.worldPosition);
         }
 
         public resize(): void {
