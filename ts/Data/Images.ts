@@ -10,6 +10,9 @@ module ExamAssignmentMA {
         public static TimeContainer: string = 'timebar';
         public static TimeFill: string = 'timebarFill';
 
+        public static Background_01: string = 'backgroundTrees';
+        public static Platform_01: string = 'white';
+
         // Add all images here
         public static preloadList: string[] = [
             Images.WhitePixel,
@@ -19,7 +22,9 @@ module ExamAssignmentMA {
             Images.CargoCube,
             Images.CargoTriangle,
             Images.TimeContainer,
-            Images.TimeFill
+            Images.TimeFill,
+            Images.Background_01,
+            Images.Platform_01
         ];
     }
 }
