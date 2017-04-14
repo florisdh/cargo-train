@@ -22,9 +22,11 @@
 
             this.game.add.existing(this.cargo);
             this.game.add.existing(this.timeIndicator);
-
             // Events
             this.timeIndicator.timeOut.addOnce(this.onTimeOut);
+            // Pivots
+            this.background.anchor.set(0.5, 1);
+            this.platform.anchor.set(0.5, 0);
 
             this.resize();
             this.start();
@@ -39,12 +41,29 @@
         }
 
         public resize(): void {
-            this.background.width = this.game.width;
-            this.background.scale.y = this.background.scale.x;
+            // Background positioning
+            this.background.y = this.game.height * 0.35;
+            this.background.x = this.game.width * 0.5;
+            // Background height scaling
+            this.background.height = this.game.height * 0.35;
+            this.background.scale.x = this.background.scale.y;
+            // Background width scaling
+            if (this.background.width < this.game.width) {
+                this.background.width = this.game.width;
+                this.background.scale.y = this.background.scale.x;
+            }
 
-            this.platform.width = this.game.width;
-            this.platform.scale.y = this.platform.scale.x;
-            this.platform.y = 0.5 * this.game.height;
+            // Platform positioning
+            this.platform.y = this.background.bottom;
+            this.platform.x = this.game.width * 0.5;
+            // Platform height scaling
+            this.platform.height = this.game.height * 0.65;
+            this.platform.scale.x = this.platform.scale.y;
+            // Platform width scaling
+            if (this.platform.width < this.game.width) {
+                this.platform.width = this.game.width;
+                this.platform.scale.y = this.platform.scale.x;
+            }
 
             this.train.resize();
             this.cargo.resize();

@@ -11,7 +11,7 @@ module ExamAssignmentMA {
         public static TimeFill: string = 'timebarFill';
 
         public static Background_01: string = 'backgroundTrees';
-        public static Platform_01: string = 'white';
+        public static Platform_01: string = 'trainstationPavement';
 
         // Add all images here
         public static preloadList: string[] = [
