@@ -15,12 +15,18 @@
 
             this.cargo = new CargoGrid(this.game);
             this.timeIndicator = new Timer(this.game);
-
             this.game.add.existing(this.cargo);
             this.game.add.existing(this.timeIndicator);
 
+            // Events
+            this.timeIndicator.timeOut.addOnce(this.onTimeOut);
+
             this.resize();
             this.start();
+        }
+
+        private onTimeOut(): void {
+            this.game.state.start(GameOver.Name, true);
         }
 
         public resize(): void {

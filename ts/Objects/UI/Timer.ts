@@ -29,7 +29,7 @@
             this.timeFill.mask = this.timerMask;
 
             // Debug time
-            this.setTime(5000);
+            this.setTime(10000);
         }
 
         public setTime(time: number): void {
@@ -44,9 +44,6 @@
 
                 if (this.timeLeft <= 0) {
                     this.timeOut.dispatch();
-
-                    // Debug time
-                    this.setTime(5000);
                 }
             }
         }
