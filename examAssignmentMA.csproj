@@ -41,6 +41,8 @@
     <TypeScriptCompile Include="ts\Objects\Cargo\Cargo.ts" />
     <TypeScriptCompile Include="ts\Objects\Cargo\CargoGrid.ts" />
     <TypeScriptCompile Include="ts\Objects\Cargo\CargoTypes.ts" />
+    <TypeScriptCompile Include="ts\Objects\Train\CargoIndicator\CargoIcon.ts" />
+    <TypeScriptCompile Include="ts\Objects\Train\CargoIndicator\CargoIndicator.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\Train.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\WagonFactory.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Caboose.ts" />

@@ -7,6 +7,9 @@ module ExamAssignmentMA {
         public static CargoCircle: string = 'cargoPlaceholderCirkel';
         public static CargoCube: string = 'cargoPlaceholderCube';
         public static CargoTriangle: string = 'cargoPlaceholderTriangle';
+        public static CargoIndicatorCircle: string = 'cargoIndicatorPlaceholderCircle';
+        public static CargoIndicatorCube: string = 'cargoIndicatorPlaceholderCube';
+        public static CargoIndicatorTriangle: string = 'cargoIndicatorPlaceholderTriangle';
         public static TimeContainer: string = 'timebar';
         public static TimeFill: string = 'timebarFill';
 
@@ -21,6 +24,9 @@ module ExamAssignmentMA {
             Images.CargoCircle,
             Images.CargoCube,
             Images.CargoTriangle,
+            Images.CargoIndicatorCircle,
+            Images.CargoIndicatorCube,
+            Images.CargoIndicatorTriangle,
             Images.TimeContainer,
             Images.TimeFill,
             Images.Background_01,

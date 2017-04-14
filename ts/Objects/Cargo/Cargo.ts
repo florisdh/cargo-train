@@ -6,6 +6,7 @@
         private moveBackNormal: number;
         private gridPoint: Phaser.Point;
         private releasePoint: Phaser.Point;
+        private cargo: CargoTypes;
 
         constructor(game: Phaser.Game, type: CargoTypes) {
             let image: string = null;
@@ -23,6 +24,7 @@
                     break;
             }
             super(game, 0, 0, image);
+            this.cargo = type;
             this.anchor.setTo(0.5);
             this.dropped = new Phaser.Signal();
             this.inputEnabled = true;
@@ -77,6 +79,10 @@
             this.moveBackNormal = normal;
             let offset: Phaser.Point = new Phaser.Point(this.gridPoint.x - this.releasePoint.x, this.gridPoint.y - this.releasePoint.y);
             this.position.setTo(this.releasePoint.x + offset.x * normal, this.releasePoint.y + offset.y * normal);
+        }
+
+        public get cargoType(): CargoTypes {
+            return this.cargo;
         }
     }
 }

@@ -5,6 +5,7 @@
         public objectiveDone: Phaser.Signal;
         private moveTween: Phaser.Tween;
         private moveNormal: number;
+        private cargoIndicator: CargoIndicator;
 
         constructor(game: Phaser.Game) {
             super(game, 0, 0, Images.Wagon);
@@ -13,11 +14,17 @@
             this.moveInDone = new Phaser.Signal();
             this.moveOutDone = new Phaser.Signal();
             this.objectiveDone = new Phaser.Signal();
+            this.cargoIndicator = new CargoIndicator(this.game);
+            this.addChild(this.cargoIndicator);
+            this.cargoIndicator.wagonFilled.add(this.onWagonFilled, this);
+        }
 
-            this.inputEnabled = true;
-            this.events.onInputUp.add(() => {
-                this.objectiveDone.dispatch(this);
-            });
+        public setRequestedCargo(cargo: CargoTypes[]): void {
+            this.cargoIndicator.setRequestedCargo(cargo);
+        }
+
+        private onWagonFilled(): void {
+            this.objectiveDone.dispatch(this);
         }
 
         public resize(): void {
@@ -26,6 +33,7 @@
             if (this.moveTween === null || this.moveTween.isRunning) {
                 this.moveAnim = this.moveNormal;
             }
+            this.cargoIndicator.resize();
         }
 
         public moveIn(): void {
@@ -51,6 +59,7 @@
             // TODO: Check for active cargo goal
             // TODO: Push cargo back
             console.log('dropped cargo on wagon!');
+            this.cargoIndicator.dropCargo(cargo);
         }
 
         private get moveAnim(): number {

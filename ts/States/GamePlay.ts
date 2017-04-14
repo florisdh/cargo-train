@@ -22,11 +22,15 @@
 
             this.game.add.existing(this.cargo);
             this.game.add.existing(this.timeIndicator);
+
             // Events
             this.timeIndicator.timeOut.addOnce(this.onTimeOut);
             // Pivots
             this.background.anchor.set(0.5, 1);
             this.platform.anchor.set(0.5, 0);
+
+            // Events
+            this.timeIndicator.timeOut.addOnce(this.onTimeOut);
 
             this.resize();
             this.start();
