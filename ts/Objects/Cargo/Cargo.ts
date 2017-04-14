@@ -1,5 +1,7 @@
 ﻿module ExamAssignmentMA {
     export class Cargo extends Phaser.Image {
+        public dropped: Phaser.Signal;
+
         constructor(game: Phaser.Game, type: CargoTypes) {
             let image: string = null;
             switch (type) {
@@ -16,6 +18,7 @@
                     break;
             }
             super(game, 0, 0, image);
+            this.dropped = new Phaser.Signal();
             this.inputEnabled = true;
             this.input.enableDrag(false, true);
             this.events.onDragStart.add(this.onDragStart, this);
@@ -25,9 +28,9 @@
         private onDragStart(e: Cargo): void {
             console.log(e.worldPosition);
         }
-        
+
         private onDragStop(e: Cargo): void {
-            console.log(e.worldPosition);
+            this.dropped.dispatch(this, e.worldPosition);
         }
 
         public resize(): void {
