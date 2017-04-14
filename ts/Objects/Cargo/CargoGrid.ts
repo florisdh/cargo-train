@@ -52,8 +52,8 @@
                 for (let x: number = 0; x < this.xAmount; x++) {
                     let cargo: Cargo = this.cargo[x + y * this.xAmount];
                     if (cargo) {
-                        cargo.x = this.game.width * this.marginNormal + spacingX * x;
-                        cargo.y = this.game.height * this.marginNormal + spacingY * y;
+                        cargo.left = this.game.width * this.marginNormal + spacingX * x;
+                        cargo.top = this.game.height * this.marginNormal + spacingY * y;
                         cargo.width = spacingX;
                         cargo.scale.y = cargo.scale.x;
                         if (cargo.height > spacingY) {

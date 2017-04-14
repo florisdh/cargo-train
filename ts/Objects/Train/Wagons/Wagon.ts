@@ -47,6 +47,11 @@
             this.moveTween = this.game.add.tween(this).to({ moveAnim: -1 }, 1000, Phaser.Easing.Quadratic.InOut, true);
         }
 
+        public dropCargo(cargo: Cargo): void {
+            // TODO: Check for active cargo goal
+            // TODO: Push cargo back
+        }
+
         private get moveAnim(): number {
             return this.moveNormal;
         }

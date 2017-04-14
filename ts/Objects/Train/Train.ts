@@ -1,6 +1,7 @@
 ﻿module ExamAssignmentMA {
     export class Train extends Phaser.Group {
         public wagonAdded: Phaser.Signal;
+        private readonly dropMarginNormal: number = 0.1;
         private factory: WagonFactory;
         private wagons: Wagon[];
         private wagonCounter: number;
@@ -64,6 +65,14 @@
             this.wagons = [];
             this.wagonCounter = 0;
             this.trianLength = maxLength;
+        }
+
+        public isOnDropPoint(point: Phaser.Point): boolean {
+            let activeWagon: Wagon = this.wagons[this.wagons.length - 1];
+            return point.x > this.x + activeWagon.left + activeWagon.width * this.dropMarginNormal &&
+                point.x < this.x + activeWagon.left + activeWagon.width * (1 - this.dropMarginNormal) &&
+                point.y > this.y + activeWagon.top + activeWagon.height * this.dropMarginNormal &&
+                point.y < this.y + activeWagon.top + activeWagon.height * (1 - this.dropMarginNormal);
         }
 
         public resize(): void {

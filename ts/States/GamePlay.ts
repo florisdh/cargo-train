@@ -14,6 +14,7 @@
             this.train = new Train(this.game);
 
             this.cargo = new CargoGrid(this.game);
+            this.cargo.cargoDropped.add(this.onCargoDropped, this);
             this.timeIndicator = new Timer(this.game);
             this.game.add.existing(this.cargo);
             this.game.add.existing(this.timeIndicator);
@@ -23,6 +24,10 @@
 
             this.resize();
             this.start();
+        }
+
+        private onCargoDropped(cargo: Cargo, position: Phaser.Point): void {
+            console.log('dropped on wagon', this.train.isOnDropPoint(position));
         }
 
         private onTimeOut(): void {

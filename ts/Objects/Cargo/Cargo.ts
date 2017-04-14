@@ -18,6 +18,7 @@
                     break;
             }
             super(game, 0, 0, image);
+            this.anchor.setTo(0.5);
             this.dropped = new Phaser.Signal();
             this.inputEnabled = true;
             this.input.enableDrag(false, true);
