@@ -50,6 +50,7 @@
         public dropCargo(cargo: Cargo): void {
             // TODO: Check for active cargo goal
             // TODO: Push cargo back
+            console.log('dropped cargo on wagon!');
         }
 
         private get moveAnim(): number {

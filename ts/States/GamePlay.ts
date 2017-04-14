@@ -32,8 +32,12 @@
             this.start();
         }
 
-        private onCargoDropped(cargo: Cargo, position: Phaser.Point): void {
-            console.log('dropped on wagon', this.train.isOnDropPoint(position));
+        private onCargoDropped(cargo: Cargo): void {
+            if (this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition)) {
+                this.train.activeWagon.dropCargo(cargo);
+            } else {
+                cargo.moveBack();
+            }
         }
 
         private onTimeOut(): void {

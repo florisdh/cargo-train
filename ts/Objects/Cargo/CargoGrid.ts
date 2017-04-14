@@ -41,7 +41,7 @@
         }
 
         private onCargoDropped(cargo: Cargo, position: Phaser.Point): void {
-            this.cargoDropped.dispatch(cargo, position);
+            this.cargoDropped.dispatch(cargo);
         }
 
         public resize(): void {
@@ -52,14 +52,10 @@
                 for (let x: number = 0; x < this.xAmount; x++) {
                     let cargo: Cargo = this.cargo[x + y * this.xAmount];
                     if (cargo) {
-                        cargo.left = this.game.width * this.marginNormal + spacingX * x;
-                        cargo.top = this.game.height * this.marginNormal + spacingY * y;
-                        cargo.width = spacingX;
-                        cargo.scale.y = cargo.scale.x;
-                        if (cargo.height > spacingY) {
-                            cargo.height = spacingY;
-                            cargo.scale.x = cargo.scale.y;
-                        }
+                        cargo.resize(
+                            this.game.width * this.marginNormal + spacingX * (x + 0.5),
+                            this.game.height * this.marginNormal + spacingY * (y + 0.5),
+                            spacingX, spacingY);
                     }
                 }
             }

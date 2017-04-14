@@ -6,6 +6,7 @@
 
         public init(): void {
             this.resize();
+            this.game.state.start(GamePlay.Name);
         }
 
         public resize(): void {

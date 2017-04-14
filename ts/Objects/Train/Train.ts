@@ -68,7 +68,7 @@
         }
 
         public isOnDropPoint(point: Phaser.Point): boolean {
-            let activeWagon: Wagon = this.wagons[this.wagons.length - 1];
+            let activeWagon: Wagon = this.activeWagon;
             return point.x > this.x + activeWagon.left + activeWagon.width * this.dropMarginNormal &&
                 point.x < this.x + activeWagon.left + activeWagon.width * (1 - this.dropMarginNormal) &&
                 point.y > this.y + activeWagon.top + activeWagon.height * this.dropMarginNormal &&
@@ -79,6 +79,10 @@
             for (let i: number = 0; i < this.wagons.length; i++) {
                 this.wagons[i].resize();
             }
+        }
+
+        public get activeWagon(): Wagon {
+            return this.wagons[this.wagons.length - 1];
         }
     }
 }
