@@ -3,7 +3,9 @@
         public cargoDropped: Phaser.Signal;
         private readonly xAmount: number = 4;
         private readonly yAmount: number = 4;
-        private readonly marginNormal: number = 0.1;
+        private readonly marginNormalX: number = 0.075;
+        private readonly marginNormalTop: number = 0.12;
+        private readonly marginNormalBottom: number = 0.165;
         private cargo: Cargo[];
         private factory: CargoFactory;
 
@@ -45,16 +47,16 @@
         }
 
         public resize(): void {
-            this.y = this.game.height * 0.45;
-            let spacingX: number = this.game.width * (1 - this.marginNormal * 2) / this.xAmount;
-            let spacingY: number = (this.game.height - this.y) * (1 - this.marginNormal * 2) / this.yAmount;
+            this.y = this.game.height * 0.35;
+            let spacingX: number = this.game.width * (1 - this.marginNormalX * 2) / this.xAmount;
+            let spacingY: number = (this.game.height - this.y) * (1 - this.marginNormalBottom - this.marginNormalBottom) / this.yAmount;
             for (let y: number = 0; y < this.yAmount; y++) {
                 for (let x: number = 0; x < this.xAmount; x++) {
                     let cargo: Cargo = this.cargo[x + y * this.xAmount];
                     if (cargo) {
                         cargo.resize(
-                            this.game.width * this.marginNormal + spacingX * (x + 0.5),
-                            this.game.height * this.marginNormal + spacingY * (y + 0.5),
+                            this.game.width * this.marginNormalX + spacingX * (x + 0.5),
+                            this.game.height * this.marginNormalTop + spacingY * (y + 0.5),
                             spacingX, spacingY);
                     }
                 }

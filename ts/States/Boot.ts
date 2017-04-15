@@ -16,13 +16,15 @@ module ExamAssignmentMA {
             // Handle resize
             this.scale.pageAlignVertically = true;
             if (this.game.device.desktop) {
+                this.game.scale.windowConstraints.bottom = 'visual';
                 this.scale.aspectRatio = 9 / 16;
                 this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-                this.game.scale.windowConstraints.bottom = 'visual';
             } else {
+                this.scale.forcePortrait = true;
                 this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
                 this.game.scale.onSizeChange.add(() => {
                     this.game.state.getCurrentState().resize();
+                    console.log(this.game.scale);
                 }, this);
             }
         }

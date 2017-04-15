@@ -9,14 +9,17 @@
 
         constructor(game: Phaser.Game) {
             super(game, 0, 0, Images.Wagon);
+            this.anchor.setTo(0, 1);
             this.moveTween = null;
             this.moveAnim = 1;
             this.moveInDone = new Phaser.Signal();
             this.moveOutDone = new Phaser.Signal();
             this.objectiveDone = new Phaser.Signal();
             this.cargoIndicator = new CargoIndicator(this.game);
-            this.addChild(this.cargoIndicator);
             this.cargoIndicator.wagonFilled.add(this.onWagonFilled, this);
+            this.cargoIndicator.setRequestedCargo([CargoTypes.Circle, CargoTypes.Cube, CargoTypes.Triangle]);
+            this.addChild(this.cargoIndicator);
+            this.resize();
         }
 
         public setRequestedCargo(cargo: CargoTypes[]): void {
@@ -56,9 +59,6 @@
         }
 
         public dropCargo(cargo: Cargo): void {
-            // TODO: Check for active cargo goal
-            // TODO: Push cargo back
-            console.log('dropped cargo on wagon!');
             this.cargoIndicator.dropCargo(cargo);
         }
 

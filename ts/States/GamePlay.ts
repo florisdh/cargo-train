@@ -49,6 +49,8 @@
         }
 
         public resize(): void {
+            console.log('resize gameplay');
+
             // Background positioning
             this.background.y = this.game.height * 0.35;
             this.background.x = this.game.width * 0.5;
@@ -66,13 +68,9 @@
             this.platform.x = this.game.width * 0.5;
             // Platform height scaling
             this.platform.height = this.game.height * 0.65;
-            this.platform.scale.x = this.platform.scale.y;
-            // Platform width scaling
-            if (this.platform.width < this.game.width) {
-                this.platform.width = this.game.width;
-                this.platform.scale.y = this.platform.scale.x;
-            }
+            this.platform.width = this.game.width;
 
+            this.train.y = this.platform.y;
             this.train.resize();
             this.cargo.resize();
             this.timeIndicator.resize();

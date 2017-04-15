@@ -51,6 +51,7 @@
         public resize(): void {
             this.x = this.game.width / 2;
             this.y = this.game.height * 0.05;
+            this.scale.setTo(this.game.width / 720);
             this.timerMask.scale.set(this.timeFill.width * (this.timeLeft / this.timeTotal), this.timeFill.height);
             this.timerMask.x = this.timeFill.left;
             this.timerMask.y = this.timeFill.top;
