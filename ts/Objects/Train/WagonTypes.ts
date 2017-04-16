@@ -1,7 +1,8 @@
 ﻿module ExamAssignmentMA {
     export enum WagonTypes {
-        Locomotive = 0,
-        NormalWagon = 1,
-        Caboose = 2
+        None = 0,
+        Locomotive = 1,
+        CargoWagon = 2,
+        Caboose = 3
     }
 }

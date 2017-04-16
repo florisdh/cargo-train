@@ -1,12 +1,16 @@
 ﻿module ExamAssignmentMA {
     export class Cargo extends Phaser.Image {
         public dropped: Phaser.Signal;
+        public removed: Phaser.Signal;
         private isDragging: boolean;
-        private moveBackTween: Phaser.Tween;
-        private moveBackNormal: number;
         private gridPoint: Phaser.Point;
         private releasePoint: Phaser.Point;
         private cargo: CargoTypes;
+        private moveBackTween: Phaser.Tween;
+        private moveBackNormal: number;
+        private fadeTween: Phaser.Tween;
+        private fadeNormal: number;
+        private fadeTarget: Wagon;
 
         constructor(game: Phaser.Game, type: CargoTypes) {
             let image: string = null;
@@ -27,19 +31,42 @@
             this.cargo = type;
             this.anchor.setTo(0.5);
             this.dropped = new Phaser.Signal();
+            this.removed = new Phaser.Signal();
             this.inputEnabled = true;
             this.input.enableDrag(false, true);
             this.events.onDragStart.add(this.onDragStart, this);
             this.events.onDragStop.add(this.onDragStop, this);
-            this.moveBackNormal = 0;
             this.isDragging = false;
             this.gridPoint = this.position.clone();
             this.releasePoint = null;
+            this.moveBackNormal = 0;
             this.moveBackTween = null;
+            this.fadeNormal = 0;
+            this.fadeTween = null;
+            this.fadeTarget = null;
+        }
+
+        public fadeOut(target: Wagon): void {
+            this.fadeTarget = target;
+            if (this.fadeTween && this.fadeTween.isRunning) {
+                this.fadeTween.stop();
+            }
+            this.releasePoint = this.position.clone();
+            this.fadeAnim = 0;
+            this.fadeTween = this.game.add.tween(this).to({ fadeAnim: 1 }, 300, Phaser.Easing.Quadratic.In, true);
+            this.fadeTween.onComplete.addOnce(this.fadeDone, this);
+        }
+
+        private fadeDone(): void {
+            this.removed.dispatch(this);
+            this.destroy();
+            console.log('removed cargo');
         }
 
         private onDragStart(e: Cargo): void {
-            console.log(e.worldPosition);
+            if (this.moveBackTween && this.moveBackTween.isRunning) {
+                this.moveBackTween.stop();
+            }
             this.isDragging = true;
         }
 
@@ -52,8 +79,8 @@
             if (this.moveBackTween && this.moveBackTween.isRunning) {
                 this.moveBackTween.stop();
             }
-            this.moveBackNormal = 0;
             this.releasePoint = this.position.clone();
+            this.moveBackAnim = 0;
             this.moveBackTween = this.game.add.tween(this).to({ moveBackAnim: 1 }, 300, Phaser.Easing.Quadratic.In, true);
         }
 
@@ -79,6 +106,17 @@
             this.moveBackNormal = normal;
             let offset: Phaser.Point = new Phaser.Point(this.gridPoint.x - this.releasePoint.x, this.gridPoint.y - this.releasePoint.y);
             this.position.setTo(this.releasePoint.x + offset.x * normal, this.releasePoint.y + offset.y * normal);
+        }
+
+        private get fadeAnim(): number {
+            return this.fadeNormal;
+        }
+
+        private set fadeAnim(normal: number) {
+            this.fadeNormal = normal;
+            let offset: Phaser.Point = new Phaser.Point(this.fadeTarget.centerX - this.releasePoint.x, this.fadeTarget.centerY - this.releasePoint.y);
+            this.position.setTo(this.releasePoint.x + offset.x * normal, this.releasePoint.y + offset.y * normal);
+            this.alpha = 1 - normal;
         }
 
         public get cargoType(): CargoTypes {

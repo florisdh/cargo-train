@@ -43,7 +43,7 @@
             }
         }
 
-        public dropCargo(cargo: Cargo): void {
+        public dropCargo(cargo: Cargo): boolean {
             if (this.requestedCargo.length > 0 && this.requestedCargo[0].cargoType === cargo.cargoType) {
                 this.requestedCargo[0].destroy();
                 this.requestedCargo.splice(0, 1);
@@ -51,9 +51,9 @@
                 if (this.requestedCargo.length === 0) {
                     this.wagonFilled.dispatch(this);
                 }
-            } else {
-                cargo.moveBack();
+                return true;
             }
+            return false;
         }
     }
 }

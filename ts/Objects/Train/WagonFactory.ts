@@ -12,8 +12,8 @@
                 case WagonTypes.Locomotive:
                     wagon = new Locomotive(this.game);
                     break;
-                case WagonTypes.NormalWagon:
-                    wagon = new Wagon(this.game);
+                case WagonTypes.CargoWagon:
+                    wagon = new CargoWagon(this.game);
                     break;
                 case WagonTypes.Caboose:
                     wagon = new Caboose(this.game);

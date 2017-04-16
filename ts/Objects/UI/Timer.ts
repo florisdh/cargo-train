@@ -7,6 +7,7 @@
         private timeFill: Phaser.Image;
         private timeTotal: number;
         private timeLeft: number;
+        private started: boolean;
 
         constructor(game: Phaser.Game) {
             super(game);
@@ -27,18 +28,23 @@
             this.timerMask.endFill();
 
             this.timeFill.mask = this.timerMask;
-
-            // Debug time
-            this.setTime(10000);
+            this.started = false;
+            this.timeTotal = this.timeLeft = 1;
         }
 
-        public setTime(time: number): void {
-            this.timeTotal = time;
-            this.timeLeft = time;
+        public start(time: number): void {
+            // TODO: fade in
+            this.started = true;
+            this.timeTotal = this.timeLeft = time;
+        }
+
+        public stop(): void {
+            // TODO: fade out
+            this.started = false;
         }
 
         public update(): void {
-            if (this.timeLeft > 0) {
+            if (this.started && this.timeLeft > 0) {
                 this.timeLeft -= this.game.time.elapsed;
                 this.timerMask.scale.set(this.timeFill.width * (this.timeLeft / this.timeTotal), this.timeFill.height);
 

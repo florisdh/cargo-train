@@ -17,6 +17,10 @@
         }
 
         public spawnCargo(required: CargoTypes[]): void {
+            if (this.cargo.length > 0) {
+                this.clearCargo();
+            }
+
             let maxItems: number = this.xAmount * this.yAmount;
             let items: CargoTypes[] = [];
 
@@ -35,11 +39,33 @@
             this.resize();
         }
 
+        private clearCargo(): void {
+            while (this.cargo.length > 0) {
+                this.removeCargoAt(0);
+            }
+        }
+
         private addCargo(type: CargoTypes): void {
             let cargo: Cargo = this.factory.getCargo(type);
             this.add(cargo);
             this.cargo.push(cargo);
             cargo.dropped.add(this.onCargoDropped, this);
+            cargo.removed.add(this.onCargoRemoved, this);
+        }
+
+        private onCargoRemoved(cargo: Cargo): void {
+            let index: number = this.cargo.indexOf(cargo);
+            if (index >= 0) {
+                this.removeCargoAt(index);
+            }
+        }
+
+        private removeCargoAt(index: number): void {
+            let cargo: Cargo = this.cargo[index];
+            this.cargo.splice(index, 1);
+            cargo.dropped.remove(this.onCargoDropped, this);
+            cargo.removed.remove(this.onCargoRemoved, this);
+            this.remove(cargo);
         }
 
         private onCargoDropped(cargo: Cargo, position: Phaser.Point): void {

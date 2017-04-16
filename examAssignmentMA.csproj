@@ -46,6 +46,7 @@
     <TypeScriptCompile Include="ts\Objects\Train\Train.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\WagonFactory.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Caboose.ts" />
+    <TypeScriptCompile Include="ts\Objects\Train\Wagons\CargoWagon.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Locomotive.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Wagon.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\WagonTypes.ts" />

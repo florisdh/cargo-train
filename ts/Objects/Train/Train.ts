@@ -20,8 +20,8 @@
             this.spawnNext();
         }
 
-        public spawnNext(): Wagon {
-            let type: WagonTypes = WagonTypes.NormalWagon;
+        private spawnNext(): Wagon {
+            let type: WagonTypes = WagonTypes.CargoWagon;
             if (this.wagonCounter === 0) {
                 type = WagonTypes.Locomotive;
             } else if (this.wagonCounter === this.trianLength + 1) {

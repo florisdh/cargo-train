@@ -13,32 +13,48 @@
 
         public init(): void {
             this.background = this.game.add.image(0, 0, Images.Background_01);
-            this.platform = this.game.add.image(0, 0, Images.Platform_01);
-
-            this.train = new Train(this.game);
-            this.cargo = new CargoGrid(this.game);
-            this.cargo.cargoDropped.add(this.onCargoDropped, this);
-            this.timeIndicator = new Timer(this.game);
-
-            this.game.add.existing(this.cargo);
-            this.game.add.existing(this.timeIndicator);
-
-            // Events
-            this.timeIndicator.timeOut.addOnce(this.onTimeOut);
-            // Pivots
             this.background.anchor.set(0.5, 1);
+
+            this.platform = this.game.add.image(0, 0, Images.Platform_01);
             this.platform.anchor.set(0.5, 0);
 
-            // Events
+            this.train = new Train(this.game);
+            this.train.wagonAdded.add(this.onWagonAdded, this);
+
+            this.cargo = new CargoGrid(this.game);
+            this.cargo.cargoDropped.add(this.onCargoDropped, this);
+
+            this.timeIndicator = new Timer(this.game);
+            this.timeIndicator.timeOut.addOnce(this.onTimeOut);
             this.timeIndicator.timeOut.addOnce(this.onTimeOut);
 
+            this.game.add.existing(this.timeIndicator);
+            this.game.add.existing(this.cargo);
+
             this.resize();
-            this.start();
+            this.startRound();
+        }
+
+        private onWagonAdded(wagon: Wagon): void {
+            if (wagon.type === WagonTypes.CargoWagon) {
+                // TODO: calculate required cargo based on round etc
+                let requiredCargo: CargoTypes[] = [CargoTypes.Circle, CargoTypes.Cube, CargoTypes.Triangle];
+                (<CargoWagon>wagon).setRequestedCargo(requiredCargo);
+                this.cargo.spawnCargo(requiredCargo);
+
+                // TODO: calculate variable timing based on round etc
+                wagon.moveInDone.addOnce(() => {
+                    this.timeIndicator.start(5000);
+                });
+            } else if (wagon.type === WagonTypes.Caboose) {
+                this.timeIndicator.stop();
+                wagon.moveOutDone.addOnce(this.onRoundDone, this);
+            }
         }
 
         private onCargoDropped(cargo: Cargo): void {
-            if (this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition)) {
-                this.train.activeWagon.dropCargo(cargo);
+            if (this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition) && this.train.activeWagon.type === WagonTypes.CargoWagon) {
+                (<CargoWagon>this.train.activeWagon).dropCargo(cargo);
             } else {
                 cargo.moveBack();
             }
@@ -49,8 +65,6 @@
         }
 
         public resize(): void {
-            console.log('resize gameplay');
-
             // Background positioning
             this.background.y = this.game.height * 0.35;
             this.background.x = this.game.width * 0.5;
@@ -76,10 +90,15 @@
             this.timeIndicator.resize();
         }
 
-        private start(): void {
+        private startRound(): void {
             this.train.reset(2);
             this.train.start();
-            this.cargo.spawnCargo([CargoTypes.Circle]);
+            console.log('start');
+        }
+
+        private onRoundDone(): void {
+            // TODO: Show intermission
+            this.startRound();
         }
     }
 }
