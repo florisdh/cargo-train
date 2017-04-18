@@ -34,8 +34,7 @@
             this.cargo.cargoDropped.add(this.onCargoDropped, this);
 
             this.timeIndicator = new Timer(this.game);
-            this.timeIndicator.timeOut.addOnce(this.onTimeOut);
-            this.timeIndicator.timeOut.addOnce(this.onTimeOut);
+            this.timeIndicator.timeOut.addOnce(this.onTimeOut, this);
 
             this.wagonIndicator = new WagonIndicator(this.game);
 
