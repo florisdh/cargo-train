@@ -51,7 +51,9 @@
 
                 // TODO: calculate variable timing based on round etc
                 wagon.moveInDone.addOnce(() => {
-                    this.timeIndicator.start(5000);
+                    let time: number = this.session.getWagonTime(requiredCargo.length);
+                    console.log(time);
+                    this.timeIndicator.start(time);
                 });
                 wagon.objectiveDone.addOnce(() => {
                     this.timeIndicator.stop();

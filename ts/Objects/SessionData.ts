@@ -16,5 +16,9 @@
         public nextWagon(): void {
             this.score += 100;
         }
+
+        public getWagonTime(cargoAmount: number): number {
+            return cargoAmount * (500 + 200 * Math.max(0, 20 - this.round));
+        }
     }
 }
