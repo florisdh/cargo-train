@@ -24,5 +24,9 @@
         public getWagonTime(cargoAmount: number): number {
             return cargoAmount * (500 + 200 * Math.max(0, 20 - this.round));
         }
+
+        public getCargoAmount(): number {
+            return 3 + Math.floor((this.round + 2) * Math.random());
+        }
     }
 }
