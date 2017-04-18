@@ -5,13 +5,20 @@
         public name: string = GamePlay.Name;
         public game: Phaser.Game;
 
+        private session: SessionData;
         private background: Phaser.Image;
         private platform: Phaser.Image;
         private timeIndicator: Timer;
         private train: Train;
         private cargo: CargoGrid;
 
-        public init(): void {
+        public init(session?: SessionData): void {
+            if (session) {
+                this.session = session;
+            } else {
+                this.session = new SessionData(0, 0);
+            }
+
             this.background = this.game.add.image(0, 0, Images.Background_01);
             this.background.anchor.set(0.5, 1);
 
@@ -46,6 +53,10 @@
                 wagon.moveInDone.addOnce(() => {
                     this.timeIndicator.start(5000);
                 });
+                wagon.objectiveDone.addOnce(() => {
+                    this.timeIndicator.stop();
+                    this.session.nextWagon();
+                });
             } else if (wagon.type === WagonTypes.Caboose) {
                 this.timeIndicator.stop();
                 wagon.moveOutDone.addOnce(this.onRoundDone, this);
@@ -61,7 +72,7 @@
         }
 
         private onTimeOut(): void {
-            this.game.state.start(GameOver.Name, true);
+            this.game.state.start(GameOver.Name, true, false, this.session);
         }
 
         public resize(): void {
@@ -100,8 +111,9 @@
         }
 
         private onRoundDone(): void {
-            // TODO: Show intermission
+            this.session.nextRound();
             this.startRound();
+            // TODO: Show intermission
         }
     }
 }

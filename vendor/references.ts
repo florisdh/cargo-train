@@ -13,6 +13,7 @@
 /// <reference path="../ts/Objects/Cargo/CargoFactory.ts" />
 /// <reference path="../ts/Objects/Cargo/CargoGrid.ts" />
 /// <reference path="../ts/Objects/Cargo/CargoTypes.ts" />
+/// <reference path="../ts/Objects/SessionData.ts" />
 /// <reference path="../ts/Objects/Train/CargoIndicator/CargoIcon.ts" />
 /// <reference path="../ts/Objects/Train/CargoIndicator/CargoIndicator.ts" />
 /// <reference path="../ts/Objects/Train/Train.ts" />
