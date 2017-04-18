@@ -107,7 +107,7 @@
         }
 
         private startRound(): void {
-            this.train.reset(2);
+            this.train.reset(this.session.getTrainLength());
             this.train.start();
             console.log('start');
         }
