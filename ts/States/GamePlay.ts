@@ -65,11 +65,14 @@
         }
 
         public resize(): void {
+            let bgPerc: number = 0.4;
+            let ptfrmPerc: number = 0.6;
+
             // Background positioning
-            this.background.y = this.game.height * 0.35;
+            this.background.y = this.game.height * bgPerc;
             this.background.x = this.game.width * 0.5;
             // Background height scaling
-            this.background.height = this.game.height * 0.35;
+            this.background.height = this.game.height * bgPerc;
             this.background.scale.x = this.background.scale.y;
             // Background width scaling
             if (this.background.width < this.game.width) {
@@ -81,7 +84,7 @@
             this.platform.y = this.background.bottom;
             this.platform.x = this.game.width * 0.5;
             // Platform height scaling
-            this.platform.height = this.game.height * 0.65;
+            this.platform.height = this.game.height * ptfrmPerc;
             this.platform.width = this.game.width;
 
             this.train.y = this.platform.y;
