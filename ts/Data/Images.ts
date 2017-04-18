@@ -12,6 +12,7 @@ module ExamAssignmentMA {
         public static CargoIndicatorTriangle: string = 'cargoIndicatorPlaceholderTriangle';
         public static TimeContainer: string = 'timebar';
         public static TimeFill: string = 'timebarFill';
+        public static WagonCounter: string = 'wagonCounter';
 
         public static Background_01: string = 'backgroundTrees';
         public static Platform_01: string = 'trainstationPavement';
@@ -29,6 +30,7 @@ module ExamAssignmentMA {
             Images.CargoIndicatorTriangle,
             Images.TimeContainer,
             Images.TimeFill,
+            Images.WagonCounter,
             Images.Background_01,
             Images.Platform_01
         ];

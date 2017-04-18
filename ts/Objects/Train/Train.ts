@@ -5,6 +5,7 @@
         private factory: WagonFactory;
         private wagons: Wagon[];
         private wagonCounter: number;
+        //TO DO: FIX MISSPELLING
         private trianLength: number;
 
         constructor(game: Phaser.Game) {
@@ -83,6 +84,10 @@
 
         public get activeWagon(): Wagon {
             return this.wagons[this.wagons.length - 1];
+        }
+
+        public get trainLength(): number {
+            return this.trianLength;
         }
     }
 }

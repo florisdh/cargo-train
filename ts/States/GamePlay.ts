@@ -11,6 +11,8 @@
         private timeIndicator: Timer;
         private train: Train;
         private cargo: CargoGrid;
+        private wagonIndicator: WagonIndicator;
+        private completedWagons: number;
 
         public init(session?: SessionData): void {
             if (session) {
@@ -35,8 +37,11 @@
             this.timeIndicator.timeOut.addOnce(this.onTimeOut);
             this.timeIndicator.timeOut.addOnce(this.onTimeOut);
 
+            this.wagonIndicator = new WagonIndicator(this.game);
+
             this.game.add.existing(this.timeIndicator);
             this.game.add.existing(this.cargo);
+            this.game.add.existing(this.wagonIndicator);
 
             this.resize();
             this.startRound();
@@ -47,6 +52,8 @@
                 // TODO: calculate required cargo based on round etc
                 let requiredCargo: CargoTypes[] = (<CargoWagon>wagon).setRandomCargo(this.session.getCargoAmount());
                 this.cargo.spawnCargo(requiredCargo);
+                this.completedWagons++;
+                this.wagonIndicator.setWagonIndicator(this.train.trainLength - this.completedWagons);
 
                 // TODO: calculate variable timing based on round etc
                 wagon.moveInDone.addOnce(() => {
@@ -103,11 +110,14 @@
             this.train.resize();
             this.cargo.resize();
             this.timeIndicator.resize();
+            this.wagonIndicator.resize();
         }
 
         private startRound(): void {
             this.train.reset(this.session.getTrainLength());
             this.train.start();
+            this.completedWagons = 0;
+            this.wagonIndicator.setWagonIndicator(this.train.trainLength);
             console.log('start');
         }
 
