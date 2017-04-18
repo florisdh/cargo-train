@@ -45,8 +45,7 @@
         private onWagonAdded(wagon: Wagon): void {
             if (wagon.type === WagonTypes.CargoWagon) {
                 // TODO: calculate required cargo based on round etc
-                let requiredCargo: CargoTypes[] = [CargoTypes.Circle, CargoTypes.Cube, CargoTypes.Triangle];
-                (<CargoWagon>wagon).setRequestedCargo(requiredCargo);
+                let requiredCargo: CargoTypes[] = (<CargoWagon>wagon).setRandomCargo(3);
                 this.cargo.spawnCargo(requiredCargo);
 
                 // TODO: calculate variable timing based on round etc

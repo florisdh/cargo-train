@@ -39,6 +39,7 @@
     <TypeScriptCompile Include="ts\Data\Sounds.ts" />
     <TypeScriptCompile Include="ts\Game.ts" />
     <TypeScriptCompile Include="ts\Objects\Cargo\Cargo.ts" />
+    <TypeScriptCompile Include="ts\Objects\Cargo\CargoFactory.ts" />
     <TypeScriptCompile Include="ts\Objects\Cargo\CargoGrid.ts" />
     <TypeScriptCompile Include="ts\Objects\Cargo\CargoTypes.ts" />
     <TypeScriptCompile Include="ts\Objects\SessionData.ts" />
@@ -51,6 +52,7 @@
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Locomotive.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Wagon.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\WagonTypes.ts" />
+    <TypeScriptCompile Include="ts\Objects\UI\Timer.ts" />
     <TypeScriptCompile Include="ts\States\Boot.ts" />
     <TypeScriptCompile Include="ts\States\GameOver.ts" />
     <TypeScriptCompile Include="ts\States\GamePlay.ts" />

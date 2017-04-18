@@ -10,6 +10,15 @@
             this.resize();
         }
 
+        public setRandomCargo(amount: number): CargoTypes[] {
+            let randomCargo: CargoTypes[] = [];
+            for (let i: number = 0; i < amount; i++) {
+                randomCargo.push(<CargoTypes>Math.floor(Math.random() * 3));
+            }
+            this.setRequestedCargo(randomCargo);
+            return randomCargo;
+        }
+
         public setRequestedCargo(cargo: CargoTypes[]): void {
             this.cargoIndicator.setRequestedCargo(cargo);
         }
