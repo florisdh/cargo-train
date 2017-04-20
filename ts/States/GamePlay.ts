@@ -48,11 +48,9 @@
 
         private onWagonAdded(wagon: Wagon): void {
             if (wagon.type === WagonTypes.CargoWagon) {
-                // TODO: calculate required cargo based on round etc
                 let requiredCargo: CargoTypes[] = (<CargoWagon>wagon).setRandomCargo(this.session.getCargoAmount());
                 this.cargo.spawnCargo(requiredCargo);
 
-                // TODO: calculate variable timing based on round etc
                 wagon.moveInDone.addOnce(() => {
                     let time: number = this.session.getWagonTime(requiredCargo.length);
                     console.log(time);

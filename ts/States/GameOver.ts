@@ -37,7 +37,7 @@
         public setScore(amount: number): void {
             this.scoreValueText.text = amount.toString();
         }
-        
+
         public resize(): void {
             this.gameOverImg.width = this.game.width;
             this.gameOverImg.height = this.game.height;
@@ -49,7 +49,7 @@
             this.scoreValueText.fontSize = this.game.width * 0.1;
             this.scoreValueText.x = this.game.width * 0.5;
             this.scoreValueText.y = this.game.height * 0.4;
-            
+
             this.retryButton.x = this.game.width * 0.5;
             this.retryButton.y = this.game.height * 0.815;
             this.retryButton.width = this.game.width * 0.361;
