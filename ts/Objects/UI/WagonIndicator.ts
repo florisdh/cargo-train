@@ -6,25 +6,29 @@
         constructor(game: Phaser.Game) {
             super(game);
             this.indicatorImage = new Phaser.Image(this.game, 0, 0, Images.WagonCounter);
-            this.indicatorImage.anchor.setTo(0.5, 0.5);
-            this.indicatorText = new Phaser.Text(this.game, 0, 0, '0', { font: '30pt Arial', fill: '#791909'} );
-            this.indicatorText.anchor.setTo(0.5, 0.5);
+            this.indicatorImage.anchor.setTo(0.5);
+            this.indicatorText = new Phaser.Text(this.game, 0, 0, '0', {
+                font: '30pt Arial',
+                fill: '#791909',
+                boundsAlignH: 'center',
+                boundsAlignV: 'middle'
+            });
             this.add(this.indicatorImage);
             this.add(this.indicatorText);
         }
 
-        public setWagonIndicator(currentWagonNumber: number): void {
-            console.log(currentWagonNumber);
-            this.indicatorText.setText(currentWagonNumber.toString());
+        public setWagonAmount(amount: number): void {
+            this.indicatorText.text = amount.toString();
         }
 
-        public resize(timerX: number, timerY: number): void {
+        public resize(y: number): void {
+            this.x = this.y = y;
             this.indicatorImage.scale.setTo(this.game.width / 720);
-            this.indicatorImage.x = timerX / 4.5;
-            this.indicatorImage.centerY = timerY;
-            this.indicatorText.x = this.indicatorImage.x;
-            this.indicatorText.y = this.indicatorImage.y;
-            this.indicatorText.fontSize = this.indicatorImage.width / 2;
+            this.indicatorText.fontSize = this.indicatorImage.width * 0.55;
+            this.indicatorText.setTextBounds(this.indicatorImage.left,
+                this.indicatorImage.top,
+                this.indicatorImage.width,
+                this.indicatorImage.height);
         }
     }
 }

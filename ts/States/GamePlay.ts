@@ -52,15 +52,13 @@
                 this.cargo.spawnCargo(requiredCargo);
 
                 wagon.moveInDone.addOnce(() => {
-                    let time: number = this.session.getWagonTime(requiredCargo.length);
-                    console.log(time);
-                    this.timeIndicator.start(time);
+                    this.timeIndicator.start(this.session.getWagonTime(requiredCargo.length));
                 });
                 wagon.objectiveDone.addOnce(() => {
                     this.timeIndicator.stop();
                     this.session.nextWagon();
                     this.completedWagons++;
-                    this.wagonIndicator.setWagonIndicator(this.train.trainLength - this.completedWagons);
+                    this.wagonIndicator.setWagonAmount(this.train.trainLength - this.completedWagons);
                 });
             } else if (wagon.type === WagonTypes.Caboose) {
                 this.timeIndicator.stop();
@@ -106,16 +104,16 @@
             this.train.y = this.platform.y;
             this.train.resize();
             this.cargo.resize();
-            this.timeIndicator.resize();
-            this.wagonIndicator.resize(this.timeIndicator.centerX, this.timeIndicator.centerY);
+            let topUiY: number = this.game.height * 0.05;
+            this.timeIndicator.resize(topUiY);
+            this.wagonIndicator.resize(topUiY);
         }
 
         private startRound(): void {
             this.train.reset(this.session.getTrainLength());
             this.train.start();
             this.completedWagons = 0;
-            this.wagonIndicator.setWagonIndicator(this.train.trainLength);
-            console.log('start');
+            this.wagonIndicator.setWagonAmount(this.train.trainLength);
         }
 
         private onRoundDone(): void {

@@ -54,9 +54,9 @@
             }
         }
 
-        public resize(): void {
+        public resize(y: number): void {
             this.x = this.game.width / 2;
-            this.y = this.game.height * 0.05;
+            this.y = y;
             this.scale.setTo(this.game.width / 720);
             this.timerMask.scale.set(this.timeFill.width * (this.timeLeft / this.timeTotal), this.timeFill.height);
             this.timerMask.x = this.timeFill.left;
