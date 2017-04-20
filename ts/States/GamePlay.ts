@@ -109,7 +109,7 @@
             this.train.resize();
             this.cargo.resize();
             this.timeIndicator.resize();
-            this.wagonIndicator.resize();
+            this.wagonIndicator.resize(this.timeIndicator.centerX, this.timeIndicator.centerY);
         }
 
         private startRound(): void {
