@@ -3,6 +3,7 @@ module ExamAssignmentMA {
         // Specify all images here
         public static WhitePixel: string = 'white';
         public static MA_Logo: string = 'ma';
+        // InGame
         public static Wagon: string = 'wagonPlaceholder';
         public static CargoCircle: string = 'cargoPlaceholderCirkel';
         public static CargoCube: string = 'cargoPlaceholderCube';
@@ -13,9 +14,11 @@ module ExamAssignmentMA {
         public static TimeContainer: string = 'timebar';
         public static TimeFill: string = 'timebarFill';
         public static WagonCounter: string = 'wagonCounter';
-
         public static Background_01: string = 'backgroundTrees';
         public static Platform_01: string = 'trainstationPavement';
+        // GameOver
+        public static GameOverBG: string = 'endScreenBackground';
+        public static RetryButton: string = 'retryButton';
 
         // Add all images here
         public static preloadList: string[] = [
@@ -32,7 +35,9 @@ module ExamAssignmentMA {
             Images.TimeFill,
             Images.WagonCounter,
             Images.Background_01,
-            Images.Platform_01
+            Images.Platform_01,
+            Images.GameOverBG,
+            Images.RetryButton
         ];
     }
 }
