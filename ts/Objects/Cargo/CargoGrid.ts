@@ -4,8 +4,8 @@
         private readonly xAmount: number = 4;
         private readonly yAmount: number = 4;
         private readonly marginNormalX: number = 0.075;
-        private readonly marginNormalTop: number = 0.12;
-        private readonly marginNormalBottom: number = 0.165;
+        private readonly marginNormalTop: number = 0.1;
+        private readonly marginNormalBottom: number = 0.15;
         private cargo: Cargo[];
         private factory: CargoFactory;
 
