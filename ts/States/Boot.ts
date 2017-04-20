@@ -35,7 +35,7 @@ module ExamAssignmentMA {
             // Load all lose images
             let i: number;
             for (i = 0; i < Images.preloadList.length; i++) {
-                this.game.load.image(Images.preloadList[i], 'assets/images/' + Images.preloadList[i] + '.png');
+                this.game.load.image(Images.preloadList[i], 'assets/images/' + Images.preloadList[i]);
             }
 
             // Load all atlases
