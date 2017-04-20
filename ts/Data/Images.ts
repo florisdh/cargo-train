@@ -3,6 +3,8 @@ module ExamAssignmentMA {
         // Specify all images here
         public static WhitePixel: string = 'white';
         public static MA_Logo: string = 'ma';
+        // Tutorial
+        public static TutorialBG: string = 'tutorialGraphic';
         // InGame
         public static Wagon: string = 'wagonPlaceholder';
         public static CargoCircle: string = 'cargoPlaceholderCirkel';
@@ -37,7 +39,8 @@ module ExamAssignmentMA {
             Images.Background_01,
             Images.Platform_01,
             Images.GameOverBG,
-            Images.RetryButton
+            Images.RetryButton,
+            Images.TutorialBG
         ];
     }
 }
