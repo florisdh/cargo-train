@@ -7,7 +7,7 @@
             super(game);
             this.indicatorImage = new Phaser.Image(this.game, 0, 0, Images.WagonCounter);
             this.indicatorImage.anchor.setTo(0.5, 0.5);
-            this.indicatorText = new Phaser.Text(this.game, 0, 0, '0', { font: "62px Arial Black", fill: "#804000"} );
+            this.indicatorText = new Phaser.Text(this.game, 0, 0, '0', { font: '62px Arial Black', fill: '#804000'} );
             this.indicatorText.anchor.setTo(0.5, 0.5);
             this.add(this.indicatorImage);
             this.add(this.indicatorText);

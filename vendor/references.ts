@@ -23,6 +23,7 @@
 /// <reference path="../ts/Objects/Train/Wagons/CargoWagon.ts" />
 /// <reference path="../ts/Objects/Train/Wagons/Locomotive.ts" />
 /// <reference path="../ts/Objects/UI/Timer.ts" />
+/// <reference path="../ts/Objects/UI/WagonIndicator.ts" />
 /// <reference path="../ts/States/Boot.ts" />
 /// <reference path="../ts/States/GameOver.ts" />
 /// <reference path="../ts/States/GamePlay.ts" />
