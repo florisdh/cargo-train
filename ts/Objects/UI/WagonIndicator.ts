@@ -19,6 +19,7 @@
         }
 
         public resize(): void {
+            this.scale.setTo(this.game.width / 720);
             this.indicatorImage.x = + this.indicatorImage.width / 2 + this.game.width * 0.025;
             this.indicatorImage.y = + this.indicatorImage.width / 2;
             this.indicatorText.x = this.indicatorImage.x;

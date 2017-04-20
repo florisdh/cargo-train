@@ -51,8 +51,6 @@
                 // TODO: calculate required cargo based on round etc
                 let requiredCargo: CargoTypes[] = (<CargoWagon>wagon).setRandomCargo(this.session.getCargoAmount());
                 this.cargo.spawnCargo(requiredCargo);
-                this.completedWagons++;
-                this.wagonIndicator.setWagonIndicator(this.train.trainLength - this.completedWagons);
 
                 // TODO: calculate variable timing based on round etc
                 wagon.moveInDone.addOnce(() => {
@@ -63,6 +61,8 @@
                 wagon.objectiveDone.addOnce(() => {
                     this.timeIndicator.stop();
                     this.session.nextWagon();
+                    this.completedWagons++;
+                    this.wagonIndicator.setWagonIndicator(this.train.trainLength - this.completedWagons);
                 });
             } else if (wagon.type === WagonTypes.Caboose) {
                 this.timeIndicator.stop();
