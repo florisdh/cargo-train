@@ -52,6 +52,8 @@
             
             this.retryButton.x = this.game.width * 0.5;
             this.retryButton.y = this.game.height * 0.815;
+            this.retryButton.width = this.game.width * 0.361;
+            this.retryButton.scale.y = this.retryButton.scale.x;
         }
 
     }
