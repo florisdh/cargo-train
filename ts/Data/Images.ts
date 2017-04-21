@@ -22,6 +22,7 @@ module ExamAssignmentMA {
         public static Platform_01: string = 'trainstationPavement.png';
         // GameOver
         public static GameOverBG: string = 'endScreenBackground.jpg';
+        public static GameOverFG: string = 'endscreenForground.png';
         public static RetryButton: string = 'retryButton.png';
 
         // Add all images here
@@ -43,6 +44,7 @@ module ExamAssignmentMA {
             Images.Background_01,
             Images.Platform_01,
             Images.GameOverBG,
+            Images.GameOverFG,
             Images.RetryButton,
             Images.TutorialBG
         ];

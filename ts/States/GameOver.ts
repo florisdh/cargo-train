@@ -6,19 +6,24 @@
         public game: Phaser.Game;
         private scoreText: Phaser.Text;
         private scoreValueText: Phaser.Text;
-        private gameOverImg: Phaser.Image;
+        private background: Phaser.Image;
+        private foreground: Phaser.Image;
         private retryButton: Phaser.Image;
 
         public init(sessionData: SessionData): void {
-            this.gameOverImg = new Phaser.Image(this.game, 0, 0, Images.GameOverBG);
+            this.background = new Phaser.Image(this.game, 0, 0, Images.GameOverBG);
+            this.foreground = new Phaser.Image(this.game, 0, 0, Images.GameOverFG);
             this.scoreText = new Phaser.Text(this.game, 0, 0, 'SCORE');
             this.scoreValueText = new Phaser.Text(this.game, 0, 0, sessionData.score.toString());
             this.retryButton = new Phaser.Image(this.game, 0, 0, Images.RetryButton);
 
-            this.game.add.existing(this.gameOverImg);
+            this.game.add.existing(this.background);
+            this.game.add.existing(this.foreground);
             this.game.add.existing(this.scoreText);
             this.game.add.existing(this.scoreValueText);
             this.game.add.existing(this.retryButton);
+
+            this.foreground.anchor.setTo(0.5);
 
             this.retryButton.inputEnabled = true;
             this.retryButton.events.onInputUp.addOnce(this.onClickedRetry, this);
@@ -39,20 +44,29 @@
         }
 
         public resize(): void {
-            this.gameOverImg.width = this.game.width;
-            this.gameOverImg.height = this.game.height;
+            this.background.width = this.game.width;
+            this.background.height = this.game.height;
 
-            this.scoreText.fontSize = this.game.width * 0.125;
-            this.scoreText.x = this.game.width * 0.5;
-            this.scoreText.y = this.game.height * 0.175;
+            this.foreground.x = this.game.world.centerX;
+            this.foreground.y = this.game.world.centerY;
+            this.foreground.height = this.game.height;
+            this.foreground.scale.x = this.foreground.scale.y;
+            if (this.foreground.width > this.game.width * 0.95) {
+                this.foreground.width = this.game.width * 0.95;
+                this.foreground.scale.y = this.foreground.scale.x;
+            }
 
-            this.scoreValueText.fontSize = this.game.width * 0.1;
-            this.scoreValueText.x = this.game.width * 0.5;
-            this.scoreValueText.y = this.game.height * 0.4;
+            this.scoreText.fontSize = this.foreground.width * 0.125;
+            this.scoreText.x = this.foreground.left + this.foreground.width * 0.5;
+            this.scoreText.y = this.foreground.top + this.foreground.height * 0.12;
 
-            this.retryButton.x = this.game.width * 0.5;
-            this.retryButton.y = this.game.height * 0.815;
-            this.retryButton.width = this.game.width * 0.361;
+            this.scoreValueText.fontSize = this.foreground.width * 0.1;
+            this.scoreValueText.x = this.foreground.left + this.foreground.width * 0.5;
+            this.scoreValueText.y = this.foreground.top + this.foreground.height * 0.375;
+
+            this.retryButton.x = this.foreground.left + this.foreground.width * 0.5;
+            this.retryButton.y = this.foreground.top + this.foreground.height * 0.865;
+            this.retryButton.width = this.foreground.width * 0.361;
             this.retryButton.scale.y = this.retryButton.scale.x;
         }
 
