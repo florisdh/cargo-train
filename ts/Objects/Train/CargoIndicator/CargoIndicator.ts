@@ -2,14 +2,17 @@
     export class CargoIndicator extends Phaser.Group {
         private requestedCargo: CargoIcon[];
         private background: Phaser.Image;
+        private iconMask: Phaser.Graphics;
         public wagonFilled: Phaser.Signal;
 
         constructor(game: Phaser.Game) {
             super(game);
             this.requestedCargo = [];
-            this.background = new Phaser.Image(this.game, 0, 0, Images.WhitePixel);
+            this.background = new Phaser.Image(this.game, 0, 0, Images.CargoIndicatorContainer);
             this.background.anchor.setTo(0.5);
+            this.iconMask = new Phaser.Graphics(game);
             this.add(this.background);
+            this.add(this.iconMask);
             this.wagonFilled = new Phaser.Signal();
         }
 
@@ -31,6 +34,11 @@
             this.y = wagonHeight * -0.8;
             this.background.width = wagonWidth * 0.4;
             this.background.height = this.background.width * 0.2;
+            this.iconMask.beginFill(0, 0);
+            this.iconMask.drawRect(0, 0, this.background.width, this.background.height);
+            this.iconMask.endFill();
+            this.iconMask.x = this.background.left;
+            this.iconMask.y = this.background.top;
             this.resizeCargo();
         }
 
@@ -39,7 +47,8 @@
                 this.requestedCargo[i].activeCargo = i === 0;
                 this.requestedCargo[i].height = this.background.height * 0.8;
                 this.requestedCargo[i].scale.x = this.requestedCargo[i].scale.y;
-                this.requestedCargo[i].x = - (this.background.width * 0.4) + (i * (this.requestedCargo[i].width + this.game.width * 0.005));
+                this.requestedCargo[i].x = - (this.background.width * 0.375) + (i * (this.requestedCargo[i].width + this.game.width * 0.01));
+                this.requestedCargo[i].mask = this.iconMask;
             }
         }
 

@@ -10,6 +10,7 @@ module ExamAssignmentMA {
         public static CargoCircle: string = 'cargoPlaceholderCirkel.png';
         public static CargoCube: string = 'cargoPlaceholderCube.png';
         public static CargoTriangle: string = 'cargoPlaceholderTriangle.png';
+        public static CargoIndicatorContainer: string = 'cargoIndicator.png';
         public static CargoIndicatorCircle: string = 'cargoRequirementCircleIcon.png';
         public static CargoIndicatorCube: string = 'cargoRequirementSquareIcon.png';
         public static CargoIndicatorTriangle: string = 'cargoRequirementTriangleIcon.png';
@@ -33,6 +34,7 @@ module ExamAssignmentMA {
             Images.CargoCircle,
             Images.CargoCube,
             Images.CargoTriangle,
+            Images.CargoIndicatorContainer,
             Images.CargoIndicatorCircle,
             Images.CargoIndicatorCube,
             Images.CargoIndicatorTriangle,
