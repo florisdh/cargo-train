@@ -1,5 +1,8 @@
 ﻿module ExamAssignmentMA {
-    export class Timer extends Phaser.Group {
+    /**
+     * The indicator displaying the amount of time left for the current wagon.
+     */
+    export class TimeIndicator extends Phaser.Group {
 
         public timeOut: Phaser.Signal;
         private timerMask: Phaser.Graphics;
@@ -9,6 +12,9 @@
         private timeLeft: number;
         private started: boolean;
 
+        /**
+         * @param game The active game instance to be added to.
+         */
         constructor(game: Phaser.Game) {
             super(game);
 
@@ -32,17 +38,27 @@
             this.timeTotal = this.timeLeft = 1;
         }
 
+        /**
+         * Starts the timer to decrease automatically.
+         * @param time The total time it will take to empty the entire bar.
+         */
         public start(time: number): void {
             // TODO: fade in
             this.started = true;
             this.timeTotal = this.timeLeft = time;
         }
 
+        /**
+         * Stops the timer.
+         */
         public stop(): void {
             // TODO: fade out
             this.started = false;
         }
 
+        /**
+         * Automatically decreases the time.
+         */
         public update(): void {
             if (this.started && this.timeLeft > 0) {
                 this.timeLeft -= this.game.time.elapsed;
@@ -54,6 +70,10 @@
             }
         }
 
+        /**
+         * Resizes all elements in this object.
+         * @param y The y axis where the top ui elements should center to.
+         */
         public resize(y: number): void {
             this.x = this.game.width / 2;
             this.y = y;
@@ -62,6 +82,5 @@
             this.timerMask.x = this.timeFill.left;
             this.timerMask.y = this.timeFill.top;
         }
-
     }
 }

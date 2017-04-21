@@ -1,10 +1,17 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * The indicator showing the cargo required for this wagon.
+     */
     export class CargoIndicator extends Phaser.Group {
+
+        public wagonFilled: Phaser.Signal;
         private requestedCargo: CargoIcon[];
         private background: Phaser.Image;
         private iconMask: Phaser.Graphics;
-        public wagonFilled: Phaser.Signal;
 
+        /**
+         * @param game The active game instance to be added to.
+         */
         constructor(game: Phaser.Game) {
             super(game);
             this.requestedCargo = [];
@@ -16,6 +23,10 @@
             this.wagonFilled = new Phaser.Signal();
         }
 
+        /**
+         * Sets the required cargo.
+         * @param cargoType The required cargo for this wagon to be completed.
+         */
         public setRequestedCargo(cargoType: CargoTypes[]): void {
             cargoType.forEach(this.determineRequestedCargo, this);
         }
@@ -27,6 +38,9 @@
             this.resizeCargo();
         }
 
+        /**
+         * Resizes all elements in this object.
+         */
         public resize(): void {
             let wagonWidth: number = this.parent.width / this.parent.scale.x,
                 wagonHeight: number = this.parent.height / this.parent.scale.y;
@@ -52,6 +66,10 @@
             }
         }
 
+        /**
+         * Validates if the dropped cargo was currently needed.
+         * @param cargo The cargo being dropped.
+         */
         public dropCargo(cargo: Cargo): boolean {
             if (this.requestedCargo.length > 0 && this.requestedCargo[0].cargoType === cargo.cargoType) {
                 this.requestedCargo[0].destroy();

@@ -1,9 +1,14 @@
 module ExamAssignmentMA {
+    /**
+     * The state that will apply the settings and load all required assets.
+     */
     export class Boot extends Phaser.State {
-        public static Name: string = 'boot';
-        public name: string = Boot.Name;
-        public game: Phaser.Game;
 
+        public static Name: string = 'boot';
+
+        /**
+         * This will setup all preferred phaser settings.
+         */
         public init(): void {
             // Limit pointers
             this.game.input.maxPointers = 1;
@@ -29,22 +34,25 @@ module ExamAssignmentMA {
             }
         }
 
+        /**
+         * This will load all assets that are required in this game.
+         */
         public preload(): void {
             this.game.load.onLoadComplete.addOnce(this.onLoaded, this);
 
             // Load all lose images
             let i: number;
-            for (i = 0; i < Images.preloadList.length; i++) {
-                this.game.load.image(Images.preloadList[i], 'assets/images/' + Images.preloadList[i]);
+            for (i = 0; i < Images.PreloadList.length; i++) {
+                this.game.load.image(Images.PreloadList[i], 'assets/images/' + Images.PreloadList[i]);
             }
 
             // Load all atlases
-            for (i = 0; i < Atlases.preloadList.length; i++) {
-                this.game.load.atlas(Atlases.preloadList[i], 'assets/atlases/' + Atlases.preloadList[i] + '.png', 'assets/atlases/' + Atlases.preloadList[i] + '.json');
+            for (i = 0; i < Atlases.PreloadList.length; i++) {
+                this.game.load.atlas(Atlases.PreloadList[i], 'assets/atlases/' + Atlases.PreloadList[i] + '.png', 'assets/atlases/' + Atlases.PreloadList[i] + '.json');
             }
 
             // Load all sounds
-            Sounds.preloadList.forEach((assetName: string) => {
+            Sounds.PreloadList.forEach((assetName: string) => {
                 if (this.game.device.iOS) {
                     this.game.load.audio(assetName, ['assets/sound/' + assetName + '.m4a']);
                 }
@@ -52,6 +60,9 @@ module ExamAssignmentMA {
             });
         }
 
+        /**
+         * Start the first screen state that will show after load.
+         */
         private onLoaded(): void {
             this.game.state.start(Splash.Name);
         }

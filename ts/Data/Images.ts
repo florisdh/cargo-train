@@ -1,5 +1,9 @@
 module ExamAssignmentMA {
+    /**
+     * The reference to all lose image files and container of all items to be preloaded.
+     */
     export class Images {
+
         // Specify all images here
         public static WhitePixel: string = 'white.png';
         public static MA_Logo: string = 'ma.png';
@@ -27,7 +31,7 @@ module ExamAssignmentMA {
         public static RetryButton: string = 'retryButton.png';
 
         // Add all images here
-        public static preloadList: string[] = [
+        public static PreloadList: string[] = [
             Images.WhitePixel,
             Images.MA_Logo,
             Images.Wagon,

@@ -1,19 +1,23 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * The state that combines all game logics and assets.
+     */
     export class GamePlay extends Phaser.State {
 
         public static Name: string = 'gameplay';
-        public name: string = GamePlay.Name;
-        public game: Phaser.Game;
-
         private session: SessionData;
         private background: Phaser.Image;
         private platform: Phaser.Image;
-        private timeIndicator: Timer;
+        private timeIndicator: TimeIndicator;
         private train: Train;
         private cargo: CargoGrid;
         private wagonIndicator: WagonIndicator;
         private completedWagons: number;
 
+        /**
+         * Adds all game assets and sets up all game elements.
+         * @param session The data containing the current sessions score.
+         */
         public init(session?: SessionData): void {
             if (session) {
                 this.session = session;
@@ -33,7 +37,7 @@
             this.cargo = new CargoGrid(this.game);
             this.cargo.cargoDropped.add(this.onCargoDropped, this);
 
-            this.timeIndicator = new Timer(this.game);
+            this.timeIndicator = new TimeIndicator(this.game);
             this.timeIndicator.timeOut.addOnce(this.onTimeOut, this);
 
             this.wagonIndicator = new WagonIndicator(this.game);
@@ -58,7 +62,7 @@
                     this.timeIndicator.stop();
                     this.session.nextWagon();
                     this.completedWagons++;
-                    this.wagonIndicator.setWagonAmount(this.train.trainLength - this.completedWagons);
+                    this.wagonIndicator.setWagonAmount(this.train.totalWagons - this.completedWagons);
                 });
             } else if (wagon.type === WagonTypes.Caboose) {
                 this.timeIndicator.stop();
@@ -67,7 +71,7 @@
         }
 
         private onCargoDropped(cargo: Cargo): void {
-            if (this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition) && this.train.activeWagon.type === WagonTypes.CargoWagon) {
+            if (this.train.activeWagon.type === WagonTypes.CargoWagon && this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition)) {
                 (<CargoWagon>this.train.activeWagon).dropCargo(cargo);
             } else {
                 cargo.moveBack();
@@ -78,6 +82,9 @@
             this.game.state.start(GameOver.Name, true, false, this.session);
         }
 
+        /**
+         * Resizes all game elements based on the screen size.
+         */
         public resize(): void {
             let bgPerc: number = 0.4;
             let ptfrmPerc: number = 0.6;
@@ -113,7 +120,7 @@
             this.train.reset(this.session.getTrainLength());
             this.train.start();
             this.completedWagons = 0;
-            this.wagonIndicator.setWagonAmount(this.train.trainLength);
+            this.wagonIndicator.setWagonAmount(this.train.totalWagons);
         }
 
         private onRoundDone(): void {

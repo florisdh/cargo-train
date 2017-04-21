@@ -52,7 +52,7 @@
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Locomotive.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Wagon.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\WagonTypes.ts" />
-    <TypeScriptCompile Include="ts\Objects\UI\Timer.ts" />
+    <TypeScriptCompile Include="ts\Objects\UI\TimeIndicator.ts" />
     <TypeScriptCompile Include="ts\Objects\UI\WagonIndicator.ts" />
     <TypeScriptCompile Include="ts\States\Boot.ts" />
     <TypeScriptCompile Include="ts\States\GameOver.ts" />

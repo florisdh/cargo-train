@@ -1,11 +1,18 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * The base class of all wagons.
+     */
     export class Wagon extends Phaser.Image {
+
         public moveInDone: Phaser.Signal;
         public moveOutDone: Phaser.Signal;
         public objectiveDone: Phaser.Signal;
         private moveTween: Phaser.Tween;
         private moveNormal: number;
 
+        /**
+         * @param game The active game instance to be added to.
+         */
         constructor(game: Phaser.Game) {
             super(game, 0, 0, Images.Wagon);
             this.anchor.setTo(0, 1);
@@ -16,6 +23,9 @@
             this.objectiveDone = new Phaser.Signal();
         }
 
+        /**
+         * Resizes all elements in this object.
+         */
         public resize(): void {
             this.width = this.game.width;
             this.scale.y = this.scale.x;
@@ -24,6 +34,9 @@
             }
         }
 
+        /**
+         * Transitions the wagon into the screen.
+         */
         public moveIn(): void {
             if (this.moveTween != null && this.moveTween.isRunning) {
                 this.moveTween.stop();
@@ -35,6 +48,9 @@
             });
         }
 
+        /**
+         * Transitions the wagon out of the screen.
+         */
         public moveOut(): void {
             if (this.moveTween != null && this.moveTween.isRunning) {
                 this.moveTween.stop();
@@ -59,6 +75,9 @@
             return this.moveTween === null || !this.moveTween.isRunning;
         }
 
+        /**
+         * Returns the type of this wagon.
+         */
         public get type(): WagonTypes {
             return WagonTypes.None;
         }

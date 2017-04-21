@@ -1,20 +1,25 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * Gameover screen, showing the player the score he reached.
+     */
     export class GameOver extends Phaser.State {
 
         public static Name: string = 'gameover';
-        public name: string = GameOver.Name;
-        public game: Phaser.Game;
         private scoreText: Phaser.Text;
         private scoreValueText: Phaser.Text;
         private background: Phaser.Image;
         private foreground: Phaser.Image;
         private retryButton: Phaser.Image;
 
+        /**
+         * Adding all assets that are required for this state.
+         * @param sessionData The data containing the score for the last session.
+         */
         public init(sessionData: SessionData): void {
             this.background = new Phaser.Image(this.game, 0, 0, Images.GameOverBG);
             this.foreground = new Phaser.Image(this.game, 0, 0, Images.GameOverFG);
             this.scoreText = new Phaser.Text(this.game, 0, 0, 'SCORE');
-            this.scoreValueText = new Phaser.Text(this.game, 0, 0, sessionData.score.toString());
+            this.scoreValueText = new Phaser.Text(this.game, 0, 0, sessionData.currentScore.toString());
             this.retryButton = new Phaser.Image(this.game, 0, 0, Images.RetryButton);
 
             this.game.add.existing(this.background);
@@ -39,10 +44,9 @@
             this.game.state.start(GamePlay.Name);
         }
 
-        public setScore(amount: number): void {
-            this.scoreValueText.text = amount.toString();
-        }
-
+        /**
+         * Resizes all elements based on the screen size.
+         */
         public resize(): void {
             this.background.width = this.game.width;
             this.background.height = this.game.height;
@@ -69,6 +73,5 @@
             this.retryButton.width = this.foreground.width * 0.361;
             this.retryButton.scale.y = this.retryButton.scale.x;
         }
-
     }
 }

@@ -1,5 +1,9 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * A container for the cargo on the platform, aligning it in a grid.
+     */
     export class CargoGrid extends Phaser.Group {
+
         public cargoDropped: Phaser.Signal;
         private readonly xAmount: number = 4;
         private readonly yAmount: number = 4;
@@ -9,13 +13,19 @@
         private cargo: Cargo[];
         private factory: CargoFactory;
 
+        /**
+         * @param game The active game instance to be added to.
+         */
         constructor(game: Phaser.Game) {
             super(game);
             this.cargo = [];
             this.factory = new CargoFactory(game);
             this.cargoDropped = new Phaser.Signal();
         }
-
+        /**
+         * Spawns the requested cargo on the grid.
+         * @param required The cargo to be spawned on the grid.
+         */
         public spawnCargo(required: CargoTypes[]): void {
             if (this.cargo.length > 0) {
                 this.clearCargo();
@@ -72,6 +82,9 @@
             this.cargoDropped.dispatch(cargo);
         }
 
+        /**
+         * Resizes all cargo on the grid.
+         */
         public resize(): void {
             this.y = this.game.height * 0.35;
             let spacingX: number = this.game.width * (1 - this.marginNormalX * 2) / this.xAmount;

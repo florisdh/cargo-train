@@ -1,22 +1,31 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * The train object, handing and containing all wagons.
+     */
     export class Train extends Phaser.Group {
+
         public wagonAdded: Phaser.Signal;
         private readonly dropMarginNormal: number = 0.1;
         private factory: WagonFactory;
         private wagons: Wagon[];
         private wagonCounter: number;
-        //TO DO: FIX MISSPELLING
-        private trianLength: number;
+        private trainLength: number;
 
+        /**
+         * @param game The active game instance to be added to.
+         */
         constructor(game: Phaser.Game) {
             super(game);
             this.wagonAdded = new Phaser.Signal();
             this.factory = new WagonFactory(this.game);
             this.wagons = [];
             this.wagonCounter = 0;
-            this.trianLength = 0;
+            this.trainLength = 0;
         }
 
+        /**
+         * Starts the train to spawn the first wagons.
+         */
         public start(): void {
             this.spawnNext();
         }
@@ -25,7 +34,7 @@
             let type: WagonTypes = WagonTypes.CargoWagon;
             if (this.wagonCounter === 0) {
                 type = WagonTypes.Locomotive;
-            } else if (this.wagonCounter === this.trianLength + 1) {
+            } else if (this.wagonCounter === this.trainLength + 1) {
                 type = WagonTypes.Caboose;
             }
             let wagon: Wagon = this.factory.getWagon(type);
@@ -51,7 +60,7 @@
             });
         }
 
-        public removeWagon(wagon: Wagon): void {
+        private removeWagon(wagon: Wagon): void {
             let index: number = this.wagons.indexOf(wagon);
             if (index >= 0) {
                 this.remove(wagon);
@@ -59,15 +68,23 @@
             }
         }
 
+        /**
+         * Resets the train and sets the amount of wagons.
+         * @param maxLength The amount of wagons to be added. (excluding the locomotive and caboose)
+         */
         public reset(maxLength: number): void {
             for (let i: number = 0; i < this.wagons.length; i++) {
                 this.remove(this.wagons[i]);
             }
             this.wagons = [];
             this.wagonCounter = 0;
-            this.trianLength = maxLength;
+            this.trainLength = maxLength;
         }
 
+        /**
+         * Checks if the given global position is on the current wagons drop point.
+         * @param point The global position to check at.
+         */
         public isOnDropPoint(point: Phaser.Point): boolean {
             let activeWagon: Wagon = this.activeWagon;
             return point.x > this.x + activeWagon.left + activeWagon.width * this.dropMarginNormal &&
@@ -76,18 +93,27 @@
                 point.y < this.y + activeWagon.top + activeWagon.height * (1 - this.dropMarginNormal);
         }
 
+        /**
+         * Resizes all wagons relative to the screen size.
+         */
         public resize(): void {
             for (let i: number = 0; i < this.wagons.length; i++) {
                 this.wagons[i].resize();
             }
         }
 
+        /**
+         * Returns the active wagons.
+         */
         public get activeWagon(): Wagon {
             return this.wagons[this.wagons.length - 1];
         }
 
-        public get trainLength(): number {
-            return this.trianLength;
+        /**
+         * Returns the amount of wagons in the current train.
+         */
+        public get totalWagons(): number {
+            return this.trainLength;
         }
     }
 }

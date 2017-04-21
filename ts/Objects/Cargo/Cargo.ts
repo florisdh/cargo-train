@@ -1,5 +1,9 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * The cargo to be displayed on the platorm.
+     */
     export class Cargo extends Phaser.Image {
+
         public dropped: Phaser.Signal;
         public removed: Phaser.Signal;
         private isDragging: boolean;
@@ -12,6 +16,10 @@
         private fadeNormal: number;
         private fadeTarget: Wagon;
 
+        /**
+         * @param game The active game instance to be added to.
+         * @param type The type of cargo to be displayed.
+         */
         constructor(game: Phaser.Game, type: CargoTypes) {
             let image: string = null;
             switch (type) {
@@ -46,6 +54,10 @@
             this.fadeTarget = null;
         }
 
+        /**
+         * Transitions the cargo to the target wagon and invisible.
+         * @param target The target wagon to be moved to.
+         */
         public fadeOut(target: Wagon): void {
             this.fadeTarget = target;
             if (this.fadeTween && this.fadeTween.isRunning) {
@@ -75,6 +87,9 @@
             this.isDragging = false;
         }
 
+        /**
+         * Moves the cargo back to the position in the grid.
+         */
         public moveBack(): void {
             if (this.moveBackTween && this.moveBackTween.isRunning) {
                 this.moveBackTween.stop();
@@ -84,6 +99,13 @@
             this.moveBackTween = this.game.add.tween(this).to({ moveBackAnim: 1 }, 300, Phaser.Easing.Quadratic.In, true);
         }
 
+        /**
+         * Scales and moves the cargo based on the given variables from the grid.
+         * @param x The centerX position in the grid.
+         * @param y The centerY position in the grid.
+         * @param width The desired width of the cargo in the grid.
+         * @param height The desired height of the cargo in the grid.
+         */
         public resize(x: number, y: number, width: number, height: number): void {
             this.gridPoint.setTo(x, y);
             if (!this.isDragging && (this.moveBackTween === null || !this.moveBackTween.isRunning)) {
@@ -119,6 +141,9 @@
             this.alpha = 1 - normal;
         }
 
+        /**
+         * Returns the type of this wagon.
+         */
         public get cargoType(): CargoTypes {
             return this.cargo;
         }

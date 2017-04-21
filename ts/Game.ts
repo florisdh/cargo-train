@@ -1,4 +1,7 @@
 module ExamAssignmentMA {
+    /**
+     * Main game class.
+     */
     export class Game extends Phaser.Game {
         constructor() {
             super({
@@ -28,6 +31,9 @@ module ExamAssignmentMA {
             //});
         }
 
+        /**
+         * Entry point of the application.
+         */
         public start(): void {
             this.state.start(Boot.Name);
         }
