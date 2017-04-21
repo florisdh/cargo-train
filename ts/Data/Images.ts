@@ -23,8 +23,8 @@ module ExamAssignmentMA {
         public static TimeContainer: string = 'timebar.png';
         public static TimeFill: string = 'timebarFill.png';
         public static WagonCounter: string = 'wagonCounter.png';
-        public static Background_01: string = 'backgroundTrees.png';
-        public static Platform_01: string = 'trainstationPavement.png';
+        public static Background_01: string = 'backgroundTrees.jpg';
+        public static Platform_01: string = 'trainstationPavement.jpg';
         // GameOver
         public static GameOverBG: string = 'endScreenBackground.jpg';
         public static GameOverFG: string = 'endscreenForground.png';

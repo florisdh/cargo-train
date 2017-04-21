@@ -118,6 +118,23 @@ module.exports = function (grunt) {
                     'ts/**/*.ts'
                 ]
             }
+        },
+        typedoc: {
+            dist: {
+                options: {
+                    module: 'amd',
+                    target: 'es5',
+                    sourceMap: false,
+                    declaration: false,
+                    noImplicitAny: true,
+                    ignoreCompilerErrors: true,
+                    out: '_build/dist/docs/',
+                    name: 'ExamAssignmentMA',
+                    exclude: 'node_modules/**/*'
+                },
+                src: ['ts/**/*.ts'],
+                reference: 'vendor/references.ts'
+            }
         }
     });
 
@@ -128,15 +145,17 @@ module.exports = function (grunt) {
         }
         grunt.file.write('_build/dist/version.js', 'version="' + buildNumber + '";'  );
     });
-
-    //production build, we deploy this
+    
+    //Production build, we deploy this
     grunt.registerTask('dist', [
         'tslint:dist',
         'copy:dist',
         'ts:dist',
         'uglify:dist',
         'clean:temp',
-        'htmlbuild:dist'
+        'htmlbuild:dist',
+        'typedoc:dist',
+        'typedoc:dist'
     ]);
 
     //Development build, used for testing. Starts filewatcher and webserver
@@ -156,4 +175,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-html-build');
     grunt.loadNpmTasks('grunt-tslint');
+    grunt.loadNpmTasks('grunt-typedoc');
 };
