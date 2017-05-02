@@ -42,7 +42,7 @@
          * Calculates the time for the current wagon in the current round.
          */
         public getWagonTime(cargoAmount: number): number {
-            return cargoAmount * Math.max(500, 2500 * Math.pow(0.9, this.round));
+            return cargoAmount * Math.max(500, 5000 * Math.pow(0.9, this.round));
         }
 
         /**

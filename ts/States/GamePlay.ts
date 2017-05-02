@@ -70,22 +70,21 @@
             }
         }
 
-        // Checks if the dropped cargo is Correct or Incorrect
+        /**
+         * Handles the drop of the cargo, validated the drop point and tries to put it in the wagon.
+         * @param cargo The cargo being dropped.
+         */
         private onCargoDropped(cargo: Cargo): void {
-
             if (this.train.activeWagon.type === WagonTypes.CargoWagon && this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition)) {
-                // Dropped on wagon
-                if ((<CargoWagon>this.train.activeWagon).dropCargo(cargo)) {
-                    // Correct cargo
-                    // Todo: Add feedback such as audio, particle effects, score, etc.
-                    cargo.fadeOut(this.train.activeWagon);
+                let activeWagon: CargoWagon = <CargoWagon>this.train.activeWagon;
+                if (activeWagon.dropCargo(cargo)) {
+                    cargo.fadeOut(activeWagon);
                 } else {
-                    // Incorrect cargo
                     this.shakeScreen();
                     cargo.moveBack();
+                    this.timeIndicator.damageTime(1000);
                 }
             } else {
-                // Dropped on elsewhere
                 cargo.moveBack();
             }
 

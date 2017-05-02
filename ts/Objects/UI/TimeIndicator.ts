@@ -4,13 +4,20 @@
      */
     export class TimeIndicator extends Phaser.Group {
 
+        private readonly damageAnimTime: number = 500;
+        private readonly damageAnimDelay: number = 200;
+
         public timeOut: Phaser.Signal;
-        private timerMask: Phaser.Graphics;
         private timeContainer: Phaser.Image;
+        private damageMask: Phaser.Graphics;
+        private damageFill: Phaser.Image;
+        private timeMask: Phaser.Graphics;
         private timeFill: Phaser.Image;
         private timeTotal: number;
         private timeLeft: number;
         private started: boolean;
+        private damageLeft: number;
+        private damageTween: Phaser.Tween;
 
         /**
          * @param game The active game instance to be added to.
@@ -19,21 +26,36 @@
             super(game);
 
             this.timeOut = new Phaser.Signal();
-            this.timerMask = new Phaser.Graphics(game);
             this.timeContainer = new Phaser.Image(game, 0, 0, Images.TimeContainer);
             this.timeContainer.anchor.setTo(0.5, 0.5);
+
+            this.timeMask = new Phaser.Graphics(game);
             this.timeFill = new Phaser.Image(game, 0, 0, Images.TimeFill);
             this.timeFill.anchor.setTo(0.5, 0.5);
 
+            this.damageMask = new Phaser.Graphics(game);
+            this.damageFill = new Phaser.Image(game, 0, 0, Images.TimeFill);
+            this.damageFill.anchor.setTo(0.5, 0.5);
+            this.damageFill.tint = 0xFF0000;
+            this.damageLeft = 0;
+
             this.add(this.timeContainer);
+            this.add(this.damageFill);
+            this.add(this.damageMask);
             this.add(this.timeFill);
-            this.add(this.timerMask);
+            this.add(this.timeMask);
 
-            this.timerMask.beginFill(0, 0);
-            this.timerMask.drawRect(0, 0, 1, 1);
-            this.timerMask.endFill();
+            this.timeMask.beginFill(0, 0);
+            this.timeMask.drawRect(0, 0, 1, 1);
+            this.timeMask.endFill();
+            this.timeFill.mask = this.timeMask;
 
-            this.timeFill.mask = this.timerMask;
+            this.damageMask.beginFill(0, 0);
+            this.damageMask.drawRect(0, 0, 1, 1);
+            this.damageMask.endFill();
+            this.damageFill.mask = this.damageMask;
+            this.damageMask.position = this.timeMask.position;
+
             this.started = false;
             this.timeTotal = this.timeLeft = 1;
         }
@@ -60,9 +82,9 @@
          * Automatically decreases the time.
          */
         public update(): void {
-            if (this.started && this.timeLeft > 0) {
+            if (this.started && this.timeLeft > 0 && !this.damageTween) {
                 this.timeLeft -= this.game.time.elapsed;
-                this.timerMask.scale.set(this.timeFill.width * (this.timeLeft / this.timeTotal), this.timeFill.height);
+                this.scaleMasks();
 
                 if (this.timeLeft <= 0) {
                     this.timeOut.dispatch();
@@ -78,9 +100,41 @@
             this.x = this.game.width / 2;
             this.y = y;
             this.scale.setTo(this.game.width / 720);
-            this.timerMask.scale.set(this.timeFill.width * (this.timeLeft / this.timeTotal), this.timeFill.height);
-            this.timerMask.x = this.timeFill.left;
-            this.timerMask.y = this.timeFill.top;
+            this.timeMask.x = this.timeFill.left;
+            this.timeMask.y = this.timeFill.top;
+            this.scaleMasks();
+        }
+
+        private scaleMasks(): void {
+            this.timeMask.scale.set(this.timeFill.width * (this.timeLeft / this.timeTotal), this.timeFill.height);
+        }
+
+        public damageTime(damage: number): void {
+            damage = damage + this.damageAnimTime + this.damageAnimDelay;
+            this.timeLeft -= damage;
+            this.damageAnim = this.damageLeft + damage;
+            this.scaleMasks();
+
+            if (this.damageTween && this.damageTween.isRunning) {
+                this.damageTween.stop();
+            }
+            this.damageTween = this.game.add.tween(this).to({ damageAnim: 0 }, this.damageAnimTime, Phaser.Easing.Linear.None, true, 200);
+            this.damageTween.onComplete.addOnce(() => {
+                this.damageMask.scale.set(0, 0);
+                if (this.timeLeft <= 0) {
+                    this.timeOut.dispatch();
+                }
+                this.damageTween = null;
+            });
+        }
+
+        private get damageAnim(): number {
+            return this.damageLeft;
+        }
+
+        private set damageAnim(value: number) {
+            this.damageLeft = value;
+            this.damageMask.scale.set(this.damageFill.width * ((this.timeLeft + this.damageLeft) / this.timeTotal), this.damageFill.height);
         }
     }
 }
