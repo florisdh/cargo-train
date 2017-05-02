@@ -70,12 +70,29 @@
             }
         }
 
+        // Checks if the dropped cargo is Correct or Incorrect
         private onCargoDropped(cargo: Cargo): void {
+
             if (this.train.activeWagon.type === WagonTypes.CargoWagon && this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition)) {
-                (<CargoWagon>this.train.activeWagon).dropCargo(cargo);
+                // Dropped on wagon
+                if ((<CargoWagon>this.train.activeWagon).dropCargo(cargo)) {
+                    // Correct cargo
+                    // Todo: Add feedback such as audio, particle effects, score, etc.
+                    cargo.fadeOut(this.train.activeWagon);
+                } else {
+                    // Incorrect cargo
+                    this.shakeScreen();
+                    cargo.moveBack();
+                }
             } else {
+                // Dropped on elsewhere
                 cargo.moveBack();
             }
+
+        }
+
+        private shakeScreen(): void {
+            this.game.camera.shake(0.05, 50, true, Phaser.Camera.SHAKE_HORIZONTAL);
         }
 
         private onTimeOut(): void {

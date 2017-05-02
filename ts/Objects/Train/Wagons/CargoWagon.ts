@@ -52,15 +52,11 @@
         }
 
         /**
-         * Attempts to put the cargo in the wagon.
+         * Checks if the cargo is correct, returns the result
          * @param cargo
          */
-        public dropCargo(cargo: Cargo): void {
-            if (this.isIdle && this.cargoIndicator.dropCargo(cargo)) {
-                cargo.fadeOut(this);
-            } else {
-                cargo.moveBack();
-            }
+        public dropCargo(cargo: Cargo): boolean {
+            return (this.isIdle && this.cargoIndicator.dropCargo(cargo));
         }
 
         /**
