@@ -8,6 +8,8 @@
         private requestedCargo: CargoIcon[];
         private background: Phaser.Image;
         private iconMask: Phaser.Graphics;
+        private moveNextNormal: number;
+        private moveNextTween: Phaser.Tween;
 
         /**
          * @param game The active game instance to be added to.
@@ -18,9 +20,11 @@
             this.background = new Phaser.Image(this.game, 0, 0, Images.CargoIndicatorContainer);
             this.background.anchor.setTo(0.5);
             this.iconMask = new Phaser.Graphics(game);
+            this.moveNextNormal = 0;
             this.add(this.background);
             this.add(this.iconMask);
             this.wagonFilled = new Phaser.Signal();
+            this.moveNextTween = null;
         }
 
         /**
@@ -61,9 +65,13 @@
                 this.requestedCargo[i].activeCargo = i === 0;
                 this.requestedCargo[i].height = this.background.height * 0.8;
                 this.requestedCargo[i].scale.x = this.requestedCargo[i].scale.y;
-                this.requestedCargo[i].x = - (this.background.width * 0.375) + (i * (this.requestedCargo[i].width + this.game.width * 0.01));
                 this.requestedCargo[i].mask = this.iconMask;
+                this.requestedCargo[i].x = this.calculateCargoPosition(i, this.requestedCargo[i].width);
             }
+        }
+
+        private calculateCargoPosition(index: number, cargoWidth: number): number {
+            return -(this.background.width * 0.375) + ((index + this.moveNextNormal) * (cargoWidth + this.game.width * 0.01));
         }
 
         /**
@@ -72,15 +80,33 @@
          */
         public dropCargo(cargo: Cargo): boolean {
             if (this.requestedCargo.length > 0 && this.requestedCargo[0].cargoType === cargo.cargoType) {
-                this.requestedCargo[0].destroy();
+                this.requestedCargo[0].fadeDestroy();
                 this.requestedCargo.splice(0, 1);
-                this.resizeCargo();
+
                 if (this.requestedCargo.length === 0) {
                     this.wagonFilled.dispatch(this);
+                } else {
+                    this.moveNextNormal += 1;
+                    if (this.moveNextTween && this.moveNextTween.isRunning) {
+                        this.moveNextTween.stop();
+                    }
+                    this.moveNextTween = this.game.add.tween(this).to({ moveNextAnim: 0 }, 500, Phaser.Easing.Quadratic.In, true);
                 }
+
                 return true;
             }
             return false;
+        }
+
+        private get moveNextAnim(): number {
+            return this.moveNextNormal;
+        }
+
+        private set moveNextAnim(normal: number) {
+            this.moveNextNormal = normal;
+            for (let i: number = 0; i < this.requestedCargo.length; i++) {
+                this.requestedCargo[i].x = this.calculateCargoPosition(i, this.requestedCargo[i].width);
+            }
         }
     }
 }
