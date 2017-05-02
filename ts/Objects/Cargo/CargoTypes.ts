@@ -3,8 +3,14 @@
      * The different types of cargo.
      */
     export enum CargoTypes {
-        Circle = 0,
-        Cube = 1,
-        Triangle = 2
+        CircleRed = 0,
+        CircleGreen = 1,
+        CircleBlue = 2,
+        CubeRed = 3,
+        CubeGreen = 4,
+        CubeBlue = 5,
+        TriangleRed = 6,
+        TriangleGreen = 7,
+        TriangleBlue = 8
     }
 }

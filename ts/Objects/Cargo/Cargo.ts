@@ -23,14 +23,32 @@
         constructor(game: Phaser.Game, type: CargoTypes) {
             let image: string = null;
             switch (type) {
-                case CargoTypes.Circle:
-                    image = Images.CargoCircle;
+                case CargoTypes.CircleRed:
+                    image = Images.CargoIndicatorCircleRed;
                     break;
-                case CargoTypes.Cube:
-                    image = Images.CargoCube;
+                case CargoTypes.CircleGreen:
+                    image = Images.CargoIndicatorCircleGreen;
                     break;
-                case CargoTypes.Triangle:
-                    image = Images.CargoTriangle;
+                case CargoTypes.CircleBlue:
+                    image = Images.CargoIndicatorCircleBlue;
+                    break;
+                case CargoTypes.CubeRed:
+                    image = Images.CargoIndicatorCubeRed;
+                    break;
+                case CargoTypes.CubeGreen:
+                    image = Images.CargoIndicatorCubeGreen;
+                    break;
+                case CargoTypes.CubeBlue:
+                    image = Images.CargoIndicatorCubeBlue;
+                    break;
+                case CargoTypes.TriangleRed:
+                    image = Images.CargoIndicatorTriangleRed;
+                    break;
+                case CargoTypes.TriangleGreen:
+                    image = Images.CargoIndicatorTriangleGreen;
+                    break;
+                case CargoTypes.TriangleBlue:
+                    image = Images.CargoIndicatorTriangleBlue;
                     break;
                 default:
                     break;

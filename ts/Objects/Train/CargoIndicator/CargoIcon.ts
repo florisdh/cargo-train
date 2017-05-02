@@ -14,14 +14,32 @@
         constructor(game: Phaser.Game, type: CargoTypes) {
             let imageName: string;
             switch (type) {
-                case CargoTypes.Circle:
-                    imageName = Images.CargoIndicatorCircle;
+                case CargoTypes.CircleRed:
+                    imageName = Images.CargoIndicatorCircleRed;
                     break;
-                case CargoTypes.Cube:
-                    imageName = Images.CargoIndicatorCube;
+                case CargoTypes.CircleGreen:
+                    imageName = Images.CargoIndicatorCircleGreen;
                     break;
-                case CargoTypes.Triangle:
-                    imageName = Images.CargoIndicatorTriangle;
+                case CargoTypes.CircleBlue:
+                    imageName = Images.CargoIndicatorCircleBlue;
+                    break;
+                case CargoTypes.CubeRed:
+                    imageName = Images.CargoIndicatorCubeRed;
+                    break;
+                case CargoTypes.CubeGreen:
+                    imageName = Images.CargoIndicatorCubeGreen;
+                    break;
+                case CargoTypes.CubeBlue:
+                    imageName = Images.CargoIndicatorCubeBlue;
+                    break;
+                case CargoTypes.TriangleRed:
+                    imageName = Images.CargoIndicatorTriangleRed;
+                    break;
+                case CargoTypes.TriangleGreen:
+                    imageName = Images.CargoIndicatorTriangleGreen;
+                    break;
+                case CargoTypes.TriangleBlue:
+                    imageName = Images.CargoIndicatorTriangleBlue;
                     break;
                 default:
                     break;
@@ -48,7 +66,7 @@
          * Sets wether the cargo is the active objective.
          */
         public set activeCargo(value: boolean) {
-            this.tint = value ? 0xCC0000 : 0x0;
+            //this.tint = value ? 0xCC0000 : 0x0;
             this.alpha = value ? 1 : 0.5;
         }
     }

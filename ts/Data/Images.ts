@@ -15,9 +15,15 @@ module ExamAssignmentMA {
         public static CargoCube: string = 'cargoPlaceholderCube.png';
         public static CargoTriangle: string = 'cargoPlaceholderTriangle.png';
         public static CargoIndicatorContainer: string = 'cargoIndicator.png';
-        public static CargoIndicatorCircle: string = 'cargoRequirementCircleIcon.png';
-        public static CargoIndicatorCube: string = 'cargoRequirementSquareIcon.png';
-        public static CargoIndicatorTriangle: string = 'cargoRequirementTriangleIcon.png';
+        public static CargoIndicatorCircleRed: string = 'cargoPlaceholderRedCirkel.png';
+        public static CargoIndicatorCircleGreen: string = 'cargoPlaceholderGreenCirkel.png';
+        public static CargoIndicatorCircleBlue: string = 'cargoPlaceholderBlueCirkel.png';
+        public static CargoIndicatorCubeRed: string = 'cargoPlaceholderRedCube.png';
+        public static CargoIndicatorCubeGreen: string = 'cargoPlaceholderGreenCube.png';
+        public static CargoIndicatorCubeBlue: string = 'cargoPlaceholderBlueCube.png';
+        public static CargoIndicatorTriangleRed: string = 'cargoPlaceholderRedTriangle.png';
+        public static CargoIndicatorTriangleGreen: string = 'cargoPlaceholderGreenTriangle.png';
+        public static CargoIndicatorTriangleBlue: string = 'cargoPlaceholderBlueTriangle.png';
         public static CargoIndicatorHexagon: string = 'cargoRequirementHexagonIcon.png';
         public static CargoIndicatorDiamond: string = 'cargoRequirementDaimondIcon.png';
         public static TimeContainer: string = 'timebar.png';
@@ -39,9 +45,15 @@ module ExamAssignmentMA {
             Images.CargoCube,
             Images.CargoTriangle,
             Images.CargoIndicatorContainer,
-            Images.CargoIndicatorCircle,
-            Images.CargoIndicatorCube,
-            Images.CargoIndicatorTriangle,
+            Images.CargoIndicatorCircleRed,
+            Images.CargoIndicatorCircleGreen,
+            Images.CargoIndicatorCircleBlue,
+            Images.CargoIndicatorCubeRed,
+            Images.CargoIndicatorCubeGreen,
+            Images.CargoIndicatorCubeBlue,
+            Images.CargoIndicatorTriangleRed,
+            Images.CargoIndicatorTriangleGreen,
+            Images.CargoIndicatorTriangleBlue,
             Images.CargoIndicatorHexagon,
             Images.CargoIndicatorDiamond,
             Images.TimeContainer,

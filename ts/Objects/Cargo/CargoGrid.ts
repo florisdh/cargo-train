@@ -37,7 +37,7 @@
             // Spawn random items
             let randomItems: number = maxItems - required.length;
             for (let i: number = 0; i < randomItems; i++) {
-                items.push(<CargoTypes>this.game.rnd.integerInRange(0, 2));
+                items.push(<CargoTypes>this.game.rnd.integerInRange(0, 7));
             }
 
             // Spawn required items on random positions in array
