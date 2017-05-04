@@ -5,8 +5,14 @@ module ExamAssignmentMA {
     export class Sounds {
 
         // Specify all sounds here
+        // InGame
+        public static correct: string = 'correct';
+        public static incorrect: string = 'incorrect';
 
         // Add all sounds here
-        public static PreloadList: string[] = [];
+        public static PreloadList: string[] = [
+            Sounds.correct,
+            Sounds.incorrect
+        ];
     }
 }

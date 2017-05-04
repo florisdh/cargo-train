@@ -15,6 +15,7 @@
         private fadeTween: Phaser.Tween;
         private fadeNormal: number;
         private fadeTarget: Wagon;
+        private particleEmitter: Phaser.Particles.Arcade.Emitter;
 
         /**
          * @param game The active game instance to be added to.
@@ -70,6 +71,11 @@
             this.fadeNormal = 0;
             this.fadeTween = null;
             this.fadeTarget = null;
+            this.particleEmitter = game.add.emitter(0, 0, 50);
+            this.particleEmitter.makeParticles(Images.ParticleStar);
+            this.particleEmitter.setAlpha(1.0, 0.0, 1500, Phaser.Easing.Linear.None);
+            this.particleEmitter.autoAlpha = true;
+            //this.particleEmitter.gravity = -6;
         }
 
         /**
@@ -84,6 +90,12 @@
             this.releasePoint = this.position.clone();
             this.fadeAnim = 0;
             this.fadeTween = this.game.add.tween(this).to({ fadeAnim: 1 }, 300, Phaser.Easing.Quadratic.In, true);
+            this.fadeTween = this.game.add.tween(this.scale).to({ x: 0, y: 0 }, 300, Phaser.Easing.Linear.None, true);
+            this.fadeTween = this.game.add.tween(this).to({ angle: 359 }, 300, null, true, 0, Infinity);
+
+            this.particleEmitter.x = this.worldPosition.x;
+            this.particleEmitter.y = this.worldPosition.y;
+            this.particleEmitter.start(true, 1500, null, this.game.rnd.integerInRange(3, 7 ));
             this.fadeTween.onComplete.addOnce(this.fadeDone, this);
         }
 

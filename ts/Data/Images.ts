@@ -31,6 +31,7 @@ module ExamAssignmentMA {
         public static WagonCounter: string = 'wagonCounter.png';
         public static Background_01: string = 'backgroundTrees.jpg';
         public static Platform_01: string = 'trainstationPavement.jpg';
+        public static ParticleStar: string = 'particleStar.png';
         // GameOver
         public static GameOverBG: string = 'endScreenBackground.jpg';
         public static GameOverFG: string = 'endscreenForground.png';
@@ -64,7 +65,8 @@ module ExamAssignmentMA {
             Images.GameOverBG,
             Images.GameOverFG,
             Images.RetryButton,
-            Images.TutorialBG
+            Images.TutorialBG,
+            Images.ParticleStar
         ];
     }
 }

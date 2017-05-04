@@ -13,6 +13,8 @@
         private cargo: CargoGrid;
         private wagonIndicator: WagonIndicator;
         private completedWagons: number;
+        private correct: Phaser.Sound;
+        private incorrect: Phaser.Sound;
 
         /**
          * Adds all game assets and sets up all game elements.
@@ -41,6 +43,9 @@
             this.timeIndicator.timeOut.addOnce(this.onTimeOut, this);
 
             this.wagonIndicator = new WagonIndicator(this.game);
+
+            this.correct = this.game.add.sound(Sounds.correct, 100, false);
+            this.incorrect = this.game.add.sound(Sounds.incorrect, 100, false);
 
             this.game.add.existing(this.timeIndicator);
             this.game.add.existing(this.cargo);
@@ -79,10 +84,12 @@
                 let activeWagon: CargoWagon = <CargoWagon>this.train.activeWagon;
                 if (activeWagon.dropCargo(cargo)) {
                     cargo.fadeOut(activeWagon);
+                    this.correct.play();
                 } else {
                     this.shakeScreen();
                     cargo.moveBack();
                     this.timeIndicator.damageTime(1000);
+                    this.incorrect.play();
                 }
             } else {
                 cargo.moveBack();
