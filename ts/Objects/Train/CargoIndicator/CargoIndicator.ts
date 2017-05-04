@@ -62,7 +62,6 @@
 
         private resizeCargo(): void {
             for (let i: number = 0; i < this.requestedCargo.length; i++) {
-                this.requestedCargo[i].activeCargo = i === 0;
                 this.requestedCargo[i].height = this.background.height * 0.8;
                 this.requestedCargo[i].scale.x = this.requestedCargo[i].scale.y;
                 this.requestedCargo[i].mask = this.iconMask;

@@ -61,13 +61,5 @@
                 this.destroy();
             });
         }
-
-        /**
-         * Sets wether the cargo is the active objective.
-         */
-        public set activeCargo(value: boolean) {
-            //this.tint = value ? 0xCC0000 : 0x0;
-            this.alpha = value ? 1 : 0.5;
-        }
     }
 }
