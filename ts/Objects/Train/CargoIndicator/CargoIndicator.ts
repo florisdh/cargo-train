@@ -49,8 +49,8 @@
             let wagonWidth: number = this.parent.width / this.parent.scale.x,
                 wagonHeight: number = this.parent.height / this.parent.scale.y;
             this.x = wagonWidth * 0.5;
-            this.y = wagonHeight * -0.8;
-            this.background.width = wagonWidth * 0.4;
+            this.y = wagonHeight * -0.825;
+            this.background.width = wagonWidth * 0.6;
             this.background.height = this.background.width * 0.2;
             this.iconMask.beginFill(0, 0);
             this.iconMask.drawRect(0, 0, this.background.width, this.background.height);
