@@ -10,6 +10,7 @@
         private iconMask: Phaser.Graphics;
         private moveNextNormal: number;
         private moveNextTween: Phaser.Tween;
+        private pulsateTween: Phaser.Tween;
 
         /**
          * @param game The active game instance to be added to.
@@ -25,14 +26,33 @@
             this.add(this.iconMask);
             this.wagonFilled = new Phaser.Signal();
             this.moveNextTween = null;
+            this.pulsateTween = null;
+        }
+
+        /**
+         * Starts a tween on the first cargo icon in the CargoIndicator bar
+         */
+        public setFirstCargoEffect(): void {
+            this.pulsateTween = this.game.add.tween(this.requestedCargo[0].scale).to(
+                {
+                    x: this.requestedCargo[0].scale.x * 1.10,
+                    y: this.requestedCargo[0].scale.y * 1.10
+                },
+                750,
+                Phaser.Easing.Quadratic.InOut,
+                true,
+                0,
+                -1,
+                true
+            );
         }
 
         /**
          * Sets the required cargo.
          * @param cargoType The required cargo for this wagon to be completed.
          */
-        public setRequestedCargo(cargoType: CargoTypes[]): void {
-            cargoType.forEach(this.determineRequestedCargo, this);
+        public setRequestedCargo(cargoTypes: CargoTypes[]): void {
+            cargoTypes.forEach(this.determineRequestedCargo, this);
         }
 
         private determineRequestedCargo(cargoType: CargoTypes): void {
@@ -62,7 +82,15 @@
 
         private resizeCargo(): void {
             for (let i: number = 0; i < this.requestedCargo.length; i++) {
-                this.requestedCargo[i].height = this.background.height * 0.8;
+
+                let scaleAmount: number;
+                if (i === 0) {
+                    scaleAmount = 0.725;
+                } else {
+                    scaleAmount = 0.625;
+                }
+
+                this.requestedCargo[i].height = this.background.height * scaleAmount;
                 this.requestedCargo[i].scale.x = this.requestedCargo[i].scale.y;
                 this.requestedCargo[i].mask = this.iconMask;
                 this.requestedCargo[i].x = this.calculateCargoPosition(i, this.requestedCargo[i].width);
@@ -105,6 +133,8 @@
             this.moveNextNormal = normal;
             for (let i: number = 0; i < this.requestedCargo.length; i++) {
                 this.requestedCargo[i].x = this.calculateCargoPosition(i, this.requestedCargo[i].width);
+                // Fire cargo effect
+                this.setFirstCargoEffect();
             }
         }
     }

@@ -14,7 +14,12 @@
             this.cargoIndicator = new CargoIndicator(this.game);
             this.cargoIndicator.wagonFilled.add(this.onWagonFilled, this);
             this.addChild(this.cargoIndicator);
+            this.moveInDone.add(this.movedIn, this);
             this.resize();
+        }
+
+        private movedIn(): void {
+            this.cargoIndicator.setFirstCargoEffect();
         }
 
         /**
