@@ -18,6 +18,7 @@
         private started: boolean;
         private damageLeft: number;
         private damageTween: Phaser.Tween;
+        private glowTween: Phaser.Tween;
 
         /**
          * @param game The active game instance to be added to.
@@ -32,6 +33,7 @@
             this.timeMask = new Phaser.Graphics(game);
             this.timeFill = new Phaser.Image(game, 0, 0, Images.TimeFill);
             this.timeFill.anchor.setTo(0.5, 0.5);
+            this.timeFill.tint = 0x55EE55;
 
             this.damageMask = new Phaser.Graphics(game);
             this.damageFill = new Phaser.Image(game, 0, 0, Images.TimeFill);
@@ -68,6 +70,7 @@
             // TODO: fade in
             this.started = true;
             this.timeTotal = this.timeLeft = time;
+            this.timeFill.alpha = 1;
         }
 
         /**
@@ -76,6 +79,9 @@
         public stop(): void {
             // TODO: fade out
             this.started = false;
+            if (this.glowTween && this.glowTween.isRunning) {
+                this.glowTween.stop();
+            }
         }
 
         /**
@@ -88,6 +94,22 @@
 
                 if (this.timeLeft <= 0) {
                     this.timeOut.dispatch();
+                }
+
+                let leftScalar: number = this.timeLeft / this.timeTotal;
+                if (leftScalar <= 0.5) {
+                    //let amount: number = 1 - Math.max(0, scale - 0.25) / (0.4 - 0.25);
+                    //this.timeFill.tint = Phaser.Color.interpolateColor(0x55EE55, 0xFF0000, 1.01, amount);
+
+                    if (!this.glowTween) {
+                        this.timeFill.alpha = 1;
+                        this.glowTween = this.game.add.tween(this.timeFill).to({ alpha: 0.7 }, 500, Phaser.Easing.Quadratic.InOut, true, 0, 0, true);
+                        this.glowTween.loop(true);
+                    }
+                } else if (this.glowTween) {
+                    this.glowTween.stop();
+                    this.glowTween = null;
+                    this.timeFill.alpha = 1;
                 }
             }
         }
