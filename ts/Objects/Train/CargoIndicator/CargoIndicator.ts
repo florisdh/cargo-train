@@ -90,7 +90,7 @@
                     if (this.moveNextTween && this.moveNextTween.isRunning) {
                         this.moveNextTween.stop();
                     }
-                    this.moveNextTween = this.game.add.tween(this).to({ moveNextAnim: 0 }, 500, Phaser.Easing.Quadratic.In, true);
+                    this.moveNextTween = this.game.add.tween(this).to({ moveNextAnim: 0 }, 500, Phaser.Easing.Quadratic.In, true, 200);
                 }
 
                 return true;

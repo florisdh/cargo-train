@@ -56,7 +56,7 @@
             if (this.destroyTween) {
                 return;
             }
-            this.destroyTween = this.game.add.tween(this).to({ alpha: 0 }, 500, Phaser.Easing.Quadratic.In, true);
+            this.destroyTween = this.game.add.tween(this).to({ alpha: 0 }, 200, Phaser.Easing.Quadratic.In, true);
             this.destroyTween.onComplete.addOnce(() => {
                 this.destroy();
             });
