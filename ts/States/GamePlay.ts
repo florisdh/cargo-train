@@ -44,8 +44,8 @@
 
             this.wagonIndicator = new WagonIndicator(this.game);
 
-            this.correct = this.game.add.sound(Sounds.correct, 100, false);
-            this.incorrect = this.game.add.sound(Sounds.incorrect, 100, false);
+            this.correct = this.game.add.sound(Sounds.CorrectCargo, 1, false);
+            this.incorrect = this.game.add.sound(Sounds.IncorrectCargo, 1, false);
 
             this.game.add.existing(this.timeIndicator);
             this.game.add.existing(this.cargo);

@@ -6,13 +6,13 @@ module ExamAssignmentMA {
 
         // Specify all sounds here
         // InGame
-        public static correct: string = 'correct';
-        public static incorrect: string = 'incorrect';
+        public static CorrectCargo: string = 'correct';
+        public static IncorrectCargo: string = 'incorrect';
 
         // Add all sounds here
         public static PreloadList: string[] = [
-            Sounds.correct,
-            Sounds.incorrect
+            Sounds.CorrectCargo,
+            Sounds.IncorrectCargo
         ];
     }
 }
