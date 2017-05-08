@@ -123,6 +123,7 @@
         }
 
         private onDragStop(e: Cargo): void {
+            this.inputEnabled = false;
             this.dropped.dispatch(this);
             this.isDragging = false;
         }
@@ -137,6 +138,9 @@
             this.releasePoint = this.position.clone();
             this.moveBackAnim = 0;
             this.moveBackTween = this.game.add.tween(this).to({ moveBackAnim: 1 }, 300, Phaser.Easing.Quadratic.In, true);
+            this.moveBackTween.onComplete.addOnce(() => {
+                this.inputEnabled = true;
+            });
         }
 
         /**
