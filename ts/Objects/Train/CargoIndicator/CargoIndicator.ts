@@ -87,7 +87,7 @@
                 if (i === 0) {
                     scaleAmount = 0.725;
                 } else {
-                    scaleAmount = 0.625;
+                    scaleAmount = 0.6;
                 }
 
                 this.requestedCargo[i].height = this.background.height * scaleAmount;
@@ -98,7 +98,7 @@
         }
 
         private calculateCargoPosition(index: number, cargoWidth: number): number {
-            return -(this.background.width * 0.375) + ((index + this.moveNextNormal) * (cargoWidth + this.game.width * 0.01));
+            return -(this.background.width * 0.375) + ((index + this.moveNextNormal) * (cargoWidth + this.background.width * 0.05));
         }
 
         /**

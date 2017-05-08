@@ -12,39 +12,49 @@
          * @param type The type of cargo to be displayed.
          */
         constructor(game: Phaser.Game, type: CargoTypes) {
-            let imageName: string;
+            let imageName: string, color: number;
             switch (type) {
                 case CargoTypes.CircleRed:
-                    imageName = Images.CargoIndicatorCircleRed;
+                    imageName = Images.CargoIndicatorCircle;
+                    color = 0xff0000;
                     break;
                 case CargoTypes.CircleGreen:
-                    imageName = Images.CargoIndicatorCircleGreen;
+                    imageName = Images.CargoIndicatorCircle;
+                    color = 0x00ff00;
                     break;
                 case CargoTypes.CircleBlue:
-                    imageName = Images.CargoIndicatorCircleBlue;
+                    imageName = Images.CargoIndicatorCircle;
+                    color = 0x0000ff;
                     break;
                 case CargoTypes.CubeRed:
-                    imageName = Images.CargoIndicatorCubeRed;
+                    imageName = Images.CargoIndicatorCube;
+                    color = 0xff0000;
                     break;
                 case CargoTypes.CubeGreen:
-                    imageName = Images.CargoIndicatorCubeGreen;
+                    imageName = Images.CargoIndicatorCube;
+                    color = 0x00ff00;
                     break;
                 case CargoTypes.CubeBlue:
-                    imageName = Images.CargoIndicatorCubeBlue;
+                    imageName = Images.CargoIndicatorCube;
+                    color = 0x0000ff;
                     break;
                 case CargoTypes.TriangleRed:
-                    imageName = Images.CargoIndicatorTriangleRed;
+                    imageName = Images.CargoIndicatorTriangle;
+                    color = 0xff0000;
                     break;
                 case CargoTypes.TriangleGreen:
-                    imageName = Images.CargoIndicatorTriangleGreen;
+                    imageName = Images.CargoIndicatorTriangle;
+                    color = 0x00ff00;
                     break;
                 case CargoTypes.TriangleBlue:
-                    imageName = Images.CargoIndicatorTriangleBlue;
+                    imageName = Images.CargoIndicatorTriangle;
+                    color = 0x0000ff;
                     break;
                 default:
                     break;
             }
             super(game, 0, 0, imageName);
+            this.tint = color;
             this.anchor.setTo(0.5);
             this.cargoType = type;
         }

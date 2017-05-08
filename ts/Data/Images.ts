@@ -14,18 +14,14 @@ module ExamAssignmentMA {
         public static CargoCircle: string = 'cargoPlaceholderCirkel.png';
         public static CargoCube: string = 'cargoPlaceholderCube.png';
         public static CargoTriangle: string = 'cargoPlaceholderTriangle.png';
+        // Cargo Indicators
         public static CargoIndicatorContainer: string = 'cargoIndicator.png';
-        public static CargoIndicatorCircleRed: string = 'cargoPlaceholderRedCirkel.png';
-        public static CargoIndicatorCircleGreen: string = 'cargoPlaceholderGreenCirkel.png';
-        public static CargoIndicatorCircleBlue: string = 'cargoPlaceholderBlueCirkel.png';
-        public static CargoIndicatorCubeRed: string = 'cargoPlaceholderRedCube.png';
-        public static CargoIndicatorCubeGreen: string = 'cargoPlaceholderGreenCube.png';
-        public static CargoIndicatorCubeBlue: string = 'cargoPlaceholderBlueCube.png';
-        public static CargoIndicatorTriangleRed: string = 'cargoPlaceholderRedTriangle.png';
-        public static CargoIndicatorTriangleGreen: string = 'cargoPlaceholderGreenTriangle.png';
-        public static CargoIndicatorTriangleBlue: string = 'cargoPlaceholderBlueTriangle.png';
+        public static CargoIndicatorCircle: string = 'cargoRequerimentsCirkelIcon.png';
+        public static CargoIndicatorCube: string = 'cargoRequerimentsCubeIcon.png';
+        public static CargoIndicatorTriangle: string = 'cargoRequerimentsTriangleIcon.png';
         public static CargoIndicatorHexagon: string = 'cargoRequirementHexagonIcon.png';
         public static CargoIndicatorDiamond: string = 'cargoRequirementDaimondIcon.png';
+        // Timer
         public static TimeContainer: string = 'timebar.png';
         public static TimeFill: string = 'timebarFill.png';
         public static WagonCounter: string = 'wagonCounter.png';
@@ -42,29 +38,27 @@ module ExamAssignmentMA {
             Images.WhitePixel,
             Images.MA_Logo,
             Images.Wagon,
+            // Cargo
             Images.CargoCircle,
             Images.CargoCube,
             Images.CargoTriangle,
             Images.CargoIndicatorContainer,
-            Images.CargoIndicatorCircleRed,
-            Images.CargoIndicatorCircleGreen,
-            Images.CargoIndicatorCircleBlue,
-            Images.CargoIndicatorCubeRed,
-            Images.CargoIndicatorCubeGreen,
-            Images.CargoIndicatorCubeBlue,
-            Images.CargoIndicatorTriangleRed,
-            Images.CargoIndicatorTriangleGreen,
-            Images.CargoIndicatorTriangleBlue,
+            // Cargo Indicators
+            Images.CargoIndicatorCircle,
+            Images.CargoIndicatorCube,
+            Images.CargoIndicatorTriangle,
             Images.CargoIndicatorHexagon,
             Images.CargoIndicatorDiamond,
+            // Timer
             Images.TimeContainer,
             Images.TimeFill,
             Images.WagonCounter,
+            Images.RetryButton,
+            // Back- and foregrounds
             Images.Background_01,
             Images.Platform_01,
             Images.GameOverBG,
             Images.GameOverFG,
-            Images.RetryButton,
             Images.TutorialBG,
             Images.ParticleStar
         ];
