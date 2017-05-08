@@ -17,6 +17,7 @@
 /// <reference path="../ts/Objects/Train/CargoIndicator/CargoIcon.ts" />
 /// <reference path="../ts/Objects/Train/CargoIndicator/CargoIndicator.ts" />
 /// <reference path="../ts/Objects/Train/Train.ts" />
+/// <reference path="../ts/Objects/Train/WagonDoors.ts" />
 /// <reference path="../ts/Objects/Train/WagonFactory.ts" />
 /// <reference path="../ts/Objects/Train/WagonTypes.ts" />
 /// <reference path="../ts/Objects/Train/Wagons/Caboose.ts" />

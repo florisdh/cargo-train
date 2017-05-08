@@ -28,6 +28,8 @@ module ExamAssignmentMA {
         public static Background_01: string = 'backgroundTrees.jpg';
         public static Platform_01: string = 'trainstationPavement.jpg';
         public static ParticleStar: string = 'particleStar.png';
+        public static LeftDoor: string = 'wagonDoorLeft.png';
+        public static RightDoor: string = 'wagonDoorRight.png';
         // GameOver
         public static GameOverBG: string = 'endScreenBackground.jpg';
         public static GameOverFG: string = 'endscreenForground.png';
@@ -60,7 +62,9 @@ module ExamAssignmentMA {
             Images.GameOverBG,
             Images.GameOverFG,
             Images.TutorialBG,
-            Images.ParticleStar
+            Images.ParticleStar,
+            Images.LeftDoor,
+            Images.RightDoor
         ];
     }
 }

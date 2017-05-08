@@ -5,6 +5,7 @@
     export class CargoWagon extends Wagon {
 
         private cargoIndicator: CargoIndicator;
+        private wagonDoors: WagonDoors;
 
         /**
          * @param game The active game instance to be added to.
@@ -12,14 +13,17 @@
         constructor(game: Phaser.Game) {
             super(game);
             this.cargoIndicator = new CargoIndicator(this.game);
+            this.wagonDoors = new WagonDoors(this.game, this);
             this.cargoIndicator.wagonFilled.add(this.onWagonFilled, this);
             this.addChild(this.cargoIndicator);
+            this.addChild(this.wagonDoors);
             this.moveInDone.add(this.movedIn, this);
             this.resize();
         }
 
         private movedIn(): void {
             this.cargoIndicator.setFirstCargoEffect();
+            this.wagonDoors.open();
         }
 
         /**
@@ -44,7 +48,10 @@
         }
 
         private onWagonFilled(): void {
-            this.objectiveDone.dispatch(this);
+            this.wagonDoors.close();
+            this.wagonDoors.closed.addOnce(() => {
+                this.objectiveDone.dispatch(this);
+            });
         }
 
         /**
@@ -54,6 +61,7 @@
         public resize(): void {
             super.resize();
             this.cargoIndicator.resize();
+            this.wagonDoors.resize();
         }
 
         /**
