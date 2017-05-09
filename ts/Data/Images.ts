@@ -11,6 +11,7 @@ module ExamAssignmentMA {
         public static TutorialBG: string = 'tutorialGraphic.jpg';
         // InGame
         public static Wagon: string = 'wagonCutOff.png';
+        public static Caboose: string = 'cabooseCutOff.png';
         public static CargoCircle: string = 'cargoPlaceholderCirkel.png';
         public static CargoCube: string = 'cargoPlaceholderCube.png';
         public static CargoTriangle: string = 'cargoPlaceholderTriangle.png';
@@ -40,6 +41,7 @@ module ExamAssignmentMA {
             Images.WhitePixel,
             Images.MA_Logo,
             Images.Wagon,
+            Images.Caboose,
             // Cargo
             Images.CargoCircle,
             Images.CargoCube,

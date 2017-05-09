@@ -11,7 +11,7 @@
          * @param game The active game instance to be added to.
          */
         constructor(game: Phaser.Game) {
-            super(game);
+            super(game, Images.Wagon);
             this.cargoIndicator = new CargoIndicator(this.game);
             this.wagonDoors = new WagonDoors(this.game, this);
             this.cargoIndicator.wagonFilled.add(this.onWagonFilled, this);

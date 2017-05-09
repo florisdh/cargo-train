@@ -8,7 +8,7 @@
          * @param game The active game instance to be added to.
          */
         constructor(game: Phaser.Game) {
-            super(game);
+            super(game, Images.Caboose);
             this.moveInDone.addOnce(this.onMoveInDone, this);
             this.resize();
         }

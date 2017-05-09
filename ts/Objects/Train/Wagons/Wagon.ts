@@ -13,8 +13,8 @@
         /**
          * @param game The active game instance to be added to.
          */
-        constructor(game: Phaser.Game) {
-            super(game, 0, 0, Images.Wagon);
+        constructor(game: Phaser.Game, image: string) {
+            super(game, 0, 0, image);
             this.anchor.setTo(0, 1);
             this.moveTween = null;
             this.moveAnim = 1;
