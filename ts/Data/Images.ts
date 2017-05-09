@@ -23,6 +23,7 @@ module ExamAssignmentMA {
         public static CargoIndicatorTriangle: string = 'cargoRequerimentsTriangleIcon.png';
         public static CargoIndicatorHexagon: string = 'cargoRequirementHexagonIcon.png';
         public static CargoIndicatorDiamond: string = 'cargoRequirementDaimondIcon.png';
+        public static GlowImage: string = 'cargoIndicatorGlow.png';
         // Timer
         public static TimeContainer: string = 'timebar.png';
         public static TimeFill: string = 'timebarFill.png';
@@ -55,6 +56,7 @@ module ExamAssignmentMA {
             Images.CargoIndicatorTriangle,
             Images.CargoIndicatorHexagon,
             Images.CargoIndicatorDiamond,
+            Images.GlowImage,
             // Timer
             Images.TimeContainer,
             Images.TimeFill,
