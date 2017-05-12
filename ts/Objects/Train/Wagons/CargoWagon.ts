@@ -22,7 +22,7 @@
         }
 
         private movedIn(): void {
-            this.cargoIndicator.setFirstCargoEffect();
+            this.cargoIndicator.setActiveCargoEffect();
             this.wagonDoors.open();
         }
 

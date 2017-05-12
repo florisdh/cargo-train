@@ -8,16 +8,20 @@
         private requestedCargo: CargoIcon[];
         private background: Phaser.Image;
         private iconMask: Phaser.Graphics;
+        // Cargo movement
         private moveNextNormal: number;
         private moveNextTween: Phaser.Tween;
+        // Pulsate and scaling tweens
         private pulsateTween: Phaser.Tween;
         private scaleTween: Phaser.Tween;
-        private glowImage: Phaser.Image;
-        private initialCargoScale: number;
         private pulseAnimValue: number;
-        private scaleAnimValue: number;
+        private initialCargoScale: number;
         private activeCargoScale: number;
         private inactiveCargoScale: number;
+        // Highlight
+        private highlightFadeTween: Phaser.Tween;
+        private highlightImage: Phaser.Image;
+        private highlightImageBaseAlpha: number;
 
         /**
          * @param game The active game instance to be added to.
@@ -25,23 +29,32 @@
         constructor(game: Phaser.Game) {
             super(game);
             this.requestedCargo = [];
+            this.wagonFilled = new Phaser.Signal();
+
+            // Graphics
+            this.iconMask = new Phaser.Graphics(game);
             this.background = new Phaser.Image(this.game, 0, 0, Images.CargoIndicatorContainer);
             this.background.anchor.setTo(0.5);
-            this.iconMask = new Phaser.Graphics(game);
-            this.moveNextNormal = 0;
-            this.wagonFilled = new Phaser.Signal();
+            this.highlightImage = new Phaser.Image(this.game, 0, 0, Images.WhitePixel);
+            this.highlightImage.anchor = new Phaser.Point(0.5, 0.5);
+
+            // Tweens
             this.moveNextTween = null;
             this.pulsateTween = null;
             this.scaleTween = null;
-            this.glowImage = new Phaser.Image(this.game, 0, 0, Images.GlowImage);
+            this.highlightFadeTween = null;
+
             this.add(this.background);
             this.add(this.iconMask);
-            this.add(this.glowImage);
+            this.add(this.highlightImage);
 
             // Setting values
-            this.initialCargoScale = 0; //this.inactiveCargoScale;
-            this.activeCargoScale = 0.725;
-            this.inactiveCargoScale = 0.6;
+            this.moveNextNormal = 0;
+            this.initialCargoScale = 0;
+            this.activeCargoScale = 0.725;      // 72.5%
+            this.inactiveCargoScale = 0.6;      // 60%
+            this.highlightImageBaseAlpha = 0.3; // 30%
+            this.highlightImage.alpha = 0;
         }
 
         /**
@@ -81,9 +94,7 @@
         private resizeCargo(): void {
             for (let i: number = 0; i < this.requestedCargo.length; i++) {
                 if (i === 0) {
-                    //if (this.moveNextTween != null && !this.moveNextTween.isRunning) {
-                        this.requestedCargo[i].height = this.background.height * this.activeCargoScale;
-                    //}
+                    this.requestedCargo[i].height = this.background.height * this.activeCargoScale;
                 } else {
                     this.requestedCargo[i].height = this.background.height * this.inactiveCargoScale;
                 }
@@ -95,20 +106,156 @@
 
             if (this.requestedCargo.length > 0) {
                 this.initialCargoScale = this.requestedCargo[0].scale.x;
-                this.glowImage.x = this.requestedCargo[0].x;
-                this.glowImage.y = this.requestedCargo[0].y;
+                this.highlightImage.x = this.requestedCargo[0].x;
+                this.highlightImage.y = this.requestedCargo[0].y;
             }
         }
 
         /**
          * Starts a tween on the first cargo icon in the CargoIndicator bar
          */
-        public setFirstCargoEffect(): void {
+        public setActiveCargoEffect(): void {
+            this.setCargoPulsate();
+            this.setCargoHighlight(this.requestedCargo[0].cargoType);
+        }
+
+        private setCargoPulsate(): void {
+            // Pulsate tween
             if (this.pulsateTween && this.pulsateTween.isRunning) {
                 this.pulsateTween.stop();
             }
             this.pulseAnim = 0;
             this.pulsateTween = this.game.add.tween(this).to({ pulseAnim: 1 }, 750, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
+        }
+
+        private setCargoHighlight(cargoType: CargoTypes): void {
+            let imgPath: string;
+            let colorTint: number;
+
+            // Get the right cargo highlight sprite
+            switch (cargoType) {
+                case CargoTypes.CubeRed:
+                case CargoTypes.CubeGreen:
+                case CargoTypes.CubeBlue:
+                    imgPath = Images.CargoHighlightCube;
+                    break;
+                case CargoTypes.CircleRed:
+                case CargoTypes.CircleGreen:
+                case CargoTypes.CircleBlue:
+                    imgPath = Images.CargoHighlightCircle;
+                    break;
+                case CargoTypes.TriangleRed:
+                case CargoTypes.TriangleGreen:
+                case CargoTypes.TriangleBlue:
+                    imgPath = Images.CargoHighlightTriangle;
+                    break;
+                default:
+                    break;
+            }
+
+            // Get the right cargo color
+            switch (cargoType) {
+                case CargoTypes.CubeRed:
+                case CargoTypes.CircleRed:
+                case CargoTypes.TriangleRed:
+                    colorTint = 0xff0000;
+                    break;
+                case CargoTypes.CubeGreen:
+                case CargoTypes.CircleGreen:
+                case CargoTypes.TriangleGreen:
+                    colorTint = 0x00ff00;
+                    break;
+                case CargoTypes.TriangleBlue:
+                case CargoTypes.CubeBlue:
+                case CargoTypes.CircleBlue:
+                    colorTint = 0x0000ff;
+                    break;
+                default:
+                    break;
+            }
+
+            // Set values
+            this.highlightImage.loadTexture(imgPath);
+            this.highlightImage.tint = colorTint;
+            this.highlightImage.x = this.requestedCargo[0].centerX;
+            this.highlightImage.y = this.requestedCargo[0].centerY;
+            this.highlightImage.scale.x = this.requestedCargo[0].scale.x * 1.075;
+            this.highlightImage.scale.y = this.highlightImage.scale.x;
+
+            // Highlight tween
+            if (this.highlightFadeTween && this.highlightFadeTween.isRunning) {
+                this.highlightFadeTween.stop();
+            }
+            this.highlightFadeTween = this.game.add.tween(this.highlightImage).to({ alpha: this.highlightImageBaseAlpha }, 500, Phaser.Easing.Quadratic.In, true);
+        }
+
+        private calculateCargoPosition(index: number, cargoWidth: number): number {
+            return -(this.background.width * 0.375) + ((index + this.moveNextNormal) * (cargoWidth + this.background.width * 0.05));
+        }
+
+        /**
+         * Validates if the dropped cargo was currently needed.
+         * @param cargo The cargo being dropped.
+         */
+        public dropCargo(cargo: Cargo): boolean {
+            if (this.requestedCargo.length > 0 && this.requestedCargo[0].cargoType === cargo.cargoType) {
+
+                // Fade out completed Cargo
+                this.requestedCargo[0].fadeDestroy();
+
+                // Fade out Highlight tween
+                if (this.highlightFadeTween && this.highlightFadeTween.isRunning) {
+                    this.highlightFadeTween.stop();
+                }
+                this.highlightFadeTween = this.game.add.tween(this.highlightImage).to({ alpha: 0 }, 200, Phaser.Easing.Quadratic.In, true);
+
+                // Stop pulsate tween
+                if (this.pulsateTween && this.pulsateTween.isRunning) {
+                    this.pulsateTween.stop();
+                    this.pulseAnim = 0;
+                }
+
+                // Remove completed cargo from array
+                this.requestedCargo.splice(0, 1);
+
+                // Check if wagon is done
+                if (this.requestedCargo.length === 0) {
+                    this.wagonFilled.dispatch(this);
+                } else {
+                    // Move in next cargo
+                    this.moveNextNormal += 1;
+                    if (this.moveNextTween && this.moveNextTween.isRunning) {
+                        this.moveNextTween.stop();
+                    }
+                    this.moveNextTween = this.game.add.tween(this).to({ moveNextAnim: 0 }, 500, Phaser.Easing.Quadratic.In, true, 200);
+                    this.moveNextTween.onComplete.addOnce(this.setActiveCargoEffect, this);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        private get moveNextAnim(): number {
+            return this.moveNextNormal;
+        }
+
+        private set moveNextAnim(normal: number) {
+            this.moveNextNormal = normal;
+
+            // Reposition the Cargo based on the normal
+            for (let i: number = 0; i < this.requestedCargo.length; i++) {
+                this.requestedCargo[i].x = this.calculateCargoPosition(i, this.requestedCargo[i].width);
+            }
+
+            // Scale the Cargo based on the normal
+            if (this.requestedCargo.length > 0) {
+                let scaleDiff: number = this.activeCargoScale - this.inactiveCargoScale;
+                let restValue: number = scaleDiff * normal;
+                let scaleValue: number = this.activeCargoScale - restValue;
+
+                this.requestedCargo[0].height = this.background.height * scaleValue;
+                this.requestedCargo[0].scale.x = this.requestedCargo[0].scale.y;
+            }
         }
 
         private get pulseAnim(): number {
@@ -123,53 +270,9 @@
             this.pulseAnimValue = normValue;
             this.requestedCargo[0].scale.x = this.initialCargoScale * (1 + normValue * 0.1);
             this.requestedCargo[0].scale.y = this.initialCargoScale * (1 + normValue * 0.1);
-        }
-        
-        private calculateCargoPosition(index: number, cargoWidth: number): number {
-            return -(this.background.width * 0.375) + ((index + this.moveNextNormal) * (cargoWidth + this.background.width * 0.05));
-        }
 
-        /**
-         * Validates if the dropped cargo was currently needed.
-         * @param cargo The cargo being dropped.
-         */
-        public dropCargo(cargo: Cargo): boolean {
-            if (this.requestedCargo.length > 0 && this.requestedCargo[0].cargoType === cargo.cargoType) {
-                this.requestedCargo[0].fadeDestroy();
-                this.requestedCargo.splice(0, 1);
-
-                if (this.requestedCargo.length === 0) {
-                    this.wagonFilled.dispatch(this);
-                } else {
-                    this.moveNextNormal += 1;
-                    if (this.moveNextTween && this.moveNextTween.isRunning) {
-                        this.moveNextTween.stop();
-                    }
-                    this.moveNextTween = this.game.add.tween(this).to({ moveNextAnim: 0 }, 500, Phaser.Easing.Quadratic.In, true, 200);
-                    this.moveNextTween.onComplete.addOnce(this.setFirstCargoEffect, this);
-                }
-
-                return true;
-            }
-            return false;
-        }
-
-        private get moveNextAnim(): number {
-            return this.moveNextNormal;
-        }
-
-        private set moveNextAnim(normal: number) {
-            this.moveNextNormal = normal;
-            for (let i: number = 0; i < this.requestedCargo.length; i++) {
-                this.requestedCargo[i].x = this.calculateCargoPosition(i, this.requestedCargo[i].width);
-            }
-
-            let scaleDiff: number = this.activeCargoScale - this.inactiveCargoScale;
-            let restValue: number = scaleDiff * normal;
-            let scaleValue: number = this.activeCargoScale - restValue;
-
-            this.requestedCargo[0].height = this.background.height * scaleValue;
-            this.requestedCargo[0].scale.x = this.requestedCargo[0].scale.y;
+            this.highlightImage.scale.x = this.requestedCargo[0].scale.x * 1.075;
+            this.highlightImage.scale.y = this.highlightImage.scale.x;
         }
     }
 }
