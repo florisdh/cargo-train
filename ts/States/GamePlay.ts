@@ -6,11 +6,10 @@
 
         public static Name: string = 'gameplay';
         private session: SessionData;
-        private background: Phaser.Image;
-        private platform: Phaser.Image;
+        private environment: Environment;
         private timeIndicator: TimeIndicator;
         private train: Train;
-        private cargo: CargoGrid;
+        private cargo: CargoPlatform;
         private wagonIndicator: WagonIndicator;
         private completedWagons: number;
         private correct: Phaser.Sound;
@@ -27,17 +26,14 @@
                 this.session = new SessionData(0, 0);
             }
 
-            this.background = this.game.add.image(0, 0, Images.Background_01);
-            this.background.anchor.set(0.5, 1);
-
-            this.platform = this.game.add.image(0, 0, Images.Platform_01);
-            this.platform.anchor.set(0.5, 0);
+            this.environment = new Environment(this.game);
 
             this.train = new Train(this.game);
-            this.train.wagonAdded.add(this.onWagonAdded, this);
+            this.train.wagonCompleted.add(this.moveToNext, this);
 
-            this.cargo = new CargoGrid(this.game);
-            this.cargo.cargoDropped.add(this.onCargoDropped, this);
+            this.cargo = new CargoPlatform(this.game);
+            this.cargo.cargoAdded.add(this.cargoAdded, this);
+            this.cargo.cargoRemoved.add(this.cargoRemoved, this);
 
             this.timeIndicator = new TimeIndicator(this.game);
             this.timeIndicator.timeOut.addOnce(this.onTimeOut, this);
@@ -55,24 +51,42 @@
             this.startRound();
         }
 
-        private onWagonAdded(wagon: Wagon): void {
-            if (wagon.type === WagonTypes.CargoWagon) {
-                let requiredCargo: CargoTypes[] = (<CargoWagon>wagon).setRandomCargo(this.session.getCargoAmount());
-                this.cargo.spawnCargo(requiredCargo);
+        private moveToNext(): void {
+            let wagon: Wagon = this.train.moveToNext();
 
-                wagon.moveInDone.addOnce(() => {
-                    this.timeIndicator.start(this.session.getWagonTime(requiredCargo.length));
-                });
-                wagon.objectiveDone.addOnce(() => {
+            if (wagon) {
+                if (wagon.type === WagonTypes.CargoWagon) {
+                    let requiredCargo: CargoTypes[] = (<CargoWagon>wagon).setRandomCargo(this.session.getCargoAmount());
+                    this.cargo.createNext().spawnCargo(requiredCargo);
+
+                    wagon.moveInDone.addOnce(() => {
+                        this.timeIndicator.start(this.session.getWagonTime(requiredCargo.length));
+                    });
+                    wagon.objectiveDone.addOnce(() => {
+                        this.timeIndicator.stop();
+                        this.session.nextWagon();
+                        this.completedWagons++;
+                        this.wagonIndicator.setWagonAmount(this.train.totalWagons - this.completedWagons);
+                    });
+                } else if (wagon.type === WagonTypes.Caboose) {
                     this.timeIndicator.stop();
-                    this.session.nextWagon();
-                    this.completedWagons++;
-                    this.wagonIndicator.setWagonAmount(this.train.totalWagons - this.completedWagons);
-                });
-            } else if (wagon.type === WagonTypes.Caboose) {
-                this.timeIndicator.stop();
-                wagon.moveOutDone.addOnce(this.onRoundDone, this);
+                    wagon.moveOutDone.addOnce(this.onRoundDone, this);
+                }
+
+                if (wagon.type !== WagonTypes.Locomotive) {
+                    this.cargo.moveToNext();
+                }
             }
+
+            this.environment.moveToNext();
+        }
+
+        private cargoAdded(cargo: CargoGrid): void {
+            cargo.cargoDropped.add(this.onCargoDropped, this);
+        }
+
+        private cargoRemoved(cargo: CargoGrid): void {
+            cargo.cargoDropped.remove(this.onCargoDropped, this);
         }
 
         /**
@@ -109,29 +123,8 @@
          * Resizes all game elements based on the screen size.
          */
         public resize(): void {
-            let bgPerc: number = 0.4;
-            let ptfrmPerc: number = 0.6;
-
-            // Background positioning
-            this.background.y = this.game.height * bgPerc;
-            this.background.x = this.game.width * 0.5;
-            // Background height scaling
-            this.background.height = this.game.height * bgPerc;
-            this.background.scale.x = this.background.scale.y;
-            // Background width scaling
-            if (this.background.width < this.game.width) {
-                this.background.width = this.game.width;
-                this.background.scale.y = this.background.scale.x;
-            }
-
-            // Platform positioning
-            this.platform.y = this.background.bottom;
-            this.platform.x = this.game.width * 0.5;
-            // Platform height scaling
-            this.platform.height = this.game.height * ptfrmPerc;
-            this.platform.width = this.game.width;
-
-            this.train.y = this.platform.y;
+            this.environment.resize();
+            this.train.y = this.environment.platformY;
             this.train.resize();
             this.cargo.resize();
             let topUiY: number = this.game.height * 0.05;
@@ -141,7 +134,8 @@
 
         private startRound(): void {
             this.train.reset(this.session.getTrainLength());
-            this.train.start();
+            this.cargo.reset();
+            this.moveToNext();
             this.completedWagons = 0;
             this.wagonIndicator.setWagonAmount(this.train.totalWagons);
         }

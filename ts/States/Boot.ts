@@ -29,7 +29,6 @@ module ExamAssignmentMA {
                 this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
                 this.game.scale.onSizeChange.add(() => {
                     this.game.state.getCurrentState().resize();
-                    console.log(this.game.scale);
                 }, this);
             }
         }

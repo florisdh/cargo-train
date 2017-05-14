@@ -4,8 +4,9 @@
      */
     export class Train extends Phaser.Group {
 
-        public wagonAdded: Phaser.Signal;
         private readonly dropMarginNormal: number = 0.1;
+
+        public wagonCompleted: Phaser.Signal;
         private factory: WagonFactory;
         private wagons: Wagon[];
         private wagonCounter: number;
@@ -16,18 +17,30 @@
          */
         constructor(game: Phaser.Game) {
             super(game);
-            this.wagonAdded = new Phaser.Signal();
+            this.wagonCompleted = new Phaser.Signal();
             this.factory = new WagonFactory(this.game);
             this.wagons = [];
             this.wagonCounter = 0;
             this.trainLength = 0;
         }
 
-        /**
-         * Starts the train to spawn the first wagons.
-         */
-        public start(): void {
-            this.spawnNext();
+        public moveToNext(): Wagon {
+            let activeWagon: Wagon = this.activeWagon, newWagon: Wagon = null;
+
+            // Spawn next
+            if (!activeWagon || activeWagon.type !== WagonTypes.Caboose) {
+                newWagon = this.spawnNext();
+            }
+
+            // Move out
+            if (activeWagon) {
+                activeWagon.moveOut();
+                activeWagon.moveOutDone.addOnce(() => {
+                    this.removeWagon(activeWagon);
+                });
+            }
+
+            return newWagon;
         }
 
         private spawnNext(): Wagon {
@@ -42,22 +55,12 @@
             wagon.moveIn();
             this.wagons.push(wagon);
             this.add(wagon);
-            this.wagonAdded.dispatch(wagon);
             this.wagonCounter++;
             return wagon;
         }
 
         private wagonObjectiveDone(wagon: Wagon): void {
-            // Spawn next
-            if (wagon.type !== WagonTypes.Caboose) {
-                this.spawnNext();
-            }
-
-            // Move out
-            wagon.moveOut();
-            wagon.moveOutDone.addOnce(() => {
-                this.removeWagon(wagon);
-            });
+            this.wagonCompleted.dispatch(wagon);
         }
 
         private removeWagon(wagon: Wagon): void {
