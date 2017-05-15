@@ -1,6 +1,6 @@
 ﻿module ExamAssignmentMA {
     /**
-     * The wagon that needs cargo to finish it objective.
+     * The wagon that needs cargo to finish its objective.
      */
     export class CargoWagon extends Wagon {
 
@@ -40,7 +40,7 @@
         }
 
         /**
-         * Sets the cargo needed to finish it objective.
+         * Sets the cargo needed to finish its objective.
          * @param cargo The required cargo.
          */
         public setRequestedCargo(cargo: CargoTypes[]): void {

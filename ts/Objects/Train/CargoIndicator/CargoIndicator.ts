@@ -128,6 +128,10 @@
             this.pulsateTween = this.game.add.tween(this).to({ pulseAnim: 1 }, 750, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
         }
 
+        /**
+         * Replaces the highlight image to the correct type and colors it accordingly while also starting its tween.
+         * @param cargoType The type of the active cargo to set the highlight for
+         */
         private setCargoHighlight(cargoType: CargoTypes): void {
             let imgPath: string;
             let colorTint: number;

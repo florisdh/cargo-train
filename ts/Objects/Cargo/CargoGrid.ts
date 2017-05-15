@@ -22,6 +22,7 @@
             this.factory = new CargoFactory(game);
             this.cargoDropped = new Phaser.Signal();
         }
+
         /**
          * Spawns the requested cargo on the grid.
          * @param required The cargo to be spawned on the grid.

@@ -1,10 +1,13 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * Contains the background images and parallax layers of the in-game scene.
+     */
     export class Environment extends Phaser.Group {
         private readonly bgPercentage: number = 0.4;
 
         /* Tilescale has to be set relative to image resolution because pixi
            overrides the normal width/height behaviour of images in tileSprite
-           and makes it 'inpossible' to set width/height of the sprite in it.
+           and makes it 'impossible' to set width/height of the sprite in it.
         */
         private readonly bgWidth: number = 720;
         private readonly bgHeight: number = 435;
@@ -20,6 +23,9 @@
         private moveLeftNormal: number;
         private targetOffset: number = 0;
 
+        /**
+         * @param game The active game instance to be added to.
+         */
         constructor(game: Phaser.Game) {
             super(game);
 
@@ -28,6 +34,9 @@
             this.moveLeftNormal = 0;
         }
 
+        /**
+         * Moves the backgrounds while applying parallax.
+         */
         public moveToNext(): void {
             if (this.moveTween && this.moveTween.isRunning) {
                 this.moveTween.stop();
@@ -37,6 +46,9 @@
             this.moveTween = this.game.add.tween(this).to({ moveAnim: 0 }, 1000, Phaser.Easing.Quadratic.InOut, true);
         }
 
+        /**
+         * Resizes the tilable sprites for supporting different screen resolutions.
+         */
         public resize(): void {
             this.background.width = this.game.width;
             this.background.height = this.game.height * this.bgPercentage;
@@ -75,6 +87,9 @@
             this.platform.tilePosition.x = this.platform.width / this.platform.tileScale.x * (this.targetOffset - this.moveLeftNormal) * -this.platformParallax;
         }
 
+        /**
+         * Returns the platform sprite´s Y position.
+         */
         public get platformY(): number {
             return this.platform.y;
         }

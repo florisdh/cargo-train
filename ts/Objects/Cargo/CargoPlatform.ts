@@ -1,4 +1,7 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * Container of the CargoGrids, handles their movement and states.
+     */
     export class CargoPlatform extends Phaser.Group {
 
         public cargoAdded: Phaser.Signal;
@@ -15,10 +18,16 @@
             this.moveNormal = 0;
         }
 
+        /**
+         * Empties the array containing the cargo
+         */
         public reset(): void {
             this.cargo = [ null ];
         }
 
+        /**
+         * Creates a new CargoGrid, and adds and fills the cargo array.
+         */
         public createNext(): CargoGrid {
             let newCargo: CargoGrid = new CargoGrid(this.game);
             this.add(newCargo);
@@ -28,6 +37,9 @@
             return newCargo;
         }
 
+        /**
+         * Tweens the movement of the cargo
+         */
         public moveToNext(): void {
             if (this.moveTween && this.moveTween.isRunning) {
                 this.moveTween.stop();

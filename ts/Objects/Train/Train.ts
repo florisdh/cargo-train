@@ -24,6 +24,9 @@
             this.trainLength = 0;
         }
 
+        /**
+         * Spawns the next wagon of the train and tells the active one to move out of the screen.
+         */
         public moveToNext(): Wagon {
             let activeWagon: Wagon = this.activeWagon, newWagon: Wagon = null;
 

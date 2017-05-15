@@ -1,4 +1,7 @@
 ﻿module ExamAssignmentMA {
+    /**
+     * Handles the doors of the wagon it is on.
+     */
     export class WagonDoors extends Phaser.Group {
         public closed: Phaser.Signal;
         private openTween: Phaser.Tween;
@@ -19,6 +22,9 @@
             this.rightDoor.anchor.setTo(0, 1);
         }
 
+        /**
+         * Opens both of the doors using a tween.
+         */
         public open(): void {
             if (this.openTween && this.openTween.isRunning) {
                 this.openTween.stop();
@@ -26,6 +32,9 @@
             this.openTween = this.game.add.tween(this).to({ openAnim: 1 }, 500, Phaser.Easing.Quadratic.In, true);
         }
 
+        /**
+         * Closes both of the doors using a tween and calls the onClosed method.
+         */
         public close(): void {
             if (this.openTween && this.openTween.isRunning) {
                 this.openTween.stop();
@@ -38,6 +47,9 @@
             this.closed.dispatch();
         }
 
+        /**
+         * Resizes the doors relative to the wagon width, height and scale.
+         */
         public resize(): void {
             this.x = this.wagon.width * 0.492 / this.wagon.scale.x;
             this.y = this.wagon.height * -0.1 / this.wagon.scale.y;

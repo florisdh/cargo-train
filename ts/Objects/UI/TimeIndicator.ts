@@ -131,6 +131,10 @@
             this.timeMask.scale.set(this.timeFill.width * (this.timeLeft / this.timeTotal), this.timeFill.height);
         }
 
+        /**
+         * Calculates the damage, applies it and shows the visual damage feedback using a tween.
+         * @param damage The amount of damage
+         */
         public damageTime(damage: number): void {
             damage = damage + this.damageAnimTime + this.damageAnimDelay;
             this.timeLeft -= damage;
