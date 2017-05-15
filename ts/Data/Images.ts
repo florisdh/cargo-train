@@ -36,7 +36,7 @@ module ExamAssignmentMA {
         public static LeftDoor: string = 'wagonDoorLeft.png';
         public static RightDoor: string = 'wagonDoorRight.png';
         // GameOver
-        public static GameOverBG: string = 'endScreenBackground.jpg';
+        public static GameOverBG: string = 'endScreenBackground.png'; //todo: jpg
         public static GameOverFG: string = 'endscreenForground.png';
         public static RetryButton: string = 'retryButton.png';
 
