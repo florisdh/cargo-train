@@ -31,7 +31,8 @@
             this.foreground.anchor.setTo(0.5);
 
             this.retryButton.inputEnabled = true;
-            this.retryButton.events.onInputUp.addOnce(this.onClickedRetry, this);
+            this.retryButton.events.onInputDown.addOnce(this.onRetryDown, this);
+            this.retryButton.events.onInputUp.addOnce(this.onRetryUp, this);
 
             this.scoreText.anchor.set(0.5, 0.5);
             this.scoreValueText.anchor.set(0.5, 0.5);
@@ -40,7 +41,12 @@
             this.resize();
         }
 
-        private onClickedRetry(): void {
+        private onRetryDown(): void {
+            this.retryButton.tint = 0xCCCCCC;
+        }
+
+        private onRetryUp(): void {
+            this.retryButton.tint = 0xFFFFFF;
             this.game.state.start(GamePlay.Name);
         }
 
