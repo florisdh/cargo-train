@@ -115,6 +115,10 @@
          * Starts a tween on the first cargo icon in the CargoIndicator bar
          */
         public setActiveCargoEffect(): void {
+            if (this.requestedCargo.length <= 0) {
+                return;
+            }
+
             this.setCargoPulsate();
             this.setCargoHighlight(this.requestedCargo[0].cargoType);
         }
