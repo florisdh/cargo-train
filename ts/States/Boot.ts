@@ -51,15 +51,15 @@ module ExamAssignmentMA {
             }
 
             // Load all sounds
-            Sounds.PreloadList.forEach((assetName: string) => {
+            for (i = 0; i < Sounds.PreloadList.length; i++) {
                 if (this.game.device.iOS) {
-                    this.game.load.audio(assetName, ['assets/sounds/' + assetName + '.m4a']);
+                    this.game.load.audio(Sounds.PreloadList[i], ['assets/sounds/' + Sounds.PreloadList[i] + '.m4a']);
                 }
-                this.game.load.audio(assetName, ['assets/sounds/' + assetName + '.ogg', 'assets/sounds/' + assetName + '.mp3']);
-            });
+                this.game.load.audio(Sounds.PreloadList[i], ['assets/sounds/' + Sounds.PreloadList[i] + '.ogg', 'assets/sounds/' + Sounds.PreloadList[i] + '.mp3']);
+            }
 
             // Load all spines
-            for (let i: number = 0; i < Spines.PreloadList.length; i++) {
+            for (i = 0; i < Spines.PreloadList.length; i++) {
                 (<PhaserSpine.SpineGame>this.game).load.spine(Spines.PreloadList[i], 'assets/spine/' + Spines.PreloadList[i] + '.json');
             }
         }
