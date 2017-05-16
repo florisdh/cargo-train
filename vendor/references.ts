@@ -16,6 +16,7 @@
 /// <reference path="../ts/Objects/Cargo/CargoPlatform.ts" />
 /// <reference path="../ts/Objects/Cargo/CargoTypes.ts" />
 /// <reference path="../ts/Objects/Environment.ts" />
+/// <reference path="../ts/Objects/IngameTutorial.ts" />
 /// <reference path="../ts/Objects/SessionData.ts" />
 /// <reference path="../ts/Objects/Train/CargoIndicator/CargoIcon.ts" />
 /// <reference path="../ts/Objects/Train/CargoIndicator/CargoIndicator.ts" />

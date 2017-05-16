@@ -11,6 +11,7 @@
         private train: Train;
         private cargo: CargoPlatform;
         private wagonIndicator: WagonIndicator;
+        private tutorial: IngameTutorial;
         private completedWagons: number;
         private correct: Phaser.Sound;
         private incorrect: Phaser.Sound;
@@ -32,8 +33,8 @@
             this.train.wagonCompleted.add(this.moveToNext, this);
 
             this.cargo = new CargoPlatform(this.game);
-            this.cargo.cargoAdded.add(this.cargoAdded, this);
-            this.cargo.cargoRemoved.add(this.cargoRemoved, this);
+            this.cargo.cargoAdded.add(this.cargoGridAdded, this);
+            this.cargo.cargoRemoved.add(this.cargoGridRemoved, this);
 
             this.timeIndicator = new TimeIndicator(this.game);
             this.timeIndicator.timeOut.addOnce(this.onTimeOut, this);
@@ -43,12 +44,29 @@
             this.correct = this.game.add.sound(Sounds.CorrectCargo, 1, false);
             this.incorrect = this.game.add.sound(Sounds.IncorrectCargo, 1, false);
 
+            this.tutorial = new IngameTutorial(this.game);
+
             this.game.add.existing(this.timeIndicator);
             this.game.add.existing(this.cargo);
             this.game.add.existing(this.wagonIndicator);
+            this.game.add.existing(this.tutorial);
 
             this.resize();
             this.startRound();
+        }
+
+        private startRound(): void {
+            this.train.reset(this.session.getTrainLength());
+            this.cargo.reset();
+            this.moveToNext();
+            this.completedWagons = 0;
+            this.wagonIndicator.setWagonAmount(this.train.totalWagons);
+        }
+
+        private onRoundDone(): void {
+            this.session.nextRound();
+            this.startRound();
+            // TODO: Show intermission
         }
 
         private moveToNext(): void {
@@ -79,13 +97,15 @@
             }
 
             this.environment.moveToNext();
+            this.tutorial.setActiveWagon(wagon);
         }
 
-        private cargoAdded(cargo: CargoGrid): void {
+        private cargoGridAdded(cargo: CargoGrid): void {
             cargo.cargoDropped.add(this.onCargoDropped, this);
+            this.tutorial.setActiveGrid(cargo);
         }
 
-        private cargoRemoved(cargo: CargoGrid): void {
+        private cargoGridRemoved(cargo: CargoGrid): void {
             cargo.cargoDropped.remove(this.onCargoDropped, this);
         }
 
@@ -99,6 +119,7 @@
                 if (activeWagon.dropCargo(cargo)) {
                     cargo.fadeOut(activeWagon);
                     this.correct.play();
+                    this.tutorial.resetIdleCheck();
                 } else {
                     this.shakeScreen();
                     cargo.moveBack();
@@ -130,20 +151,7 @@
             let topUiY: number = this.game.height * 0.05;
             this.timeIndicator.resize(topUiY);
             this.wagonIndicator.resize(topUiY);
-        }
-
-        private startRound(): void {
-            this.train.reset(this.session.getTrainLength());
-            this.cargo.reset();
-            this.moveToNext();
-            this.completedWagons = 0;
-            this.wagonIndicator.setWagonAmount(this.train.totalWagons);
-        }
-
-        private onRoundDone(): void {
-            this.session.nextRound();
-            this.startRound();
-            // TODO: Show intermission
+            this.tutorial.resize();
         }
     }
 }

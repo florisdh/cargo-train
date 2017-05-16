@@ -45,6 +45,7 @@
     <TypeScriptCompile Include="ts\Objects\Cargo\CargoPlatform.ts" />
     <TypeScriptCompile Include="ts\Objects\Cargo\CargoTypes.ts" />
     <TypeScriptCompile Include="ts\Objects\Environment.ts" />
+    <TypeScriptCompile Include="ts\Objects\IngameTutorial.ts" />
     <TypeScriptCompile Include="ts\Objects\SessionData.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\CargoIndicator\CargoIcon.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\CargoIndicator\CargoIndicator.ts" />
