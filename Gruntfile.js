@@ -46,7 +46,7 @@ module.exports = function (grunt) {
                     {expand: true, cwd: 'assets/sounds', dest: '_build/dist/assets/sounds', src: ['**/*', '!**/*.wav']},
                     {expand: true, cwd: 'assets/css', dest: '_build/dist/assets/css', src: ['**/*']},
                     {expand: true, cwd: 'assets/fonts', dest: '_build/dist/assets/fonts', src: ['**/*']},
-                    {expand: true, cwd: 'assets/spine', dest: '_build/dist/assets/spine', src: ['**/*']},
+                    {expand: true, cwd: 'assets/spines', dest: '_build/dist/assets/spines', src: ['**/*']},
                     {expand: true, cwd: 'assets/atlases', dest: '_build/dist/assets/atlases', src: ['**/*']},
                     {expand: true, cwd: 'assets/json', dest: '_build/dist/assets/json', src: ['**/*']}
                 ]
@@ -85,6 +85,7 @@ module.exports = function (grunt) {
                         'node_modules/phaser/build/phaser.min.js',
                         'node_modules/webfontloader/webfontloader.js',
                         'node_modules/phaser-cachebuster/build/phaser-cachebuster.min.js',
+                        'node_modules/@orange-games/phaser-spine/build/phaser-spine.min.js',
                         '_build/dist/<%= game.name %>-<%= game.version %>.js'
                     ]
                 }
@@ -154,7 +155,6 @@ module.exports = function (grunt) {
         'uglify:dist',
         'clean:temp',
         'htmlbuild:dist',
-        'typedoc:dist',
         'typedoc:dist'
     ]);
 

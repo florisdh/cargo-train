@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/florisdh/examAssignmentMA#readme",
   "devDependencies": {
+    "@orange-games/phaser-spine": "^3.0.4",
     "grunt": "0.4.x",
     "grunt-contrib-clean": "0.6.0",
     "grunt-contrib-connect": "0.10.0",

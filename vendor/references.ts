@@ -1,13 +1,14 @@
 /// <reference path='./webfontloader.d.ts'/>
 /// <reference path='../node_modules/phaser/typescript/pixi.d.ts'/>
 /// <reference path='../node_modules/phaser/typescript/phaser.d.ts'/>
-
+/// <reference path='../node_modules/@orange-games/phaser-spine/build/phaser-spine.d.ts'/>
 /// <reference path="../ts/Objects/Train/Wagons/Wagon.ts" />
 
 //grunt-start
 /// <reference path="../ts/Data/Atlases.ts" />
 /// <reference path="../ts/Data/Images.ts" />
 /// <reference path="../ts/Data/Sounds.ts" />
+/// <reference path="../ts/Data/Spines.ts" />
 /// <reference path="../ts/Game.ts" />
 /// <reference path="../ts/Objects/Cargo/Cargo.ts" />
 /// <reference path="../ts/Objects/Cargo/CargoFactory.ts" />

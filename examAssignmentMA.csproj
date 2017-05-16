@@ -37,6 +37,7 @@
     <TypeScriptCompile Include="ts\Data\Atlases.ts" />
     <TypeScriptCompile Include="ts\Data\Images.ts" />
     <TypeScriptCompile Include="ts\Data\Sounds.ts" />
+    <TypeScriptCompile Include="ts\Data\Spines.ts" />
     <TypeScriptCompile Include="ts\Game.ts" />
     <TypeScriptCompile Include="ts\Objects\Cargo\Cargo.ts" />
     <TypeScriptCompile Include="ts\Objects\Cargo\CargoFactory.ts" />

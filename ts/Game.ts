@@ -27,8 +27,9 @@ module ExamAssignmentMA {
             this.state.add(GameOver.Name, GameOver, false);
 
             // Add all plugins here
-            //Phaser.Device.whenReady(() => {
-            //});
+            Phaser.Device.whenReady(() => {
+                this.plugins.add(PhaserSpine.SpinePlugin);
+            });
         }
 
         /**

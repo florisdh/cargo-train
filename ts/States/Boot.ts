@@ -57,6 +57,11 @@ module ExamAssignmentMA {
                 }
                 this.game.load.audio(assetName, ['assets/sounds/' + assetName + '.ogg', 'assets/sounds/' + assetName + '.mp3']);
             });
+
+            // Load all spines
+            for (let i: number = 0; i < Spines.PreloadList.length; i++) {
+                (<PhaserSpine.SpineGame>this.game).load.spine(Spines.PreloadList[i], 'assets/spine/' + Spines.PreloadList[i] + '.json');
+            }
         }
 
         /**
