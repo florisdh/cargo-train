@@ -12,6 +12,7 @@
         private cargo: CargoPlatform;
         private wagonIndicator: WagonIndicator;
         private tutorial: IngameTutorial;
+        private screenFade: ScreenFade;
         private completedWagons: number;
         private correct: Phaser.Sound;
         private incorrect: Phaser.Sound;
@@ -46,13 +47,16 @@
 
             this.tutorial = new IngameTutorial(this.game);
 
+            this.screenFade = new ScreenFade(this.game);
+
             this.game.add.existing(this.timeIndicator);
             this.game.add.existing(this.cargo);
             this.game.add.existing(this.wagonIndicator);
             this.game.add.existing(this.tutorial);
+            this.game.add.existing(this.screenFade);
 
             this.resize();
-            this.startRound();
+            this.screenFade.fadeOut(this.startRound, this);
         }
 
         private startRound(): void {
@@ -61,6 +65,13 @@
             this.moveToNext();
             this.completedWagons = 0;
             this.wagonIndicator.setWagonAmount(this.train.totalWagons);
+        }
+
+        private stop(): void {
+            this.train.wagonCompleted.remove(this.moveToNext, this);
+            this.cargo.cargoAdded.remove(this.cargoGridAdded, this);
+            this.cargo.cargoRemoved.remove(this.cargoGridRemoved, this);
+            this.timeIndicator.timeOut.remove(this.onTimeOut, this);
         }
 
         private onRoundDone(): void {
@@ -137,7 +148,10 @@
         }
 
         private onTimeOut(): void {
-            this.game.state.start(GameOver.Name, true, false, this.session);
+            this.stop();
+            this.screenFade.fadeIn(() => {
+                this.game.state.start(GameOver.Name, true, false, this.session);
+            });
         }
 
         /**
@@ -152,6 +166,7 @@
             this.timeIndicator.resize(topUiY);
             this.wagonIndicator.resize(topUiY);
             this.tutorial.resize();
+            this.screenFade.resize();
         }
     }
 }

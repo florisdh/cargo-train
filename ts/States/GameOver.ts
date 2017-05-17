@@ -10,6 +10,7 @@
         private background: Phaser.Image;
         private foreground: Phaser.Image;
         private retryButton: Phaser.Image;
+        private screenFade: ScreenFade;
 
         /**
          * Adding all assets that are required for this state.
@@ -38,7 +39,11 @@
             this.scoreValueText.anchor.set(0.5, 0.5);
             this.retryButton.anchor.set(0.5, 0.5);
 
+            this.screenFade = new ScreenFade(this.game);
+            this.add.existing(this.screenFade);
+
             this.resize();
+            this.screenFade.fadeOut();
         }
 
         private onRetryDown(): void {
@@ -46,8 +51,11 @@
         }
 
         private onRetryUp(): void {
+            this.retryButton.inputEnabled = false;
             this.retryButton.tint = 0xFFFFFF;
-            this.game.state.start(GamePlay.Name);
+            this.screenFade.fadeIn(() => {
+                this.game.state.start(GamePlay.Name);
+            });
         }
 
         /**
@@ -78,6 +86,8 @@
             this.retryButton.y = this.foreground.top + this.foreground.height * 0.865;
             this.retryButton.width = this.foreground.width * 0.361;
             this.retryButton.scale.y = this.retryButton.scale.x;
+
+            this.screenFade.resize();
         }
     }
 }

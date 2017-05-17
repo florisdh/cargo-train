@@ -27,6 +27,7 @@
 /// <reference path="../ts/Objects/Train/Wagons/Caboose.ts" />
 /// <reference path="../ts/Objects/Train/Wagons/CargoWagon.ts" />
 /// <reference path="../ts/Objects/Train/Wagons/Locomotive.ts" />
+/// <reference path="../ts/Objects/UI/ScreenFade.ts" />
 /// <reference path="../ts/Objects/UI/TimeIndicator.ts" />
 /// <reference path="../ts/Objects/UI/WagonIndicator.ts" />
 /// <reference path="../ts/States/Boot.ts" />
