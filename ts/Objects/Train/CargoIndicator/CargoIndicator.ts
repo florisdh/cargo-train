@@ -214,7 +214,7 @@
                 // Fade out Highlight tween
                 if (this.highlightFadeTween && this.highlightFadeTween.isRunning) {
                     this.highlightFadeTween.stop();
-                }
+                }   
                 this.highlightFadeTween = this.game.add.tween(this.highlightImage).to({ alpha: 0 }, 200, Phaser.Easing.Quadratic.In, true);
 
                 // Stop pulsate tween

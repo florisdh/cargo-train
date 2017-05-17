@@ -6,24 +6,54 @@
 
         private cargoIndicator: CargoIndicator;
         private wagonDoors: WagonDoors;
+        private glow: Phaser.Image;
+        private glowTween: Phaser.Tween;
+        private glowFadeValue: number;
 
         /**
          * @param game The active game instance to be added to.
          */
         constructor(game: Phaser.Game) {
             super(game, Images.Wagon);
+
             this.cargoIndicator = new CargoIndicator(this.game);
             this.wagonDoors = new WagonDoors(this.game, this);
-            this.cargoIndicator.wagonFilled.add(this.onWagonFilled, this);
+            this.glow = this.game.add.image(0, 0, Images.WagonGlow);
+            this.glowTween = null;
+
             this.addChild(this.cargoIndicator);
+            this.addChild(this.glow);
             this.addChild(this.wagonDoors);
+
+            this.cargoIndicator.wagonFilled.add(this.onWagonFilled, this);
             this.moveInDone.add(this.movedIn, this);
+
+            this.glow.anchor.set(0.5, 0.5);
+            this.enableGlow(CargoTypes.CircleBlue);
             this.resize();
         }
 
         private movedIn(): void {
             this.cargoIndicator.setActiveCargoEffect();
             this.wagonDoors.open();
+        }
+
+        private enableGlow(cargoType: CargoTypes): void {
+            let colorTint: number;
+
+            // Todo: Check if cargo is correct on hover
+            //if (cargoType == this.cargoIndicator.)
+            colorTint = 0x00ff00;
+
+            //this.glow.tint = colorTint;
+            this.glowFade = 0.5;
+            this.glowTween = this.game.add.tween(this).to({ glowFade: 1 }, 1000, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
+        }
+
+        private disableGlow(): void {
+            if (this.glowTween && this.glowTween.isRunning) {
+                this.glowTween.stop();
+            }
         }
 
         /**
@@ -62,6 +92,10 @@
             super.resize();
             this.cargoIndicator.resize();
             this.wagonDoors.resize();
+            
+            this.glow.x = this.width * 0.49; // 49%
+            this.glow.y = -(this.height * 0.3475); // 34.75%
+            this.glow.scale.x = this.glow.scale.y;
         }
 
         /**
@@ -77,6 +111,14 @@
          */
         public get type(): WagonTypes {
             return WagonTypes.CargoWagon;
+        }
+
+        private get glowFade(): number {
+            return this.glowFadeValue;
+        }
+
+        private set glowFade(normal: number) {
+            this.glow.alpha = normal;
         }
     }
 }

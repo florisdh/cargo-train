@@ -39,6 +39,8 @@ module ExamAssignmentMA {
         public static GameOverBG: string = 'endScreenBackground.png'; //todo: jpg
         public static GameOverFG: string = 'endscreenForground.png';
         public static RetryButton: string = 'retryButton.png';
+        // Wagon
+        public static WagonGlow: string = 'glowWagon.png';
 
         // Add all images here
         public static PreloadList: string[] = [
@@ -74,7 +76,9 @@ module ExamAssignmentMA {
             Images.TutorialBG,
             Images.ParticleStar,
             Images.LeftDoor,
-            Images.RightDoor
+            Images.RightDoor,
+            // Wagon
+            Images.WagonGlow
         ];
     }
 }
