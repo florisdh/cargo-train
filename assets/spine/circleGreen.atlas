@@ -1,0 +1,83 @@
+
+circleGreen.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Green Circle/GreenCirkelArmL
+  rotate: false
+  xy: 118, 41
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelArmL2
+  rotate: false
+  xy: 157, 41
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelArmR
+  rotate: false
+  xy: 196, 41
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelArmR2
+  rotate: true
+  xy: 118, 2
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelBody
+  rotate: false
+  xy: 2, 2
+  size: 114, 121
+  orig: 114, 121
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelBrauws
+  rotate: false
+  xy: 394, 109
+  size: 56, 14
+  orig: 56, 14
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelEyes
+  rotate: false
+  xy: 235, 89
+  size: 75, 34
+  orig: 75, 34
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelEyesClosed
+  rotate: false
+  xy: 312, 108
+  size: 80, 15
+  orig: 80, 15
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelLegL
+  rotate: false
+  xy: 235, 45
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelLegR
+  rotate: false
+  xy: 279, 45
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelMouth
+  rotate: false
+  xy: 312, 90
+  size: 58, 16
+  orig: 58, 16
+  offset: 0, 0
+  index: -1

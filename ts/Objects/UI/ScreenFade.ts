@@ -4,7 +4,7 @@
      */
     export class ScreenFade extends Phaser.Image {
 
-        private readonly fadeTime: number = 300;
+        private readonly fadeTime: number = 200;
         private fadeTween: Phaser.Tween;
 
         constructor(game: Phaser.Game) {

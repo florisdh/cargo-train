@@ -1,0 +1,62 @@
+
+triangleBlue.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Blue Triangle/Body
+  rotate: false
+  xy: 2, 11
+  size: 127, 115
+  orig: 127, 115
+  offset: 0, 0
+  index: -1
+Blue Triangle/Brauw
+  rotate: true
+  xy: 233, 56
+  size: 70, 14
+  orig: 70, 14
+  offset: 0, 0
+  index: -1
+Blue Triangle/Eyes
+  rotate: false
+  xy: 131, 89
+  size: 73, 37
+  orig: 73, 37
+  offset: 0, 0
+  index: -1
+Blue Triangle/L_arm
+  rotate: false
+  xy: 131, 42
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1
+Blue Triangle/L_leg kopiëren 14
+  rotate: true
+  xy: 174, 2
+  size: 38, 41
+  orig: 38, 41
+  offset: 0, 0
+  index: -1
+Blue Triangle/L_leg kopiëren 3
+  rotate: true
+  xy: 131, 2
+  size: 38, 41
+  orig: 38, 41
+  offset: 0, 0
+  index: -1
+Blue Triangle/R_arm
+  rotate: false
+  xy: 182, 42
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1
+Blue Triangle/mouth
+  rotate: true
+  xy: 217, 2
+  size: 38, 12
+  orig: 38, 12
+  offset: 0, 0
+  index: -1

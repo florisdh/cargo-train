@@ -1,0 +1,62 @@
+
+circleYellow.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Yellow Circle/yellowCirkelArmL
+  rotate: false
+  xy: 157, 41
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelArmR
+  rotate: false
+  xy: 118, 41
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelBody
+  rotate: false
+  xy: 2, 2
+  size: 114, 121
+  orig: 114, 121
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelBrauws
+  rotate: true
+  xy: 240, 67
+  size: 56, 14
+  orig: 56, 14
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelEyes
+  rotate: false
+  xy: 118, 5
+  size: 75, 34
+  orig: 75, 34
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelLegL
+  rotate: false
+  xy: 196, 37
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelLegR
+  rotate: false
+  xy: 196, 81
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelMouth
+  rotate: false
+  xy: 195, 11
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1

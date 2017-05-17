@@ -1,0 +1,62 @@
+
+squareRed.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Red square/RedCubeArmL
+  rotate: false
+  xy: 157, 40
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+Red square/RedCubeArmR
+  rotate: true
+  xy: 157, 2
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+Red square/RedCubeBody
+  rotate: true
+  xy: 2, 8
+  size: 118, 134
+  orig: 118, 134
+  offset: 0, 0
+  index: -1
+Red square/RedCubeBrauws
+  rotate: true
+  xy: 138, 14
+  size: 81, 17
+  orig: 81, 17
+  offset: 0, 0
+  index: -1
+Red square/RedCubeEyes
+  rotate: false
+  xy: 138, 97
+  size: 70, 29
+  orig: 70, 29
+  offset: 0, 0
+  index: -1
+Red square/RedCubeLegL
+  rotate: true
+  xy: 195, 59
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Red square/RedCubeLegR
+  rotate: true
+  xy: 214, 21
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Red square/RedCubeMouth
+  rotate: false
+  xy: 210, 109
+  size: 44, 17
+  orig: 44, 17
+  offset: 0, 0
+  index: -1

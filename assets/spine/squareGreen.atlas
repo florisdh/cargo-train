@@ -1,0 +1,76 @@
+
+squareGreen.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Green square/GreenCubeArmL
+  rotate: true
+  xy: 215, 86
+  size: 29, 54
+  orig: 29, 54
+  offset: 0, 0
+  index: -1
+Green square/GreenCubeArmL2
+  rotate: false
+  xy: 117, 13
+  size: 29, 54
+  orig: 29, 54
+  offset: 0, 0
+  index: -1
+Green square/GreenCubeArmR
+  rotate: true
+  xy: 271, 86
+  size: 29, 54
+  orig: 29, 54
+  offset: 0, 0
+  index: -1
+Green square/GreenCubeArmR2
+  rotate: false
+  xy: 148, 13
+  size: 29, 54
+  orig: 29, 54
+  offset: 0, 0
+  index: -1
+Green square/GreenCubeBody
+  rotate: false
+  xy: 2, 2
+  size: 113, 113
+  orig: 113, 113
+  offset: 0, 0
+  index: -1
+Green square/GreenCubeBrauws
+  rotate: false
+  xy: 117, 69
+  size: 78, 12
+  orig: 78, 12
+  offset: 0, 0
+  index: -1
+Green square/GreenCubeEyes
+  rotate: false
+  xy: 117, 83
+  size: 96, 32
+  orig: 96, 32
+  offset: 0, 0
+  index: -1
+Green square/GreenCubeLegL
+  rotate: true
+  xy: 379, 81
+  size: 34, 39
+  orig: 34, 39
+  offset: 0, 0
+  index: -1
+Green square/GreenCubeLegR
+  rotate: true
+  xy: 420, 81
+  size: 34, 39
+  orig: 34, 39
+  offset: 0, 0
+  index: -1
+Green square/GreenCubeMouth
+  rotate: false
+  xy: 327, 84
+  size: 50, 31
+  orig: 50, 31
+  offset: 0, 0
+  index: -1

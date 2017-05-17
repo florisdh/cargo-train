@@ -1,0 +1,62 @@
+
+triangleRed.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Red triangle/RedTriangleArmL
+  rotate: false
+  xy: 121, 50
+  size: 44, 46
+  orig: 44, 46
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleArmR
+  rotate: false
+  xy: 121, 2
+  size: 44, 46
+  orig: 44, 46
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleBody
+  rotate: false
+  xy: 2, 21
+  size: 117, 105
+  orig: 117, 105
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleBrauws
+  rotate: true
+  xy: 167, 31
+  size: 65, 14
+  orig: 65, 14
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleEyes
+  rotate: false
+  xy: 121, 98
+  size: 67, 28
+  orig: 67, 28
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleLegL
+  rotate: false
+  xy: 190, 94
+  size: 37, 32
+  orig: 37, 32
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleLegR
+  rotate: false
+  xy: 183, 60
+  size: 37, 32
+  orig: 37, 32
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleMouth
+  rotate: false
+  xy: 2, 2
+  size: 29, 17
+  orig: 29, 17
+  offset: 0, 0
+  index: -1
