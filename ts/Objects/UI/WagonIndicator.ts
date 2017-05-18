@@ -12,10 +12,10 @@
          */
         constructor(game: Phaser.Game) {
             super(game);
-            this.indicatorImage = new Phaser.Image(this.game, 0, 0, Images.WagonCounter);
+            this.indicatorImage = new Phaser.Image(this.game, 0, 0, Images.WagonIndicator);
             this.indicatorImage.anchor.setTo(0.5);
             this.indicatorText = new Phaser.Text(this.game, 0, 0, '0', {
-                font: '30pt Arial',
+                font: '25pt Arial',
                 fill: '#791909',
                 boundsAlignH: 'center',
                 boundsAlignV: 'middle'
@@ -37,9 +37,10 @@
          * @param y The y axis where the top ui elements should center to.
          */
         public resize(y: number): void {
-            this.x = this.y = y; // Have same margin on x axis.
+            this.y = y;
+            this.x = this.game.width * 0.11;
             this.indicatorImage.scale.setTo(this.game.width / 720);
-            this.indicatorText.fontSize = this.indicatorImage.width * 0.55;
+            this.indicatorText.fontSize = this.indicatorImage.width * 0.5;
             this.indicatorText.setTextBounds(this.indicatorImage.left,
                 this.indicatorImage.top,
                 this.indicatorImage.width,

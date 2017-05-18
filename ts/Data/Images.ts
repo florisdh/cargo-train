@@ -29,7 +29,7 @@ module ExamAssignmentMA {
         // Timer
         public static TimeContainer: string = 'timebar.png';
         public static TimeFill: string = 'timebarFill.png';
-        public static WagonCounter: string = 'wagonCounter.png';
+        public static WagonIndicator: string = 'wagonIndicator.png';
         public static Background_01: string = 'backgroundTrees.jpg';
         public static Platform_01: string = 'trainstationPavement.jpg';
         public static ParticleStar: string = 'particleStar.png';
@@ -66,7 +66,7 @@ module ExamAssignmentMA {
             // Timer
             Images.TimeContainer,
             Images.TimeFill,
-            Images.WagonCounter,
+            Images.WagonIndicator,
             Images.RetryButton,
             // Back- and foregrounds
             Images.Background_01,
