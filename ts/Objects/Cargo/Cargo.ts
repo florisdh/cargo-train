@@ -6,6 +6,7 @@
 
         public dropped: Phaser.Signal;
         public removed: Phaser.Signal;
+        public dragUpdate: Phaser.Signal;
         private anim: PhaserSpine.Spine;
         private hitBox: Phaser.Image;
         private isDragging: boolean;
@@ -61,6 +62,7 @@
             this.add(this.anim);
             this.dropped = new Phaser.Signal();
             this.removed = new Phaser.Signal();
+            this.dragUpdate = new Phaser.Signal();
             this.hitBox = this.game.add.image(0, 0, Images.WhitePixel, null, this);
             this.hitBox.alpha = 0;
             this.hitBox.anchor.setTo(0.5);
@@ -68,6 +70,7 @@
             this.hitBox.input.enableDrag(false, true);
             this.hitBox.events.onDragStart.add(this.onDragStart, this);
             this.hitBox.events.onDragStop.add(this.onDragStop, this);
+            this.hitBox.events.onDragUpdate.add(this.onDragUpdate, this);
             this.isDragging = false;
             this.releasePoint = null;
             this.moveBackNormal = 0;
@@ -127,6 +130,10 @@
             this.hitBox.inputEnabled = false;
             this.dropped.dispatch(this);
             this.isDragging = false;
+        }
+
+        private onDragUpdate(): void {
+            this.dragUpdate.dispatch(this);
         }
 
         /**

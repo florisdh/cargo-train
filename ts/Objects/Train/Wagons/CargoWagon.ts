@@ -20,7 +20,7 @@
             this.wagonDoors = new WagonDoors(this.game, this);
             this.glow = this.game.add.image(0, 0, Images.WagonGlow);
             this.glowTween = null;
-            this.glowFade = 0.8;
+            this.glow.anchor.set(0.5, 1);
 
             this.addChild(this.cargoIndicator);
             this.addChild(this.glow);
@@ -29,8 +29,7 @@
             this.cargoIndicator.wagonFilled.add(this.onWagonFilled, this);
             this.moveInDone.add(this.movedIn, this);
 
-            this.glow.anchor.set(0.5, 0.5);
-            this.enableGlow(CargoTypes.CircleBlue);
+            this.glowAnim = 0;
             this.resize();
         }
 
@@ -39,24 +38,19 @@
             this.wagonDoors.open();
         }
 
-        private enableGlow(cargoType: CargoTypes): void {
-            let colorTint: number;
-
-            // Todo: Check if cargo is correct on hover, then apply either green or red to the tint.
-            colorTint = 0x00ff00;
-            //this.glow.tint = colorTint;
-
+        public enableGlow(cargoType: CargoTypes): void {
             if (this.glowTween && this.glowTween.isRunning) {
                 this.glowTween.stop();
-                this.glowFade = 0.8;
             }
-            this.glowTween = this.game.add.tween(this).to({ glowFade: 1 }, 1000, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
+            this.glowAnim = 0;
+            this.glowTween = this.game.add.tween(this).to({ glowAnim: 1 }, 500, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
         }
 
-        private disableGlow(): void {
+        public disableGlow(): void {
             if (this.glowTween && this.glowTween.isRunning) {
                 this.glowTween.stop();
             }
+            this.glowAnim = 0;
         }
 
         /**
@@ -81,8 +75,9 @@
         }
 
         private onWagonFilled(): void {
-            //Temp call
-            this.disableGlow();
+            if (this.glowEnabled) {
+                this.disableGlow();
+            }
 
             this.wagonDoors.close();
             this.wagonDoors.closed.addOnce(() => {
@@ -99,9 +94,10 @@
             this.cargoIndicator.resize();
             this.wagonDoors.resize();
 
-            this.glow.x = this.width * 0.49; // 49%
-            this.glow.y = -(this.height * 0.3475); // 34.75%
+            this.glow.height = this.height * 0.49 / this.scale.y;
             this.glow.scale.x = this.glow.scale.y;
+            this.glow.x = this.width * 0.489 / this.scale.x;
+            this.glow.y = -this.height * 0.1 / this.scale.y;
         }
 
         /**
@@ -119,12 +115,17 @@
             return WagonTypes.CargoWagon;
         }
 
-        private get glowFade(): number {
+        private get glowAnim(): number {
             return this.glowFadeValue;
         }
 
-        private set glowFade(normal: number) {
+        private set glowAnim(normal: number) {
+            this.glowFadeValue = normal;
             this.glow.alpha = normal;
+        }
+
+        public get glowEnabled(): boolean {
+            return this.glowTween && this.glowTween.isRunning;
         }
     }
 }

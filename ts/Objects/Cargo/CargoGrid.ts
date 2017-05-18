@@ -5,6 +5,7 @@
     export class CargoGrid extends Phaser.Group {
 
         public cargoDropped: Phaser.Signal;
+        public cargoUpdate: Phaser.Signal;
         private readonly xAmount: number = 4;
         private readonly yAmount: number = 4;
         private readonly marginNormalX: number = 0.075;
@@ -21,6 +22,7 @@
             this.cargo = [];
             this.factory = new CargoFactory(game);
             this.cargoDropped = new Phaser.Signal();
+            this.cargoUpdate = new Phaser.Signal();
         }
 
         /**
@@ -62,6 +64,7 @@
             this.cargo.push(cargo);
             cargo.dropped.add(this.onCargoDropped, this);
             cargo.removed.add(this.onCargoRemoved, this);
+            cargo.dragUpdate.add(this.onCargoDrag, this);
         }
 
         private onCargoRemoved(cargo: Cargo): void {
@@ -71,11 +74,16 @@
             }
         }
 
+        private onCargoDrag(cargo: Cargo): void {
+            this.cargoUpdate.dispatch(cargo);
+        }
+
         private removeCargoAt(index: number): void {
             let cargo: Cargo = this.cargo[index];
             this.cargo.splice(index, 1);
             cargo.dropped.remove(this.onCargoDropped, this);
             cargo.removed.remove(this.onCargoRemoved, this);
+            cargo.dragUpdate.remove(this.onCargoDrag, this);
             this.remove(cargo);
         }
 

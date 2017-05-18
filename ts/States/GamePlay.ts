@@ -113,11 +113,13 @@
 
         private cargoGridAdded(cargo: CargoGrid): void {
             cargo.cargoDropped.add(this.onCargoDropped, this);
+            cargo.cargoUpdate.add(this.onCargoDragUpdate, this);
             this.tutorial.setActiveGrid(cargo);
         }
 
         private cargoGridRemoved(cargo: CargoGrid): void {
             cargo.cargoDropped.remove(this.onCargoDropped, this);
+            cargo.cargoUpdate.remove(this.onCargoDragUpdate, this);
         }
 
         /**
@@ -125,22 +127,42 @@
          * @param cargo The cargo being dropped.
          */
         private onCargoDropped(cargo: Cargo): void {
-            if (this.train.activeWagon.type === WagonTypes.CargoWagon && this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition)) {
+            if (this.train.activeWagon.type === WagonTypes.CargoWagon) {
                 let activeWagon: CargoWagon = <CargoWagon>this.train.activeWagon;
-                if (activeWagon.dropCargo(cargo)) {
-                    cargo.fadeOut(activeWagon);
-                    this.correct.play();
-                    this.tutorial.resetIdleCheck();
+                if (this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition)) {
+                    if (activeWagon.dropCargo(cargo)) {
+                        cargo.fadeOut(activeWagon);
+                        this.correct.play();
+                        this.tutorial.resetIdleCheck();
+                    } else {
+                        this.shakeScreen();
+                        cargo.moveBack();
+                        this.timeIndicator.damageTime(1000);
+                        this.incorrect.play();
+                    }
                 } else {
-                    this.shakeScreen();
                     cargo.moveBack();
-                    this.timeIndicator.damageTime(1000);
-                    this.incorrect.play();
+                }
+                if (activeWagon.glowEnabled) {
+                    activeWagon.disableGlow();
                 }
             } else {
                 cargo.moveBack();
             }
+        }
 
+        private onCargoDragUpdate(cargo: Cargo): void {
+            if (this.train.activeWagon.type === WagonTypes.CargoWagon) {
+                let wagon: CargoWagon = <CargoWagon>this.train.activeWagon;
+
+                if (wagon.glowEnabled !== this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition)) {
+                    if (wagon.glowEnabled) {
+                        wagon.disableGlow();
+                    } else {
+                        wagon.enableGlow(cargo.type);
+                    }
+                }
+            }
         }
 
         private shakeScreen(): void {
