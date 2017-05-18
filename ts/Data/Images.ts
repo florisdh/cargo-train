@@ -8,11 +8,14 @@ module ExamAssignmentMA {
         public static WhitePixel: string = 'white.png';
         public static MA_Logo: string = 'ma.png';
         // Tutorial
-        public static TutorialBG: string = 'tutorialGraphic.jpg';
+        public static TutorialFrame1: string = 'tutorialScreen1.png'; // Todo: .jpg
+        public static TutorialFrame2: string = 'tutorialScreen2.png'; // Todo: .jpg
         // InGame
         public static Locomotive: string = 'locomotive.png';
         public static Wagon: string = 'wagonCutOff.png';
         public static Caboose: string = 'cabooseCutOff.png';
+        public static WagonGlow: string = 'glowWagon.png';
+        // Cargo
         public static CargoCircle: string = 'cargoPlaceholderCirkel.png';
         public static CargoCube: string = 'cargoPlaceholderCube.png';
         public static CargoTriangle: string = 'cargoPlaceholderTriangle.png';
@@ -36,25 +39,31 @@ module ExamAssignmentMA {
         public static LeftDoor: string = 'wagonDoorLeft.png';
         public static RightDoor: string = 'wagonDoorRight.png';
         // GameOver
-        public static GameOverBG: string = 'endScreenBackground.png'; //todo: jpg
+        public static GameOverBG: string = 'endScreenBackground.png'; // Todo: .jpg
         public static GameOverFG: string = 'endscreenForground.png';
         public static RetryButton: string = 'retryButton.png';
-        // Wagon
-        public static WagonGlow: string = 'glowWagon.png';
 
         // Add all images here
         public static PreloadList: string[] = [
             Images.WhitePixel,
             Images.MA_Logo,
+            // Tutorial
+            Images.TutorialFrame1,
+            Images.TutorialFrame2,
+            // Wagons
             Images.Locomotive,
             Images.Wagon,
             Images.Caboose,
+            Images.ParticleStar,
+            Images.LeftDoor,
+            Images.RightDoor,
+            Images.WagonGlow,
             // Cargo
             Images.CargoCircle,
             Images.CargoCube,
             Images.CargoTriangle,
-            Images.CargoIndicatorContainer,
             // Cargo Indicators
+            Images.CargoIndicatorContainer,
             Images.CargoIndicatorCircle,
             Images.CargoIndicatorCube,
             Images.CargoIndicatorTriangle,
@@ -72,13 +81,7 @@ module ExamAssignmentMA {
             Images.Background_01,
             Images.Platform_01,
             Images.GameOverBG,
-            Images.GameOverFG,
-            Images.TutorialBG,
-            Images.ParticleStar,
-            Images.LeftDoor,
-            Images.RightDoor,
-            // Wagon
-            Images.WagonGlow
+            Images.GameOverFG
         ];
     }
 }

@@ -41,12 +41,11 @@
         private enableGlow(cargoType: CargoTypes): void {
             let colorTint: number;
 
-            // Todo: Check if cargo is correct on hover
-            //if (cargoType == this.cargoIndicator.)
+            // Todo: Check if cargo is correct on hover, then apply either green or red to the tint.
             colorTint = 0x00ff00;
 
             //this.glow.tint = colorTint;
-            this.glowFade = 0.5;
+            this.glowFade = 0.8;
             this.glowTween = this.game.add.tween(this).to({ glowFade: 1 }, 1000, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
         }
 
@@ -78,6 +77,9 @@
         }
 
         private onWagonFilled(): void {
+            //Temp call
+            this.disableGlow();
+
             this.wagonDoors.close();
             this.wagonDoors.closed.addOnce(() => {
                 this.objectiveDone.dispatch(this);
