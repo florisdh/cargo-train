@@ -50,11 +50,11 @@
             this.glowTween = this.game.add.tween(this).to({ glowFade: 1 }, 1000, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
         }
 
-        private disableGlow(): void {
-            if (this.glowTween && this.glowTween.isRunning) {
-                this.glowTween.stop();
-            }
-        }
+        //private disableGlow(): void {
+        //    if (this.glowTween && this.glowTween.isRunning) {
+        //        this.glowTween.stop();
+        //    }
+        //}
 
         /**
          * Sets the required cargo randomly with an amount specified.
@@ -92,7 +92,7 @@
             super.resize();
             this.cargoIndicator.resize();
             this.wagonDoors.resize();
-            
+
             this.glow.x = this.width * 0.49; // 49%
             this.glow.y = -(this.height * 0.3475); // 34.75%
             this.glow.scale.x = this.glow.scale.y;
