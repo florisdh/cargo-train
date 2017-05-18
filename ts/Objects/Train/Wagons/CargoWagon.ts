@@ -20,6 +20,7 @@
             this.wagonDoors = new WagonDoors(this.game, this);
             this.glow = this.game.add.image(0, 0, Images.WagonGlow);
             this.glowTween = null;
+            this.glowFade = 0.8;
 
             this.addChild(this.cargoIndicator);
             this.addChild(this.glow);
@@ -43,9 +44,12 @@
 
             // Todo: Check if cargo is correct on hover, then apply either green or red to the tint.
             colorTint = 0x00ff00;
-
             //this.glow.tint = colorTint;
-            this.glowFade = 0.8;
+
+            if (this.glowTween && this.glowTween.isRunning) {
+                this.glowTween.stop();
+                this.glowFade = 0.8;
+            }
             this.glowTween = this.game.add.tween(this).to({ glowFade: 1 }, 1000, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
         }
 
