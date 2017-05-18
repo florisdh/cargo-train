@@ -16,6 +16,7 @@
         private completedWagons: number;
         private correct: Phaser.Sound;
         private incorrect: Phaser.Sound;
+        private intermissionScreen: IntermissionScreen;
 
         /**
          * Adds all game assets and sets up all game elements.
@@ -48,6 +49,9 @@
             this.tutorial = new IngameTutorial(this.game);
 
             this.screenFade = new ScreenFade(this.game);
+
+            this.intermissionScreen = new IntermissionScreen(this.game);
+            this.intermissionScreen.intermissionDone.add(this.onRoundDone, this);
 
             this.game.add.existing(this.timeIndicator);
             this.game.add.existing(this.cargo);
@@ -100,13 +104,13 @@
                 } else if (wagon.type === WagonTypes.Caboose) {
                     this.timeIndicator.stop();
                     wagon.moveOutDone.addOnce(this.onRoundDone, this);
+                    this.intermissionScreen.openIntermission(this.session);
                 }
 
                 if (wagon.type !== WagonTypes.Locomotive) {
                     this.cargo.moveToNext();
                 }
             }
-
             this.environment.moveToNext();
             this.tutorial.setActiveWagon(wagon);
         }
@@ -189,6 +193,7 @@
             this.wagonIndicator.resize(topUiY);
             this.tutorial.resize();
             this.screenFade.resize();
+            this.intermissionScreen.resize();
         }
     }
 }

@@ -82,8 +82,9 @@
             this.particleEmitter.makeParticles(Images.ParticleStar);
             this.particleEmitter.setAlpha(1.0, 0.0, 1500, Phaser.Easing.Linear.None);
             this.particleEmitter.autoAlpha = true;
+            this.particleEmitter.minParticleScale = 0.5;
+            this.particleEmitter.maxParticleScale = 1;
             //this.particleEmitter.gravity = -6;
-
             this.anim.position = this.hitBox.position;
 
             this.game.time.events.add(this.game.rnd.integerInRange(0, 500), () => {

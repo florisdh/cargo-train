@@ -36,8 +36,14 @@ module ExamAssignmentMA {
         public static Background_01: string = 'backgroundTrees.jpg';
         public static Platform_01: string = 'trainstationPavement.jpg';
         public static ParticleStar: string = 'particleStar.png';
+        //Doors
         public static LeftDoor: string = 'wagonDoorLeft.png';
         public static RightDoor: string = 'wagonDoorRight.png';
+        //Intermission
+        public static RatingStarFull: string = 'ratingStarFull.png';
+        public static RatingStarEmpty: string = 'ratingStarEmpty.png';
+        public static IntermissionScreen: string = 'intermissionScreen.png';
+
         // GameOver
         public static GameOverBG: string = 'endScreenBackground.png'; // Todo: .jpg
         public static GameOverFG: string = 'endscreenForground.png';
@@ -81,7 +87,17 @@ module ExamAssignmentMA {
             Images.Background_01,
             Images.Platform_01,
             Images.GameOverBG,
+<<<<<<< HEAD
             Images.GameOverFG
+=======
+            Images.GameOverFG,
+            Images.RetryButton,
+            Images.TutorialBG,
+            Images.ParticleStar,
+            Images.RatingStarFull,
+            Images.RatingStarEmpty,
+            Images.IntermissionScreen
+>>>>>>> Added intermission screen
         ];
     }
 }

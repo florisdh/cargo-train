@@ -6,6 +6,8 @@
 
         private round: number;
         private score: number;
+        private speed: number;
+        private accuracy: number;
 
         /**
          * @param round The starting round.
@@ -64,6 +66,20 @@
          */
         public get currentScore(): number {
             return this.score;
+        }
+
+        /**
+         * Returns the speed of the current round.
+         */
+        public get currentSpeed(): number {
+            return this.speed;
+        }
+
+        /**
+         * Returns the accuracy of the current round.
+         */
+        public get currentAccuracy(): number {
+            return this.accuracy;
         }
     }
 }
