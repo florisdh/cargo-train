@@ -49,11 +49,11 @@
             this.glowTween = this.game.add.tween(this).to({ glowFade: 1 }, 1000, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
         }
 
-        //private disableGlow(): void {
-        //    if (this.glowTween && this.glowTween.isRunning) {
-        //        this.glowTween.stop();
-        //    }
-        //}
+        private disableGlow(): void {
+            if (this.glowTween && this.glowTween.isRunning) {
+                this.glowTween.stop();
+            }
+        }
 
         /**
          * Sets the required cargo randomly with an amount specified.
