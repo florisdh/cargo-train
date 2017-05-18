@@ -87,17 +87,12 @@ module ExamAssignmentMA {
             Images.Background_01,
             Images.Platform_01,
             Images.GameOverBG,
-<<<<<<< HEAD
-            Images.GameOverFG
-=======
             Images.GameOverFG,
             Images.RetryButton,
-            Images.TutorialBG,
             Images.ParticleStar,
             Images.RatingStarFull,
             Images.RatingStarEmpty,
             Images.IntermissionScreen
->>>>>>> Added intermission screen
         ];
     }
 }
