@@ -6,6 +6,8 @@
 
         private machinistArmImg: Phaser.Image;
         private dialogGraphic: Phaser.Image;
+        private hornTween: Phaser.Tween;
+        private hornNormal: number;
 
         /**
          * @param game The active game instance to be added to.
@@ -20,27 +22,47 @@
             this.dialogGraphic = this.game.add.image(0, 0, Images.DialogCloud);
             this.dialogGraphic.anchor.set(1, 0);
 
-            this.addChild(this.machinistArmImg);
-            this.addChild(this.dialogGraphic);  // Currently disabled, waiting for new Dialog graphic
+            this.add(this.machinistArmImg, false, 0);
+            this.addChild(this.dialogGraphic);
+
+            this.hornNormal = 0;
 
             this.resize();
         }
 
         public resize(): void {
-            this.machinistArmImg.x = this.width * 0.672;
-            this.machinistArmImg.y = -(this.height * 0.58);
-            this.dialogGraphic.x = this.width * 0.775;
-            this.dialogGraphic.y = -(this.height * 0.58);
+            super.resize();
+            this.machinistArmImg.x = this.wagonImage.width * 0.6698;
+            this.hornAnim = this.hornAnim;
+            this.machinistArmImg.scale.setTo(this.wagonImage.scale.x);
+            this.dialogGraphic.x = this.wagonImage.width * 0.775;
+            this.dialogGraphic.y = -this.wagonImage.height * 0.58;
         }
 
-        private timer: Phaser.Timer;
+        private horn(): void {
+            if (this.hornTween && this.hornTween.isRunning) {
+                this.hornTween.stop();
+            }
+            this.hornAnim = 0;
+            this.hornTween = this.game.add.tween(this).to({ hornAnim: 1 }, 300, Phaser.Easing.Quadratic.InOut, true, 0, 1, true);
+            this.hornTween.onComplete.addOnce(this.onHornComplete, this);
+        }
+
+        private onHornComplete(): void {
+            this.objectiveDone.dispatch(this);
+        }
 
         private onMoveInDone(): void {
-            // Show IP, etc
-            this.timer = new Phaser.Timer(this.game, true);
-            this.timer.onComplete.addOnce(() => {
-                this.objectiveDone.dispatch(this);
-            });
+            this.horn();
+        }
+
+        private get hornAnim(): number {
+            return this.hornNormal;
+        }
+
+        private set hornAnim(value: number) {
+            this.hornNormal = value;
+            this.machinistArmImg.y = -this.wagonImage.height * (0.59 - 0.05 * value);
         }
 
         /**

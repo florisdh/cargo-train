@@ -17,14 +17,14 @@
             super(game, Images.Wagon);
 
             this.cargoIndicator = new CargoIndicator(this.game);
-            this.wagonDoors = new WagonDoors(this.game, this);
+            this.wagonDoors = new WagonDoors(this.game);
             this.glow = this.game.add.image(0, 0, Images.WagonGlow);
             this.glowTween = null;
             this.glow.anchor.set(0.5, 1);
 
-            this.addChild(this.cargoIndicator);
-            this.addChild(this.glow);
-            this.addChild(this.wagonDoors);
+            this.add(this.cargoIndicator);
+            this.add(this.glow);
+            this.add(this.wagonDoors);
 
             this.cargoIndicator.wagonFilled.add(this.onWagonFilled, this);
             this.moveInDone.add(this.movedIn, this);
@@ -91,13 +91,13 @@
          */
         public resize(): void {
             super.resize();
-            this.cargoIndicator.resize();
-            this.wagonDoors.resize();
+            this.cargoIndicator.resize(this.wagonImage.width, this.wagonImage.height);
+            this.wagonDoors.resize(this.wagonImage.width, this.wagonImage.height);
 
-            this.glow.height = this.height * 0.49 / this.scale.y;
+            this.glow.height = this.wagonImage.height * 0.49;
             this.glow.scale.x = this.glow.scale.y;
-            this.glow.x = this.width * 0.489 / this.scale.x;
-            this.glow.y = -this.height * 0.1 / this.scale.y;
+            this.glow.x = this.wagonImage.width * 0.489;
+            this.glow.y = -this.wagonImage.height * 0.1;
         }
 
         /**

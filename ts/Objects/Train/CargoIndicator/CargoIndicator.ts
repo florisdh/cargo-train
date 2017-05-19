@@ -75,9 +75,7 @@
         /**
          * Resizes all elements in this object.
          */
-        public resize(): void {
-            let wagonWidth: number = this.parent.width / this.parent.scale.x,
-                wagonHeight: number = this.parent.height / this.parent.scale.y;
+        public resize(wagonWidth: number, wagonHeight: number): void {
             this.x = wagonWidth * 0.5;
             this.y = wagonHeight * -0.825;
             this.background.width = wagonWidth * 0.6;

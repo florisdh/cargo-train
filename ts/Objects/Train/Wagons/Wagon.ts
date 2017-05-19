@@ -2,11 +2,12 @@
     /**
      * The base class of all wagons.
      */
-    export class Wagon extends Phaser.Image {
+    export class Wagon extends Phaser.Group {
 
         public moveInDone: Phaser.Signal;
         public moveOutDone: Phaser.Signal;
         public objectiveDone: Phaser.Signal;
+        protected wagonImage: Phaser.Image;
         private moveTween: Phaser.Tween;
         private moveNormal: number;
 
@@ -14,8 +15,9 @@
          * @param game The active game instance to be added to.
          */
         constructor(game: Phaser.Game, image: string) {
-            super(game, 0, 0, image);
-            this.anchor.setTo(0, 1);
+            super(game);
+            this.wagonImage = this.game.add.image(0, 0, image, null, this);
+            this.wagonImage.anchor.setTo(0, 1);
             this.moveTween = null;
             this.moveAnim = 1;
             this.moveInDone = new Phaser.Signal();
@@ -27,8 +29,8 @@
          * Resizes all elements in this object.
          */
         public resize(): void {
-            this.width = this.game.width;
-            this.scale.y = this.scale.x;
+            this.wagonImage.width = this.game.width;
+            this.wagonImage.scale.y = this.wagonImage.scale.x;
             if (this.moveTween === null || this.moveTween.isRunning) {
                 this.moveAnim = this.moveNormal;
             }
