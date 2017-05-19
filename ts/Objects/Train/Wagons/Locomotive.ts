@@ -8,6 +8,7 @@
         private dialogGraphic: Phaser.Image;
         private hornTween: Phaser.Tween;
         private hornNormal: number;
+        private timer: Phaser.TimerEvent;
 
         /**
          * @param game The active game instance to be added to.
@@ -26,6 +27,8 @@
             this.addChild(this.dialogGraphic);
 
             this.hornNormal = 0;
+            this.addChild(this.machinistArmImg);
+            this.addChild(this.dialogGraphic);
 
             this.resize();
         }
@@ -50,6 +53,9 @@
 
         private onHornComplete(): void {
             this.objectiveDone.dispatch(this);
+            this.timer = this.game.time.events.add(500, () => {
+                this.objectiveDone.dispatch(this);
+            });
         }
 
         private onMoveInDone(): void {
