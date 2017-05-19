@@ -4,6 +4,9 @@
      */
     export class Cargo extends Phaser.Group {
 
+        private static readonly frameWidth: number = 150;
+        private static readonly frameHeight: number = 138;
+
         public dropped: Phaser.Signal;
         public removed: Phaser.Signal;
         public dragUpdate: Phaser.Signal;
@@ -185,11 +188,11 @@
             } else {
                 this.anim.scale.setTo(width / 145);
             }
-            this.anim.width = width;
-            this.anim.scale.y = this.anim.scale.x;
-            if (this.anim.height > height) {
-                this.anim.height = height;
-                this.anim.scale.x = this.anim.scale.y;
+
+            if (width / Cargo.frameWidth * Cargo.frameHeight > height) {
+                this.anim.scale.setTo(height / Cargo.frameHeight);
+            } else {
+                this.anim.scale.setTo(width / Cargo.frameWidth);
             }
         }
 
