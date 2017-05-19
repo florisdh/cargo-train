@@ -60,6 +60,7 @@
             if (removing) {
                 console.log('removing cargoi');
                 this.cargoRemoved.dispatch(removing);
+                removing.destroy(true);
             }
             this.moveNormal = 0;
         }

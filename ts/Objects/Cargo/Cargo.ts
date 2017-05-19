@@ -78,18 +78,16 @@
             this.fadeNormal = 0;
             this.fadeTween = null;
             this.fadeTarget = null;
-            this.particleEmitter = game.add.emitter(0, 0, 50);
-            this.particleEmitter.makeParticles(Images.ParticleStar);
-            this.particleEmitter.setAlpha(1.0, 0.0, 1500, Phaser.Easing.Linear.None);
-            this.particleEmitter.autoAlpha = true;
-            this.particleEmitter.minParticleScale = 0.5;
-            this.particleEmitter.maxParticleScale = 1;
-            //this.particleEmitter.gravity = -6;
-            this.anim.position = this.hitBox.position;
 
+            this.anim.position = this.hitBox.position;
             this.game.time.events.add(this.game.rnd.integerInRange(0, 500), () => {
                 this.anim.setAnimationByName(0, 'idle', true);
             });
+        }
+
+        public destroy(destroyChildren?: boolean, soft?: boolean): void {
+            this.anim.destroy(true);
+            super.destroy(destroyChildren, soft);
         }
 
         /**
@@ -104,11 +102,26 @@
             this.releasePoint = this.position.clone();
             this.fadeAnim = 0;
             this.fadeTween = this.game.add.tween(this).to({ fadeAnim: 1 }, 300, Phaser.Easing.Quadratic.In, true);
+            this.fadeTween.onComplete.addOnce(this.fadeDone, this);
 
+            if (this.particleEmitter) {
+                this.particleEmitter.destroy(true);
+            }
+            this.particleEmitter = this.game.add.emitter(0, 0, 50);
+            this.particleEmitter.enableBody = false;
+            this.particleEmitter.autoAlpha = true;
             this.particleEmitter.x = this.worldPosition.x;
             this.particleEmitter.y = this.worldPosition.y;
+            this.particleEmitter.minParticleScale = 0.5;
+            this.particleEmitter.maxParticleScale = 1;
+            this.particleEmitter.makeParticles(Images.ParticleStar);
+            this.particleEmitter.setAlpha(1.0, 0.0, 1500, Phaser.Easing.Linear.None);
             this.particleEmitter.start(true, 1500, null, this.game.rnd.integerInRange(3, 7));
-            this.fadeTween.onComplete.addOnce(this.fadeDone, this);
+            this.game.time.events.add(1500, () => {
+                if (this.particleEmitter) {
+                    this.particleEmitter.destroy(true);
+                }
+            });
 
             this.anim.setAnimationByName(0, 'idle', true);
         }
@@ -116,7 +129,6 @@
         private fadeDone(): void {
             this.removed.dispatch(this);
             this.destroy();
-            console.log('removed cargo');
         }
 
         private onDragStart(e: Cargo): void {
