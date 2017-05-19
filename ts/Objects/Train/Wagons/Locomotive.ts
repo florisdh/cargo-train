@@ -13,13 +13,16 @@
             super(game, Images.Locomotive);
             this.moveInDone.addOnce(this.onMoveInDone, this);
             this.machinistArmImg = this.game.add.image(0, 0, Images.MachinistArm);
+            this.machinistArmImg.anchor.set(0.5, 0.5);
+
+            this.addChild(this.machinistArmImg);
 
             this.resize();
         }
 
         public resize(): void {
-            this.machinistArmImg.x = this.width * 0.6;
-            this.machinistArmImg.y = this.height * 0.55;
+            this.machinistArmImg.x = this.width * 0.672;
+            this.machinistArmImg.y = -(this.height * 0.58);
         }
 
         private onMoveInDone(): void {

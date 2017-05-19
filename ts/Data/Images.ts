@@ -61,6 +61,7 @@ module ExamAssignmentMA {
             Images.ParticleStar,
             // Wagons
             Images.Locomotive,
+            Images.MachinistArm,
             Images.Wagon,
             Images.Caboose,
             Images.WagonGlow,
