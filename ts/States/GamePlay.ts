@@ -78,10 +78,13 @@
             this.timeIndicator.timeOut.remove(this.onTimeOut, this);
         }
 
+        private showIntermission(): void {
+            this.intermissionScreen.openIntermission(this.session);
+        }
+
         private onRoundDone(): void {
             this.session.nextRound();
             this.startRound();
-            // TODO: Show intermission
         }
 
         private moveToNext(): void {
@@ -103,8 +106,7 @@
                     });
                 } else if (wagon.type === WagonTypes.Caboose) {
                     this.timeIndicator.stop();
-                    wagon.moveOutDone.addOnce(this.onRoundDone, this);
-                    this.intermissionScreen.openIntermission(this.session);
+                    wagon.moveOutDone.addOnce(this.showIntermission, this);
                 }
 
                 if (wagon.type !== WagonTypes.Locomotive) {

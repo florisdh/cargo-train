@@ -10,8 +10,6 @@
         private backgroundWidth: number;
         private backgroundHeight: number;
         private screenOverlay: Phaser.Image;
-        //private currentRoundText: Phaser.Text;
-        //private scoreTotalText: Phaser.Text;
         private speedBonusText: Phaser.Text;
         private accuracyBonusText: Phaser.Text;
         private tween: Phaser.Tween;
@@ -37,36 +35,24 @@
             this.screenOverlay.visible = false;
             this.add(this.screenOverlay);
 
-            /*this.currentRoundText = new Phaser.Text(this.game, 0, 0, 'Test', {
-                font: '30pt Arial',
-                fill: '#791909'
-            });
-            this.currentRoundText.anchor.setTo(0.5, 0.5);
-            this.add(this.currentRoundText);
-            this.background.addChild(this.currentRoundText);
-
-            this.scoreTotalText = new Phaser.Text(this.game, 0, 0, 'Test', {
-                font: '30pt Arial',
-                fill: '#791909'
-            });
-            this.scoreTotalText.anchor.setTo(0.5, 0.5);
-            this.add(this.scoreTotalText);
-            this.background.addChild(this.scoreTotalText);*/
-
             this.speedBonusText = new Phaser.Text(this.game, 0, 0, 'Snelheid', {
                 font: '25pt Arial',
-                fill: '#791909'
+                fill: '#791909',
+                boundsAlignH: 'left',
+                boundsAlignV: 'middle'
             });
-            this.speedBonusText.anchor.setTo(1.0, 0.5);
-            this.add(this.speedBonusText);
+            this.speedBonusText.anchor.setTo(0.0, 0.5);
+            //this.add(this.speedBonusText);
             this.background.addChild(this.speedBonusText);
 
             this.accuracyBonusText = new Phaser.Text(this.game, 0, 0, 'Precisie', {
                 font: '25pt Arial',
-                fill: '#791909'
+                fill: '#791909',
+                boundsAlignH: 'left',
+                boundsAlignV: 'middle'
             });
-            this.accuracyBonusText.anchor.setTo(1.0, 0.5);
-            this.add(this.accuracyBonusText);
+            this.accuracyBonusText.anchor.setTo(0.0, 0.5);
+            //this.add(this.accuracyBonusText);
             this.background.addChild(this.accuracyBonusText);
 
             this.speedRatingStars = [];
@@ -74,6 +60,7 @@
                 let ratingStar: Phaser.Image = new Phaser.Image(this.game, 0, 0, null);
                 this.speedRatingStars.push(ratingStar);
                 this.speedRatingStars[i].alpha = 0.0;
+                this.speedRatingStars[i].anchor.setTo(0.5, 0.5);
                 this.add(this.speedRatingStars[i]);
             }
 
@@ -82,6 +69,7 @@
                 let ratingStar: Phaser.Image = new Phaser.Image(this.game, 0, 0, null);
                 this.accuracyRatingStars.push(ratingStar);
                 this.accuracyRatingStars[i].alpha = 0.0;
+                this.accuracyRatingStars[i].anchor.setTo(0.5, 0.5);
                 this.add(this.accuracyRatingStars[i]);
             }
         }
@@ -89,8 +77,6 @@
         public openIntermission(session: SessionData): void {
             //this.speedBonus = session.currentSpeed;
             //this.accuracyBonus = session.currentAccuracy;
-            /*this.currentRoundText.text = 'Ronde ' + session.currentRound.toString() + ' volbracht!';
-            this.scoreTotalText.text = session.currentScore.toString();*/
             this.game.time.events.add(Phaser.Timer.SECOND * 6, this.closeIntermission, this);
             this.background.scale.setTo(0);
             this.background.visible = true;
@@ -138,9 +124,7 @@
                     break;
             }
             for (let i: number = 0; i < stars.length; i++) {
-                stars[i].anchor.setTo(0.5, 0.5);
-                stars[i].position.setTo(this.background.worldPosition.x + (i * (stars[i].width + (this.game.width * 0.01))), text.worldPosition.y);
-                //stars[i].visible = true;
+                stars[i].position.setTo(this.background.x + (i * (stars[i].width + (this.game.width * 0.01))), text.worldPosition.y);
                 this.game.add.tween(stars[i]).to({ alpha: 1.0 }, 50, Phaser.Easing.Linear.None, true);
             }
         }
@@ -174,21 +158,25 @@
             this.screenOverlay.y = this.game.height / 2;
             this.screenOverlay.width = this.game.width;
             this.screenOverlay.height = this.game.height;
+            this.speedBonusText.setTextBounds(
+                -this.background.width * 0.3 / this.background.scale.x,
+                this.background.height * 0.075 / this.background.scale.y,
+                this.background.width * 0.3, this.speedBonusText.height
+            );
 
-            this.speedBonusText.y = this.background.anchor.y + (this.game.height * 0.1);
-            this.speedBonusText.x = this.background.anchor.x - (this.game.width * 0.2);
-
-            this.accuracyBonusText.y = this.background.anchor.y - (this.game.height * 0.1);
-            this.accuracyBonusText.x = this.background.anchor.x - (this.game.width * 0.2);
+            this.accuracyBonusText.setTextBounds(
+                -this.background.width * 0.3 / this.background.scale.x,
+                -this.background.height * 0.075 / this.background.scale.y,
+                this.background.width * 0.3, this.accuracyBonusText.height
+            );
 
             for (let i: number = 0; i < this.speedRatingStars.length; i++) {
-                this.speedRatingStars[i].width = this.game.width * 0.03;
-                this.speedRatingStars[i].scale.y = this.speedRatingStars[i].scale.x;
+                this.speedRatingStars[i].scale.setTo(this.game.width / 1080);
+
             }
 
             for (let i: number = 0; i < this.accuracyRatingStars.length; i++) {
-                this.accuracyRatingStars[i].width = this.game.width * 0.03;
-                this.accuracyRatingStars[i].scale.y = this.accuracyRatingStars[i].scale.x;
+                this.accuracyRatingStars[i].scale.setTo(this.game.width / 1080);
             }
         }
     }

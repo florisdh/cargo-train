@@ -8,6 +8,7 @@
         private score: number;
         private speed: number;
         private accuracy: number;
+        //private pickedUpCargo: number;
 
         /**
          * @param round The starting round.
