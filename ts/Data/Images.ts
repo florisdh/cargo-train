@@ -13,6 +13,7 @@ module ExamAssignmentMA {
         public static Background_01: string = 'backgroundTrees.jpg';
         public static Platform_01: string = 'trainstationPavement.jpg';
         public static ParticleStar: string = 'particleStar.png';
+        public static DialogCloud: string = 'dialogGraphic.png';
         // Wagons
         public static Locomotive: string = 'locomotiveEnginedriver.png';
         public static MachinistArm: string = 'locomotiveEnginedriverArm.png';
@@ -59,6 +60,7 @@ module ExamAssignmentMA {
             Images.Background_01,
             Images.Platform_01,
             Images.ParticleStar,
+            Images.DialogCloud,
             // Wagons
             Images.Locomotive,
             Images.MachinistArm,
