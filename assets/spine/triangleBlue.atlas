@@ -1,62 +1,83 @@
 
 triangleBlue.png
-size: 256,128
+size: 512,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Blue Triangle/Body
   rotate: false
-  xy: 2, 11
+  xy: 2, 2
   size: 127, 115
   orig: 127, 115
   offset: 0, 0
   index: -1
 Blue Triangle/Brauw
-  rotate: true
-  xy: 233, 56
+  rotate: false
+  xy: 197, 25
   size: 70, 14
   orig: 70, 14
   offset: 0, 0
   index: -1
 Blue Triangle/Eyes
   rotate: false
-  xy: 131, 89
+  xy: 197, 80
+  size: 73, 37
+  orig: 73, 37
+  offset: 0, 0
+  index: -1
+Blue Triangle/EyesClosed
+  rotate: false
+  xy: 197, 41
   size: 73, 37
   orig: 73, 37
   offset: 0, 0
   index: -1
 Blue Triangle/L_arm
   rotate: false
-  xy: 131, 42
+  xy: 272, 72
   size: 49, 45
   orig: 49, 45
   offset: 0, 0
   index: -1
 Blue Triangle/L_leg kopiëren 14
-  rotate: true
-  xy: 174, 2
+  rotate: false
+  xy: 414, 76
   size: 38, 41
   orig: 38, 41
   offset: 0, 0
   index: -1
 Blue Triangle/L_leg kopiëren 3
-  rotate: true
-  xy: 131, 2
+  rotate: false
+  xy: 374, 76
   size: 38, 41
   orig: 38, 41
   offset: 0, 0
   index: -1
 Blue Triangle/R_arm
   rotate: false
-  xy: 182, 42
+  xy: 323, 72
   size: 49, 45
   orig: 49, 45
   offset: 0, 0
   index: -1
 Blue Triangle/mouth
-  rotate: true
-  xy: 217, 2
+  rotate: false
+  xy: 272, 58
   size: 38, 12
   orig: 38, 12
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleL_arm2
+  rotate: false
+  xy: 131, 8
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleR_arm2
+  rotate: false
+  xy: 131, 63
+  size: 64, 54
+  orig: 64, 54
   offset: 0, 0
   index: -1

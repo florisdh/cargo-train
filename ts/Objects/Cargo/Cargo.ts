@@ -163,6 +163,7 @@
                 this.hitBox.inputEnabled = true;
             });
             this.anim.setAnimationByName(0, 'land');
+            this.anim.addAnimationByName(0, 'idle', true);
         }
 
         /**

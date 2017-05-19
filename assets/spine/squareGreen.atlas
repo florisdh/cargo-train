@@ -6,28 +6,28 @@ filter: Linear,Linear
 repeat: none
 Green square/GreenCubeArmL
   rotate: true
-  xy: 215, 86
+  xy: 117, 18
   size: 29, 54
   orig: 29, 54
   offset: 0, 0
   index: -1
 Green square/GreenCubeArmL2
-  rotate: false
-  xy: 117, 13
+  rotate: true
+  xy: 215, 72
   size: 29, 54
   orig: 29, 54
   offset: 0, 0
   index: -1
 Green square/GreenCubeArmR
   rotate: true
-  xy: 271, 86
+  xy: 215, 41
   size: 29, 54
   orig: 29, 54
   offset: 0, 0
   index: -1
 Green square/GreenCubeArmR2
   rotate: false
-  xy: 148, 13
+  xy: 271, 47
   size: 29, 54
   orig: 29, 54
   offset: 0, 0
@@ -41,7 +41,7 @@ Green square/GreenCubeBody
   index: -1
 Green square/GreenCubeBrauws
   rotate: false
-  xy: 117, 69
+  xy: 215, 103
   size: 78, 12
   orig: 78, 12
   offset: 0, 0
@@ -53,23 +53,30 @@ Green square/GreenCubeEyes
   orig: 96, 32
   offset: 0, 0
   index: -1
+Green square/GreenCubeEyesClosed
+  rotate: false
+  xy: 117, 49
+  size: 96, 32
+  orig: 96, 32
+  offset: 0, 0
+  index: -1
 Green square/GreenCubeLegL
   rotate: true
-  xy: 379, 81
+  xy: 173, 13
   size: 34, 39
   orig: 34, 39
   offset: 0, 0
   index: -1
 Green square/GreenCubeLegR
-  rotate: true
-  xy: 420, 81
+  rotate: false
+  xy: 302, 76
   size: 34, 39
   orig: 34, 39
   offset: 0, 0
   index: -1
 Green square/GreenCubeMouth
   rotate: false
-  xy: 327, 84
+  xy: 214, 8
   size: 50, 31
   orig: 50, 31
   offset: 0, 0

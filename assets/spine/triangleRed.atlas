@@ -1,19 +1,33 @@
 
 triangleRed.png
-size: 256,128
+size: 512,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+Green Triangle/GreenTriangleL_arm2
+  rotate: false
+  xy: 187, 73
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleR_arm2
+  rotate: false
+  xy: 121, 72
+  size: 64, 54
+  orig: 64, 54
+  offset: 0, 0
+  index: -1
 Red triangle/RedTriangleArmL
   rotate: false
-  xy: 121, 50
+  xy: 121, 24
   size: 44, 46
   orig: 44, 46
   offset: 0, 0
   index: -1
 Red triangle/RedTriangleArmR
-  rotate: false
-  xy: 121, 2
+  rotate: true
+  xy: 391, 82
   size: 44, 46
   orig: 44, 46
   offset: 0, 0
@@ -26,36 +40,43 @@ Red triangle/RedTriangleBody
   offset: 0, 0
   index: -1
 Red triangle/RedTriangleBrauws
-  rotate: true
-  xy: 167, 31
+  rotate: false
+  xy: 2, 5
   size: 65, 14
   orig: 65, 14
   offset: 0, 0
   index: -1
 Red triangle/RedTriangleEyes
   rotate: false
-  xy: 121, 98
+  xy: 253, 98
+  size: 67, 28
+  orig: 67, 28
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleEyesClosed
+  rotate: false
+  xy: 322, 98
   size: 67, 28
   orig: 67, 28
   offset: 0, 0
   index: -1
 Red triangle/RedTriangleLegL
   rotate: false
-  xy: 190, 94
+  xy: 439, 94
   size: 37, 32
   orig: 37, 32
   offset: 0, 0
   index: -1
 Red triangle/RedTriangleLegR
-  rotate: false
-  xy: 183, 60
+  rotate: true
+  xy: 478, 89
   size: 37, 32
   orig: 37, 32
   offset: 0, 0
   index: -1
 Red triangle/RedTriangleMouth
   rotate: false
-  xy: 2, 2
+  xy: 69, 2
   size: 29, 17
   orig: 29, 17
   offset: 0, 0

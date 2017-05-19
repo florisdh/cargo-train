@@ -13,7 +13,7 @@ Green Triangle/GreenTriangleBody
   index: -1
 Green Triangle/GreenTriangleBrauw
   rotate: false
-  xy: 262, 56
+  xy: 331, 90
   size: 62, 22
   orig: 62, 22
   offset: 0, 0
@@ -21,6 +21,13 @@ Green Triangle/GreenTriangleBrauw
 Green Triangle/GreenTriangleEyes
   rotate: false
   xy: 262, 80
+  size: 67, 32
+  orig: 67, 32
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleEyesClosed
+  rotate: false
+  xy: 262, 46
   size: 67, 32
   orig: 67, 32
   offset: 0, 0
@@ -40,15 +47,15 @@ Green Triangle/GreenTriangleL_arm2
   offset: 0, 0
   index: -1
 Green Triangle/GreenTriangleL_leg
-  rotate: false
-  xy: 262, 11
+  rotate: true
+  xy: 262, 6
   size: 38, 43
   orig: 38, 43
   offset: 0, 0
   index: -1
 Green Triangle/GreenTriangleMouth
   rotate: false
-  xy: 376, 92
+  xy: 395, 92
   size: 45, 20
   orig: 45, 20
   offset: 0, 0
@@ -69,7 +76,7 @@ Green Triangle/GreenTriangleR_arm2
   index: -1
 Green Triangle/GreenTriangleR_leg
   rotate: true
-  xy: 331, 74
+  xy: 331, 50
   size: 38, 43
   orig: 38, 43
   offset: 0, 0

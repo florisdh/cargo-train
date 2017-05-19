@@ -1,61 +1,82 @@
 
 squareRed.png
-size: 256,128
+size: 512,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Red square/RedCubeArmL
   rotate: false
-  xy: 157, 40
+  xy: 138, 3
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+Red square/RedCubeArmL2
+  rotate: true
+  xy: 210, 65
   size: 36, 55
   orig: 36, 55
   offset: 0, 0
   index: -1
 Red square/RedCubeArmR
-  rotate: true
-  xy: 157, 2
+  rotate: false
+  xy: 176, 3
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+Red square/RedCubeArmR2
+  rotate: false
+  xy: 214, 8
   size: 36, 55
   orig: 36, 55
   offset: 0, 0
   index: -1
 Red square/RedCubeBody
   rotate: true
-  xy: 2, 8
+  xy: 2, 2
   size: 118, 134
   orig: 118, 134
   offset: 0, 0
   index: -1
 Red square/RedCubeBrauws
-  rotate: true
-  xy: 138, 14
+  rotate: false
+  xy: 210, 103
   size: 81, 17
   orig: 81, 17
   offset: 0, 0
   index: -1
 Red square/RedCubeEyes
   rotate: false
-  xy: 138, 97
+  xy: 138, 91
+  size: 70, 29
+  orig: 70, 29
+  offset: 0, 0
+  index: -1
+Red square/RedCubeEyesClosed
+  rotate: false
+  xy: 138, 60
   size: 70, 29
   orig: 70, 29
   offset: 0, 0
   index: -1
 Red square/RedCubeLegL
-  rotate: true
-  xy: 195, 59
+  rotate: false
+  xy: 267, 66
   size: 36, 35
   orig: 36, 35
   offset: 0, 0
   index: -1
 Red square/RedCubeLegR
-  rotate: true
-  xy: 214, 21
+  rotate: false
+  xy: 305, 66
   size: 36, 35
   orig: 36, 35
   offset: 0, 0
   index: -1
 Red square/RedCubeMouth
   rotate: false
-  xy: 210, 109
+  xy: 293, 103
   size: 44, 17
   orig: 44, 17
   offset: 0, 0
