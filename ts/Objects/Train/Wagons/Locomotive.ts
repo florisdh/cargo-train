@@ -42,6 +42,7 @@
             this.dialogGraphic.y = -this.wagonImage.height * 0.58;
         }
 
+<<<<<<< HEAD
         private horn(): void {
             if (this.hornTween && this.hornTween.isRunning) {
                 this.hornTween.stop();
@@ -54,6 +55,10 @@
         private onHornComplete(): void {
             this.objectiveDone.dispatch(this);
             this.timer = this.game.time.events.add(500, () => {
+=======
+        private onMoveInDone(): void {
+            this.timer = this.game.time.events.add(2000, () => {
+>>>>>>> Polished cargogrid tween
                 this.objectiveDone.dispatch(this);
             });
         }

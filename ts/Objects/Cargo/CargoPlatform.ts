@@ -45,7 +45,7 @@
                 this.moveTween.stop();
             }
             this.moveNormal = 0;
-            this.moveTween = this.game.add.tween(this).to({ moveAnim: -1 }, 1000, Phaser.Easing.Quadratic.InOut, true);
+            this.moveTween = this.game.add.tween(this).to({ moveAnim: -1 }, 1000, Phaser.Easing.Back.InOut, true, 1000);
             this.moveTween.onComplete.addOnce(this.moveComplete, this);
             console.log('moving out');
         }
