@@ -1,20 +1,26 @@
 module ExamAssignmentMA {
     /**
      * The reference to all lose image files and container of all items to be preloaded.
+     * Specify all images here.
      */
     export class Images {
-
-        // Specify all images here
         public static WhitePixel: string = 'white.png';
         public static MA_Logo: string = 'ma.png';
         // Tutorial
         public static TutorialFrame1: string = 'tutorialScreen1.png'; // Todo: .jpg
         public static TutorialFrame2: string = 'tutorialScreen2.png'; // Todo: .jpg
-        // InGame
-        public static Locomotive: string = 'locomotive.png';
+        // In-Game
+        public static Background_01: string = 'backgroundTrees.jpg';
+        public static Platform_01: string = 'trainstationPavement.jpg';
+        public static ParticleStar: string = 'particleStar.png';
+        // Wagons
+        public static Locomotive: string = 'locomotiveEnginedriver.png';
+        public static MachinistArm: string = 'locomotiveEnginedriverArm.png';
         public static Wagon: string = 'wagonCutOff.png';
         public static Caboose: string = 'cabooseCutOff.png';
         public static WagonGlow: string = 'glowWagon.png';
+        public static LeftDoor: string = 'wagonDoorLeft.png';
+        public static RightDoor: string = 'wagonDoorRight.png';
         // Cargo
         public static CargoCircle: string = 'cargoPlaceholderCirkel.png';
         public static CargoCube: string = 'cargoPlaceholderCube.png';
@@ -33,17 +39,10 @@ module ExamAssignmentMA {
         public static TimeContainer: string = 'timebar.png';
         public static TimeFill: string = 'timebarFill.png';
         public static WagonIndicator: string = 'wagonIndicator.png';
-        public static Background_01: string = 'backgroundTrees.jpg';
-        public static Platform_01: string = 'trainstationPavement.jpg';
-        public static ParticleStar: string = 'particleStar.png';
-        //Doors
-        public static LeftDoor: string = 'wagonDoorLeft.png';
-        public static RightDoor: string = 'wagonDoorRight.png';
-        //Intermission
+        // Intermission
         public static RatingStarFull: string = 'ratingStarFull.png';
         public static RatingStarEmpty: string = 'ratingStarEmpty.png';
         public static IntermissionScreen: string = 'intermissionScreen.png';
-
         // GameOver
         public static GameOverBG: string = 'endScreenBackground.png'; // Todo: .jpg
         public static GameOverFG: string = 'endscreenForground.png';
@@ -56,14 +55,17 @@ module ExamAssignmentMA {
             // Tutorial
             Images.TutorialFrame1,
             Images.TutorialFrame2,
+            // In-Game
+            Images.Background_01,
+            Images.Platform_01,
+            Images.ParticleStar,
             // Wagons
             Images.Locomotive,
             Images.Wagon,
             Images.Caboose,
-            Images.ParticleStar,
+            Images.WagonGlow,
             Images.LeftDoor,
             Images.RightDoor,
-            Images.WagonGlow,
             // Cargo
             Images.CargoCircle,
             Images.CargoCube,
@@ -82,14 +84,11 @@ module ExamAssignmentMA {
             Images.TimeContainer,
             Images.TimeFill,
             Images.WagonIndicator,
+            // GameOver
             Images.RetryButton,
-            // Back- and foregrounds
-            Images.Background_01,
-            Images.Platform_01,
             Images.GameOverBG,
             Images.GameOverFG,
-            Images.RetryButton,
-            Images.ParticleStar,
+            // Intermission
             Images.RatingStarFull,
             Images.RatingStarEmpty,
             Images.IntermissionScreen
