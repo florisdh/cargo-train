@@ -18,10 +18,10 @@
             this.machinistArmImg.anchor.set(0.5, 0.5);
 
             this.dialogGraphic = this.game.add.image(0, 0, Images.DialogCloud);
-            this.dialogGraphic.anchor.set(1, 1);
+            this.dialogGraphic.anchor.set(1, 0);
 
             this.addChild(this.machinistArmImg);
-            //this.addChild(this.dialogGraphic);  // Currently disabled, waiting for new Dialog graphic
+            this.addChild(this.dialogGraphic);  // Currently disabled, waiting for new Dialog graphic
 
             this.resize();
         }
@@ -29,13 +29,18 @@
         public resize(): void {
             this.machinistArmImg.x = this.width * 0.672;
             this.machinistArmImg.y = -(this.height * 0.58);
-            this.dialogGraphic.x = this.width * 0.76;
+            this.dialogGraphic.x = this.width * 0.775;
             this.dialogGraphic.y = -(this.height * 0.58);
         }
 
+        private timer: Phaser.Timer;
+
         private onMoveInDone(): void {
             // Show IP, etc
-            this.objectiveDone.dispatch(this);
+            this.timer = new Phaser.Timer(this.game, true);
+            this.timer.onComplete.addOnce(() => {
+                this.objectiveDone.dispatch(this);
+            });
         }
 
         /**
