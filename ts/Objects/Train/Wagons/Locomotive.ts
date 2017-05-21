@@ -27,8 +27,6 @@
             this.addChild(this.dialogGraphic);
 
             this.hornNormal = 0;
-            this.addChild(this.machinistArmImg);
-            this.addChild(this.dialogGraphic);
 
             this.resize();
         }
