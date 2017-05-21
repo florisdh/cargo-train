@@ -48,14 +48,23 @@
          * Calculates the length of the train in the current round.
          */
         public getTrainLength(): number {
-            return Math.min(10, 2 + this.round);
+            return Math.min(10, Math.min(2 + this.round * 2, 20));
         }
 
         /**
          * Calculates the time for the current wagon in the current round.
          */
         public getWagonTime(cargoAmount: number): number {
-            return cargoAmount * Math.max(500, 5000 * Math.pow(0.9, this.round));
+            let perCargo: number;
+
+            // First rounds should be easy
+            if (this.round < 3) {
+                perCargo = 6000 * Math.pow(0.7, this.round);
+            } else {
+                perCargo = Math.max(500, 3000 * Math.pow(0.6, Math.pow(0.5, this.round - 3)));
+            }
+
+            return cargoAmount * perCargo;
         }
 
         /**
