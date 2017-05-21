@@ -35,7 +35,7 @@
             this.screenOverlay.visible = false;
             this.add(this.screenOverlay);
 
-            this.speedBonusText = new Phaser.Text(this.game, 0, 0, 'Snelheid', {
+            this.speedBonusText = new Phaser.Text(this.game, 0, 0, 'Speed', {
                 font: '25pt Arial',
                 fill: '#791909',
                 boundsAlignH: 'left',
@@ -45,7 +45,7 @@
             //this.add(this.speedBonusText);
             this.background.addChild(this.speedBonusText);
 
-            this.accuracyBonusText = new Phaser.Text(this.game, 0, 0, 'Precisie', {
+            this.accuracyBonusText = new Phaser.Text(this.game, 0, 0, 'Accuracy', {
                 font: '25pt Arial',
                 fill: '#791909',
                 boundsAlignH: 'left',
