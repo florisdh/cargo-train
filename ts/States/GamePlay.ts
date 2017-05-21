@@ -10,6 +10,7 @@
         private timeIndicator: TimeIndicator;
         private train: Train;
         private cargo: CargoPlatform;
+        private scoreIndicator: ScoreIndicator;
         private wagonIndicator: WagonIndicator;
         private tutorial: IngameTutorial;
         private screenFade: ScreenFade;
@@ -41,7 +42,10 @@
             this.timeIndicator = new TimeIndicator(this.game);
             this.timeIndicator.timeOut.addOnce(this.onTimeOut, this);
 
+            this.scoreIndicator = new ScoreIndicator(this.game);
             this.wagonIndicator = new WagonIndicator(this.game);
+
+            this.scoreIndicator.setScore(1337);
 
             this.correct = this.game.add.sound(Sounds.CorrectCargo, 1, false);
             this.incorrect = this.game.add.sound(Sounds.IncorrectCargo, 1, false);
@@ -55,6 +59,7 @@
 
             this.game.add.existing(this.timeIndicator);
             this.game.add.existing(this.cargo);
+            this.game.add.existing(this.scoreIndicator);
             this.game.add.existing(this.wagonIndicator);
             this.game.add.existing(this.tutorial);
             this.game.add.existing(this.screenFade);
@@ -192,6 +197,7 @@
             this.cargo.resize();
             let topUiY: number = this.game.height * 0.05;
             this.timeIndicator.resize(topUiY);
+            this.scoreIndicator.resize(topUiY);
             this.wagonIndicator.resize(topUiY);
             this.tutorial.resize();
             this.screenFade.resize();

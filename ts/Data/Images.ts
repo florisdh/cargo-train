@@ -40,6 +40,7 @@ module ExamAssignmentMA {
         public static TimeContainer: string = 'timebar.png';
         public static TimeFill: string = 'timebarFill.png';
         public static WagonIndicator: string = 'wagonIndicator.png';
+        public static ScoreIndicator: string = 'scoreIndicator.png';
         // Intermission
         public static RatingStarFull: string = 'ratingStarFull.png';
         public static RatingStarEmpty: string = 'ratingStarEmpty.png';
@@ -86,7 +87,8 @@ module ExamAssignmentMA {
             // Timer
             Images.TimeContainer,
             Images.TimeFill,
-            Images.WagonIndicator,
+            Images.WagonIndicator, ,
+            Images.ScoreIndicator,
             // GameOver
             Images.RetryButton,
             Images.GameOverBG,

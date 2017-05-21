@@ -28,6 +28,7 @@
 /// <reference path="../ts/Objects/Train/Wagons/CargoWagon.ts" />
 /// <reference path="../ts/Objects/Train/Wagons/Locomotive.ts" />
 /// <reference path="../ts/Objects/UI/IntermissionScreen.ts" />
+/// <reference path="../ts/Objects/UI/ScoreIndicator.ts" />
 /// <reference path="../ts/Objects/UI/ScreenFade.ts" />
 /// <reference path="../ts/Objects/UI/TimeIndicator.ts" />
 /// <reference path="../ts/Objects/UI/WagonIndicator.ts" />
