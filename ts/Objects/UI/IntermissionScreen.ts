@@ -14,7 +14,7 @@
         private accuracyBonusText: Phaser.Text;
         private tween: Phaser.Tween;
         private speedBonus: number = 1;
-        private accuracyBonus: number = 99;
+        private accuracyBonus: number;
         private speedRatingStars: Phaser.Image[];
         private accuracyRatingStars: Phaser.Image[];
 
@@ -75,8 +75,8 @@
         }
 
         public openIntermission(session: SessionData): void {
-            //this.speedBonus = session.currentSpeed;
-            //this.accuracyBonus = session.currentAccuracy;
+            this.speedBonus = session.currentSpeed;
+            this.accuracyBonus = session.currentAccuracy;
             this.game.time.events.add(Phaser.Timer.SECOND * 6, this.closeIntermission, this);
             this.background.scale.setTo(0);
             this.background.visible = true;
@@ -86,16 +86,16 @@
         }
 
         private calculateRating(): void {
-            if (this.speedBonus >= 95) {
+            if (this.speedBonus >= 50) {
                 this.placeRatingStar(this.speedBonusText, 3, this.speedRatingStars);
-            } else if (this.speedBonus >= 50) {
+            } else if (this.speedBonus >= 25) {
                 this.placeRatingStar(this.speedBonusText, 2, this.speedRatingStars);
             } else {
                 this.placeRatingStar(this.speedBonusText, 1, this.speedRatingStars);
             }
-            if (this.accuracyBonus >= 95) {
+            if (this.accuracyBonus >= 90) {
                 this.placeRatingStar(this.accuracyBonusText, 3, this.accuracyRatingStars);
-            } else if (this.accuracyBonus >= 50) {
+            } else if (this.accuracyBonus >= 60) {
                 this.placeRatingStar(this.accuracyBonusText, 2, this.accuracyRatingStars);
             } else {
                 this.placeRatingStar(this.accuracyBonusText, 1, this.accuracyRatingStars);

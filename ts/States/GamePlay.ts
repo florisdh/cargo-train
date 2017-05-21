@@ -27,7 +27,7 @@
             if (session) {
                 this.session = session;
             } else {
-                this.session = new SessionData(0, 0);
+                this.session = new SessionData(0, 0, 0, 0, 0, 0, 0, 0);
             }
 
             this.environment = new Environment(this.game);
@@ -102,12 +102,14 @@
 
                     wagon.moveInDone.addOnce(() => {
                         this.timeIndicator.start(this.session.getWagonTime(requiredCargo.length));
+                        this.session.setTotalTime(this.timeIndicator.getTotalTime);
                     });
                     wagon.objectiveDone.addOnce(() => {
                         this.timeIndicator.stop();
                         this.session.nextWagon();
                         this.completedWagons++;
                         this.wagonIndicator.setWagonAmount(this.train.totalWagons - this.completedWagons);
+                        this.session.setLeftoverTime(this.timeIndicator.getTimeLeft);
                     });
                 } else if (wagon.type === WagonTypes.Caboose) {
                     this.timeIndicator.stop();
@@ -145,11 +147,14 @@
                         cargo.fadeOut(activeWagon);
                         this.correct.play();
                         this.tutorial.resetIdleCheck();
+                        this.session.setTotalPickedUpCargo(1);
+                        this.session.setCorrectPickedUpCargo(1);
                     } else {
                         this.shakeScreen();
                         cargo.moveBack();
                         this.timeIndicator.damageTime(1000);
                         this.incorrect.play();
+                        this.session.setTotalPickedUpCargo(1);
                     }
                 } else {
                     cargo.moveBack();

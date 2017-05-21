@@ -8,15 +8,24 @@
         private score: number;
         private speed: number;
         private accuracy: number;
-        //private pickedUpCargo: number;
+        private totalPickedUpCargo: number;
+        private correctPickedUpCargo: number;
+        private totalTime: number;
+        private leftoverTime: number;
 
         /**
          * @param round The starting round.
          * @param score The starting score.
          */
-        constructor(round: number, score: number) {
+        constructor(round: number, score: number, speed: number, accuracy: number, totalPickedUpCargo: number, correctPickedUpCargo: number, totalTime: number, leftoverTime: number) {
             this.round = round;
             this.score = score;
+            this.speed = speed;
+            this.accuracy = accuracy;
+            this.totalPickedUpCargo = totalPickedUpCargo;
+            this.correctPickedUpCargo = correctPickedUpCargo;
+            this.totalTime = totalTime;
+            this.leftoverTime = leftoverTime;
         }
 
         /**
@@ -25,6 +34,7 @@
         public nextRound(): void {
             this.round++;
             this.score += 50;
+            this.resetTimeAndPickups();
         }
 
         /**
@@ -73,6 +83,10 @@
          * Returns the speed of the current round.
          */
         public get currentSpeed(): number {
+            console.log(this.leftoverTime);
+            console.log(this.totalTime);
+            this.speed = (this.leftoverTime / this.totalTime * 100);
+            console.log(this.speed);
             return this.speed;
         }
 
@@ -80,7 +94,32 @@
          * Returns the accuracy of the current round.
          */
         public get currentAccuracy(): number {
+            this.accuracy = (this.correctPickedUpCargo / this.totalPickedUpCargo * 100);
             return this.accuracy;
+        }
+
+        public setTotalPickedUpCargo(amount: number): void {
+            this.totalPickedUpCargo += amount;
+        }
+
+        public setCorrectPickedUpCargo(amount: number): void {
+            this.correctPickedUpCargo += amount;
+        }
+
+        public setTotalTime(amount: number): void {
+            this.totalTime += amount;
+        }
+
+        public setLeftoverTime(amount: number): void {
+            this.leftoverTime += amount;
+            console.log(this.leftoverTime);
+        }
+
+        private resetTimeAndPickups(): void {
+            this.totalPickedUpCargo = 0;
+            this.correctPickedUpCargo = 0;
+            this.totalTime = 0;
+            this.leftoverTime = 0;
         }
     }
 }
