@@ -102,14 +102,14 @@
 
                     wagon.moveInDone.addOnce(() => {
                         this.timeIndicator.start(this.session.getWagonTime(requiredCargo.length));
-                        this.session.setTotalTime(this.timeIndicator.getTotalTime);
+                        this.session.setTotalTime(this.timeIndicator.totalTime);
                     });
                     wagon.objectiveDone.addOnce(() => {
                         this.timeIndicator.stop();
                         this.session.nextWagon();
                         this.completedWagons++;
                         this.wagonIndicator.setWagonAmount(this.train.totalWagons - this.completedWagons);
-                        this.session.setLeftoverTime(this.timeIndicator.getTimeLeft);
+                        this.session.setLeftoverTime(this.timeIndicator.remainingTime);
                     });
                 } else if (wagon.type === WagonTypes.Caboose) {
                     this.timeIndicator.stop();

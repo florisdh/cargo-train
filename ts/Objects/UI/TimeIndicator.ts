@@ -163,11 +163,11 @@
             this.damageMask.scale.set(this.damageFill.width * ((this.timeLeft + this.damageLeft) / this.timeTotal), this.damageFill.height);
         }
 
-        public get getTotalTime(): number {
+        public get totalTime(): number {
             return this.timeTotal;
         }
 
-        public get getTimeLeft(): number {
+        public get remainingTime(): number {
             return this.timeLeft;
         }
     }
