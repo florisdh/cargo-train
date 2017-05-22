@@ -7,8 +7,8 @@ module ExamAssignmentMA {
         public static WhitePixel: string = 'white.png';
         public static MA_Logo: string = 'ma.png';
         // Tutorial
-        public static TutorialFrame1: string = 'tutorialScreen1.png'; // Todo: .jpg
-        public static TutorialFrame2: string = 'tutorialScreen2.png'; // Todo: .jpg
+        public static TutorialFrame1: string = 'tutorialScreen1.jpg';
+        public static TutorialFrame2: string = 'tutorialScreen2.jpg';
         // In-Game
         public static Background_01: string = 'backgroundTrees.jpg';
         public static Platform_01: string = 'trainstationPavement.jpg';
