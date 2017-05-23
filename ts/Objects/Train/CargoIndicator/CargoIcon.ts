@@ -18,9 +18,9 @@
                     imageName = Images.CargoIndicatorCircle;
                     color = 0xff0000;
                     break;
-                case CargoTypes.CircleGreen:
+                case CargoTypes.CircleYellow:
                     imageName = Images.CargoIndicatorCircle;
-                    color = 0x00ff00;
+                    color = 0xffee00;
                     break;
                 case CargoTypes.CircleBlue:
                     imageName = Images.CargoIndicatorCircle;
@@ -30,9 +30,9 @@
                     imageName = Images.CargoIndicatorCube;
                     color = 0xff0000;
                     break;
-                case CargoTypes.CubeGreen:
+                case CargoTypes.CubeYellow:
                     imageName = Images.CargoIndicatorCube;
-                    color = 0x00ff00;
+                    color = 0xffee00;
                     break;
                 case CargoTypes.CubeBlue:
                     imageName = Images.CargoIndicatorCube;
@@ -42,9 +42,9 @@
                     imageName = Images.CargoIndicatorTriangle;
                     color = 0xff0000;
                     break;
-                case CargoTypes.TriangleGreen:
+                case CargoTypes.TriangleYellow:
                     imageName = Images.CargoIndicatorTriangle;
-                    color = 0x00ff00;
+                    color = 0xffee00;
                     break;
                 case CargoTypes.TriangleBlue:
                     imageName = Images.CargoIndicatorTriangle;

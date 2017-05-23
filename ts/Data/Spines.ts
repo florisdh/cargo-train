@@ -4,24 +4,24 @@
      */
     export class Spines {
         public static BlueCircle: string = 'circleBlue';
-        public static GreenCircle: string = 'circleGreen';
+        public static YellowCircle: string = 'circleYellow';
         public static RedCircle: string = 'circleRed';
         public static BlueCube: string = 'squareBlue';
-        public static GreenCube: string = 'squareGreen';
+        public static YellowCube: string = 'squareYellow';
         public static RedCube: string = 'squareRed';
         public static BlueTriangle: string = 'triangleBlue';
-        public static GreenTriangle: string = 'triangleGreen';
+        public static YellowTriangle: string = 'triangleYellow';
         public static RedTriangle: string = 'triangleRed';
 
         public static PreloadList: string[] = [
             Spines.BlueCircle,
-            Spines.GreenCircle,
+            Spines.YellowCircle,
             Spines.RedCircle,
             Spines.BlueCube,
-            Spines.GreenCube,
+            Spines.YellowCube,
             Spines.RedCube,
             Spines.BlueTriangle,
-            Spines.GreenTriangle,
+            Spines.YellowTriangle,
             Spines.RedTriangle
         ];
     }

@@ -141,17 +141,17 @@
             // Get the right cargo highlight sprite
             switch (cargoType) {
                 case CargoTypes.CubeRed:
-                case CargoTypes.CubeGreen:
+                case CargoTypes.CubeYellow:
                 case CargoTypes.CubeBlue:
                     imgPath = Images.CargoHighlightCube;
                     break;
                 case CargoTypes.CircleRed:
-                case CargoTypes.CircleGreen:
+                case CargoTypes.CircleYellow:
                 case CargoTypes.CircleBlue:
                     imgPath = Images.CargoHighlightCircle;
                     break;
                 case CargoTypes.TriangleRed:
-                case CargoTypes.TriangleGreen:
+                case CargoTypes.TriangleYellow:
                 case CargoTypes.TriangleBlue:
                     imgPath = Images.CargoHighlightTriangle;
                     break;
@@ -166,10 +166,10 @@
                 case CargoTypes.TriangleRed:
                     colorTint = 0xff0000;
                     break;
-                case CargoTypes.CubeGreen:
-                case CargoTypes.CircleGreen:
-                case CargoTypes.TriangleGreen:
-                    colorTint = 0x00ff00;
+                case CargoTypes.CubeYellow:
+                case CargoTypes.CircleYellow:
+                case CargoTypes.TriangleYellow:
+                    colorTint = 0xffee00;
                     break;
                 case CargoTypes.TriangleBlue:
                 case CargoTypes.CubeBlue:

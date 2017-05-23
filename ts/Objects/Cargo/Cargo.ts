@@ -32,8 +32,8 @@
                 case CargoTypes.CircleRed:
                     imageName = Spines.RedCircle;
                     break;
-                case CargoTypes.CircleGreen:
-                    imageName = Spines.GreenCircle;
+                case CargoTypes.CircleYellow:
+                    imageName = Spines.YellowCircle;
                     break;
                 case CargoTypes.CircleBlue:
                     imageName = Spines.BlueCircle;
@@ -41,8 +41,8 @@
                 case CargoTypes.CubeRed:
                     imageName = Spines.RedCube;
                     break;
-                case CargoTypes.CubeGreen:
-                    imageName = Spines.GreenCube;
+                case CargoTypes.CubeYellow:
+                    imageName = Spines.YellowCube;
                     break;
                 case CargoTypes.CubeBlue:
                     imageName = Spines.BlueCube;
@@ -50,8 +50,8 @@
                 case CargoTypes.TriangleRed:
                     imageName = Spines.RedTriangle;
                     break;
-                case CargoTypes.TriangleGreen:
-                    imageName = Spines.GreenTriangle;
+                case CargoTypes.TriangleYellow:
+                    imageName = Spines.YellowTriangle;
                     break;
                 case CargoTypes.TriangleBlue:
                     imageName = Spines.BlueTriangle;

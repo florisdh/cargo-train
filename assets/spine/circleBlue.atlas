@@ -41,42 +41,63 @@ blue Circle/Hat
   index: -1
 blue Circle/L_arm
   rotate: true
-  xy: 209, 60
+  xy: 347, 59
   size: 27, 59
   orig: 27, 59
   offset: 0, 0
   index: -1
 blue Circle/L_arm kopiëren 8
   rotate: true
-  xy: 131, 24
+  xy: 285, 59
   size: 27, 60
   orig: 27, 60
   offset: 0, 0
   index: -1
 blue Circle/L_leg kopiëren 10
   rotate: true
-  xy: 208, 20
+  xy: 462, 47
   size: 38, 40
   orig: 38, 40
   offset: 0, 0
   index: -1
 blue Circle/L_leg kopiëren 11
-  rotate: false
-  xy: 250, 18
+  rotate: true
+  xy: 285, 19
   size: 38, 40
   orig: 38, 40
   offset: 0, 0
   index: -1
 blue Circle/Mouth
-  rotate: true
-  xy: 473, 73
+  rotate: false
+  xy: 408, 55
   size: 52, 31
   orig: 52, 31
   offset: 0, 0
   index: -1
+blue Circle/Mouth2
+  rotate: false
+  xy: 131, 13
+  size: 74, 53
+  orig: 74, 53
+  offset: 0, 0
+  index: -1
+blue Circle/Mouth3
+  rotate: true
+  xy: 473, 87
+  size: 38, 33
+  orig: 38, 33
+  offset: 0, 0
+  index: -1
+blue Circle/Mouth4
+  rotate: false
+  xy: 209, 42
+  size: 74, 45
+  orig: 74, 45
+  offset: 0, 0
+  index: -1
 blue Circle/circleBlueBrauw
   rotate: false
-  xy: 131, 53
+  xy: 207, 27
   size: 75, 13
   orig: 75, 13
   offset: 0, 0

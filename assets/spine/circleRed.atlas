@@ -62,9 +62,30 @@ Red Circle/L_leg
   index: -1
 Red Circle/Mouth
   rotate: false
-  xy: 194, 5
-  size: 52, 28
-  orig: 52, 28
+  xy: 455, 96
+  size: 37, 18
+  orig: 37, 18
+  offset: 0, 0
+  index: -1
+Red Circle/Mouth2
+  rotate: false
+  xy: 194, 3
+  size: 50, 30
+  orig: 50, 30
+  offset: 0, 0
+  index: -1
+Red Circle/Mouth3
+  rotate: false
+  xy: 343, 67
+  size: 36, 30
+  orig: 36, 30
+  offset: 0, 0
+  index: -1
+Red Circle/Mouth4
+  rotate: false
+  xy: 406, 99
+  size: 47, 15
+  orig: 47, 15
   offset: 0, 0
   index: -1
 Red Circle/R_arm

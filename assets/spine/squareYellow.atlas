@@ -1,19 +1,33 @@
 
 squareYellow.png
-size: 256,128
+size: 512,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Yellow Square/yellowCubeArmL
-  rotate: false
-  xy: 117, 13
+  rotate: true
+  xy: 117, 18
+  size: 29, 54
+  orig: 29, 54
+  offset: 0, 0
+  index: -1
+Yellow Square/yellowCubeArmL2
+  rotate: true
+  xy: 215, 72
   size: 29, 54
   orig: 29, 54
   offset: 0, 0
   index: -1
 Yellow Square/yellowCubeArmR
+  rotate: true
+  xy: 215, 41
+  size: 29, 54
+  orig: 29, 54
+  offset: 0, 0
+  index: -1
+Yellow Square/yellowCubeArmR2
   rotate: false
-  xy: 148, 13
+  xy: 271, 47
   size: 29, 54
   orig: 29, 54
   offset: 0, 0
@@ -27,7 +41,7 @@ Yellow Square/yellowCubeBody
   index: -1
 Yellow Square/yellowCubeBrauws
   rotate: false
-  xy: 117, 69
+  xy: 215, 103
   size: 78, 12
   orig: 78, 12
   offset: 0, 0
@@ -39,23 +53,30 @@ Yellow Square/yellowCubeEyes
   orig: 96, 32
   offset: 0, 0
   index: -1
+Yellow Square/yellowCubeEyesclosed
+  rotate: false
+  xy: 117, 49
+  size: 96, 32
+  orig: 96, 32
+  offset: 0, 0
+  index: -1
 Yellow Square/yellowCubeLegL
   rotate: true
-  xy: 215, 81
+  xy: 173, 13
   size: 34, 39
   orig: 34, 39
   offset: 0, 0
   index: -1
 Yellow Square/yellowCubeLegR
   rotate: false
-  xy: 212, 40
+  xy: 302, 76
   size: 34, 39
   orig: 34, 39
   offset: 0, 0
   index: -1
 Yellow Square/yellowCubeMouth
-  rotate: true
-  xy: 179, 17
+  rotate: false
+  xy: 214, 8
   size: 50, 31
   orig: 50, 31
   offset: 0, 0
