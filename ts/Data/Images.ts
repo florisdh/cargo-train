@@ -14,6 +14,7 @@ module ExamAssignmentMA {
         // In-Game
         public static Background_01: string = 'backgroundTrees.jpg';
         public static Platform_01: string = 'trainstationPavement.jpg';
+        public static PlatformBack_01: string = 'trainstationPavementBack.jpg';
         public static ParticleStar: string = 'particleStar.png';
         public static DialogCloud: string = 'dialogGraphic.png';
         // Wagons
@@ -64,6 +65,7 @@ module ExamAssignmentMA {
             // In-Game
             Images.Background_01,
             Images.Platform_01,
+            Images.PlatformBack_01,
             Images.ParticleStar,
             Images.DialogCloud,
             // Wagons
