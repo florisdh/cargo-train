@@ -27,7 +27,7 @@ Red triangle/RedTriangleArmL
   index: -1
 Red triangle/RedTriangleArmR
   rotate: true
-  xy: 391, 82
+  xy: 440, 82
   size: 44, 46
   orig: 44, 46
   offset: 0, 0
@@ -61,15 +61,15 @@ Red triangle/RedTriangleEyesClosed
   offset: 0, 0
   index: -1
 Red triangle/RedTriangleLegL
-  rotate: false
-  xy: 439, 94
+  rotate: true
+  xy: 167, 33
   size: 37, 32
   orig: 37, 32
   offset: 0, 0
   index: -1
 Red triangle/RedTriangleLegR
-  rotate: true
-  xy: 478, 89
+  rotate: false
+  xy: 201, 39
   size: 37, 32
   orig: 37, 32
   offset: 0, 0
@@ -79,5 +79,19 @@ Red triangle/RedTriangleMouth
   xy: 69, 2
   size: 29, 17
   orig: 29, 17
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleMouth2
+  rotate: false
+  xy: 391, 98
+  size: 47, 28
+  orig: 47, 28
+  offset: 0, 0
+  index: -1
+Red triangle/RedTriangleMouth3
+  rotate: false
+  xy: 253, 81
+  size: 47, 15
+  orig: 47, 15
   offset: 0, 0
   index: -1
