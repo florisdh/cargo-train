@@ -7,8 +7,8 @@
         private indicatorImage: Phaser.Image;
         private text: Phaser.Text;
         private textMask: Phaser.Graphics;
-        private moveNextNormal: number;
-        private moveNextTween: Phaser.Tween;
+        private hitNormal: number;
+        private hitTween: Phaser.Tween;
 
         /**
          * @param game The active game instance to be added to.
@@ -28,7 +28,7 @@
             this.text.mask = this.textMask;
             this.add(this.indicatorImage);
             this.add(this.text);
-            this.moveNextAnim = 0;
+            this.hitAnim = 0;
         }
 
         /**
@@ -38,11 +38,11 @@
         public setScore(amount: number): void {
             this.text.text = '$' + amount.toString();
 
-            if (this.moveNextTween && this.moveNextTween.isRunning) {
-                this.moveNextTween.stop();
+            if (this.hitTween && this.hitTween.isRunning) {
+                this.hitTween.stop();
             }
-            this.moveNextAnim = 0;
-            this.moveNextTween = this.game.add.tween(this).to({ moveNextAnim: 1 }, 500, Phaser.Easing.Quadratic.In, true);
+            this.hitAnim = 0;
+            this.hitTween = this.game.add.tween(this).to({ hitAnim: 1 }, 100, Phaser.Easing.Quadratic.InOut, true, 0, 0, true);
         }
 
         /**
@@ -54,7 +54,7 @@
             this.x = this.game.width * 0.11;
             this.indicatorImage.scale.setTo(this.game.width / 720);
             this.text.fontSize = this.indicatorImage.height * 0.4;
-            this.moveNextAnim = this.moveNextAnim;
+            this.hitAnim = this.hitAnim;
             this.text.setTextBounds(this.indicatorImage.left,
                 this.indicatorImage.top,
                 this.indicatorImage.width,
@@ -64,12 +64,13 @@
             this.textMask.endFill();
         }
 
-        private get moveNextAnim(): number {
-            return this.moveNextNormal;
+        private get hitAnim(): number {
+            return this.hitNormal;
         }
 
-        private set moveNextAnim(value: number) {
-            this.moveNextNormal = value;
+        private set hitAnim(value: number) {
+            this.hitNormal = value;
+            this.scale.setTo(1 + value * 0.05);
         }
     }
 }

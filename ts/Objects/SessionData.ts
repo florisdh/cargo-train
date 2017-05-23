@@ -4,8 +4,10 @@
      */
     export class SessionData {
 
+        public moneyChanged: Phaser.Signal;
+
         private round: number;
-        private score: number;
+        private money: number;
         private speed: number;
         private accuracy: number;
         private totalPickedUpCargo: number;
@@ -17,15 +19,16 @@
          * @param round The starting round.
          * @param score The starting score.
          */
-        constructor(round: number, score: number, speed: number, accuracy: number, totalPickedUpCargo: number, correctPickedUpCargo: number, totalTime: number, leftoverTime: number) {
+        constructor(round: number, money: number, speed: number, accuracy: number, totalPickedUpCargo: number, correctPickedUpCargo: number, totalTime: number, leftoverTime: number) {
             this.round = round;
-            this.score = score;
+            this.money = money;
             this.speed = speed;
             this.accuracy = accuracy;
             this.totalPickedUpCargo = totalPickedUpCargo;
             this.correctPickedUpCargo = correctPickedUpCargo;
             this.totalTime = totalTime;
             this.leftoverTime = leftoverTime;
+            this.moneyChanged = new Phaser.Signal();
         }
 
         /**
@@ -33,7 +36,6 @@
          */
         public nextRound(): void {
             this.round++;
-            this.score += 50;
             this.resetTimeAndPickups();
         }
 
@@ -41,7 +43,12 @@
          * Increased the score.
          */
         public nextWagon(): void {
-            this.score += 100;
+            return;
+        }
+
+        public addMoney(value: number): void {
+            this.money += value;
+            this.moneyChanged.dispatch(this.money);
         }
 
         /**
@@ -82,10 +89,10 @@
         }
 
         /**
-         * Returns the current score.
+         * Returns the current money.
          */
-        public get currentScore(): number {
-            return this.score;
+        public get currentMoney(): number {
+            return this.money;
         }
 
         /**

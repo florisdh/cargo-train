@@ -20,7 +20,7 @@
             this.background = new Phaser.Image(this.game, 0, 0, Images.GameOverBG);
             this.foreground = new Phaser.Image(this.game, 0, 0, Images.GameOverFG);
             this.scoreText = new Phaser.Text(this.game, 0, 0, 'SCORE');
-            this.scoreValueText = new Phaser.Text(this.game, 0, 0, sessionData.currentScore.toString());
+            this.scoreValueText = new Phaser.Text(this.game, 0, 0, sessionData.currentMoney.toString());
             this.retryButton = new Phaser.Image(this.game, 0, 0, Images.RetryButton);
 
             this.game.add.existing(this.background);

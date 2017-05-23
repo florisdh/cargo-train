@@ -45,7 +45,10 @@
             this.scoreIndicator = new ScoreIndicator(this.game);
             this.wagonIndicator = new WagonIndicator(this.game);
 
-            this.scoreIndicator.setScore(1337);
+            this.scoreIndicator.setScore(this.session.currentMoney);
+            this.session.moneyChanged.add((money: number) => {
+                this.scoreIndicator.setScore(money);
+            });
 
             this.correct = this.game.add.sound(Sounds.CorrectCargo, 1, false);
             this.incorrect = this.game.add.sound(Sounds.IncorrectCargo, 1, false);
@@ -148,6 +151,7 @@
                         this.correct.play();
                         this.session.setTotalPickedUpCargo(1);
                         this.session.setCorrectPickedUpCargo(1);
+                        this.session.addMoney(50); // TODO: create particles for money
                     } else {
                         this.shakeScreen();
                         cargo.moveBack();
