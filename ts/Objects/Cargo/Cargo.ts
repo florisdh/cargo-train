@@ -183,11 +183,6 @@
             }
             this.hitBox.width = width;
             this.hitBox.height = height;
-            if (width / 145 * 139 > height) {
-                this.anim.scale.setTo(height / 139);
-            } else {
-                this.anim.scale.setTo(width / 145);
-            }
 
             if (width / Cargo.frameWidth * Cargo.frameHeight > height) {
                 this.anim.scale.setTo(height / Cargo.frameHeight);

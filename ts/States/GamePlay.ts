@@ -146,7 +146,6 @@
                     if (activeWagon.dropCargo(cargo)) {
                         cargo.fadeOut(activeWagon);
                         this.correct.play();
-                        this.tutorial.resetIdleCheck();
                         this.session.setTotalPickedUpCargo(1);
                         this.session.setCorrectPickedUpCargo(1);
                     } else {
@@ -178,6 +177,8 @@
                         wagon.enableGlow(cargo.type);
                     }
                 }
+
+                this.tutorial.resetIdleCheck();
             }
         }
 

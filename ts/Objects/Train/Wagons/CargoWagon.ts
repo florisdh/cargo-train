@@ -60,7 +60,7 @@
         public setRandomCargo(amount: number): CargoTypes[] {
             let randomCargo: CargoTypes[] = [];
             for (let i: number = 0; i < amount; i++) {
-                randomCargo.push(<CargoTypes>Math.floor(Math.random() * 8));
+                randomCargo.push(<CargoTypes>Math.floor(1 + Math.random() * 8));
             }
             this.setRequestedCargo(randomCargo);
             return randomCargo;
@@ -126,6 +126,10 @@
 
         public get glowEnabled(): boolean {
             return this.glowTween && this.glowTween.isRunning;
+        }
+
+        public get nextCargoType(): CargoTypes {
+            return this.cargoIndicator.nextType;
         }
     }
 }

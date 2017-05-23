@@ -9,6 +9,8 @@ module ExamAssignmentMA {
         // Tutorial
         public static TutorialFrame1: string = 'tutorialScreen1.jpg';
         public static TutorialFrame2: string = 'tutorialScreen2.jpg';
+        public static TutorialHandIdle: string = 'handTutorialScreenIdle.png';
+        public static TutorialHandActive: string = 'handTutorialScreenActive.png';
         // In-Game
         public static Background_01: string = 'backgroundTrees.jpg';
         public static Platform_01: string = 'trainstationPavement.jpg';
@@ -57,6 +59,8 @@ module ExamAssignmentMA {
             // Tutorial
             Images.TutorialFrame1,
             Images.TutorialFrame2,
+            Images.TutorialHandIdle,
+            Images.TutorialHandActive,
             // In-Game
             Images.Background_01,
             Images.Platform_01,
@@ -87,7 +91,7 @@ module ExamAssignmentMA {
             // Timer
             Images.TimeContainer,
             Images.TimeFill,
-            Images.WagonIndicator, ,
+            Images.WagonIndicator,
             Images.ScoreIndicator,
             // GameOver
             Images.RetryButton,

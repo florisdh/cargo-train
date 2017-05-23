@@ -280,5 +280,9 @@
             this.highlightImage.scale.x = this.requestedCargo[0].scale.x * 1.075;
             this.highlightImage.scale.y = this.highlightImage.scale.x;
         }
+
+        public get nextType(): CargoTypes {
+            return this.requestedCargo.length > 0 ? this.requestedCargo[0].cargoType : CargoTypes.None;
+        }
     }
 }

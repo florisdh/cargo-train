@@ -40,7 +40,7 @@
             // Spawn random items
             let randomItems: number = maxItems - required.length;
             for (let i: number = 0; i < randomItems; i++) {
-                items.push(<CargoTypes>this.game.rnd.integerInRange(0, 7));
+                items.push(<CargoTypes>this.game.rnd.integerInRange(1, 8));
             }
 
             // Spawn required items on random positions in array
@@ -50,6 +50,15 @@
 
             items.forEach(this.addCargo, this);
             this.resize();
+        }
+
+        public getCargo(type: CargoTypes): Cargo {
+            for (let i: number = 0; i < this.cargo.length; i++) {
+                if (this.cargo[i].cargoType === type) {
+                    return this.cargo[i];
+                }
+            }
+            return null;
         }
 
         private clearCargo(): void {
