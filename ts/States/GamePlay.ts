@@ -108,7 +108,6 @@
                         this.session.setTotalTime(this.timeIndicator.totalTime);
                     });
                     wagon.objectiveDone.addOnce(() => {
-                        this.timeIndicator.stop();
                         this.session.nextWagon();
                         this.completedWagons++;
                         this.wagonIndicator.setWagonAmount(this.train.totalWagons - this.completedWagons);
@@ -152,6 +151,9 @@
                         this.session.setTotalPickedUpCargo(1);
                         this.session.setCorrectPickedUpCargo(1);
                         this.session.addMoney(50); // TODO: create particles for money
+                        if (activeWagon.nextCargoType === CargoTypes.None) {
+                            this.timeIndicator.stop();
+                        }
                     } else {
                         this.shakeScreen();
                         cargo.moveBack();
