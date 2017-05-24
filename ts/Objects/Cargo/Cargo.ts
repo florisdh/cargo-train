@@ -90,6 +90,10 @@
 
         public destroy(destroyChildren?: boolean, soft?: boolean): void {
             this.anim.destroy(true);
+            if (this.moveBackTween) {
+                this.moveBackTween.stop();
+            }
+            this.hitBox.input.disableDrag();
             super.destroy(destroyChildren, soft);
         }
 
