@@ -108,12 +108,8 @@
                     });
                     // On Wagon objective done
                     wagon.objectiveDone.addOnce(() => {
-<<<<<<< HEAD
-                        this.session.nextWagon();
-=======
                         this.timeIndicator.stop();
                         this.session.nextWagon(this.timeIndicator.remainingTime, this.timeIndicator.totalTime);
->>>>>>> Refactured speed and accuracy tracking as well as minor intermission changes.
                         this.completedWagons++;
                         this.wagonIndicator.setWagonAmount(this.train.totalWagons - this.completedWagons);
                     });
@@ -153,17 +149,12 @@
                         // Correct
                         cargo.fadeOut(activeWagon);
                         this.correct.play();
-<<<<<<< HEAD
-                        this.session.setTotalPickedUpCargo(1);
-                        this.session.setCorrectPickedUpCargo(1);
                         this.session.addMoney(50); // TODO: create particles for money
                         if (activeWagon.nextCargoType === CargoTypes.None) {
                             this.timeIndicator.stop();
                         }
-=======
                         this.tutorial.resetIdleCheck();
                         this.session.droppedCargo(true);
->>>>>>> Refactured speed and accuracy tracking as well as minor intermission changes.
                     } else {
                         // Incorrect
                         this.shakeScreen();
