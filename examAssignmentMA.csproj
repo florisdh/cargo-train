@@ -57,7 +57,7 @@
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Locomotive.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\Wagons\Wagon.ts" />
     <TypeScriptCompile Include="ts\Objects\Train\WagonTypes.ts" />
-    <TypeScriptCompile Include="ts\Objects\UI\IntermissionScreen.ts" />
+    <TypeScriptCompile Include="ts\Objects\UI\Intermission.ts" />
     <TypeScriptCompile Include="ts\Objects\UI\ScreenFade.ts" />
     <TypeScriptCompile Include="ts\Objects\UI\TimeIndicator.ts" />
     <TypeScriptCompile Include="ts\Objects\UI\ScoreIndicator.ts" />

@@ -10,10 +10,11 @@
         private money: number;
         private speed: number;
         private accuracy: number;
-        private totalPickedUpCargo: number;
-        private correctPickedUpCargo: number;
+        private droppedCargoAmount: number;
+        private droppedCorrectCargoAmount: number;
         private totalTime: number;
         private leftoverTime: number;
+        private wagonTimeLeftovers: number[];
 
         /**
          * @param round The starting round.
@@ -24,11 +25,12 @@
             this.money = money;
             this.speed = speed;
             this.accuracy = accuracy;
-            this.totalPickedUpCargo = totalPickedUpCargo;
-            this.correctPickedUpCargo = correctPickedUpCargo;
+            this.droppedCargoAmount = totalPickedUpCargo;
+            this.droppedCorrectCargoAmount = correctPickedUpCargo;
             this.totalTime = totalTime;
             this.leftoverTime = leftoverTime;
             this.moneyChanged = new Phaser.Signal();
+            this.wagonTimeLeftovers = [];
         }
 
         /**
@@ -36,16 +38,23 @@
          */
         public nextRound(): void {
             this.round++;
-            this.resetTimeAndPickups();
+            this.reset();
         }
 
         /**
-         * Increased the score.
+         * Handles the data required for the end of round statistics.
          */
-        public nextWagon(): void {
-            return;
+        public nextWagon(timeLeft: number, totalTime: number): void {
+            // Add time left
+            if (this.wagonTimeLeftovers) {
+                this.wagonTimeLeftovers.push(timeLeft / totalTime * 100);
+            }
         }
 
+        /**
+         * Increases the money by the given value.
+         * @param value
+         */
         public addMoney(value: number): void {
             this.money += value;
             this.moneyChanged.dispatch(this.money);
@@ -54,14 +63,14 @@
         /**
          * Calculates the length of the train in the current round.
          */
-        public getTrainLength(): number {
+        public calcTrainLength(): number {
             return Math.min(10, Math.min(2 + this.round * 2, 20));
         }
 
         /**
          * Calculates the time for the current wagon in the current round.
          */
-        public getWagonTime(cargoAmount: number): number {
+        public calcWagonTime(cargoAmount: number): number {
             let perCargo: number;
 
             // First rounds should be easy
@@ -77,15 +86,16 @@
         /**
          * Calculates the amount of cargo for the current wagon in the current round.
          */
-        public getCargoAmount(): number {
+        public calcCargoAmount(): number {
             return 2 + this.round + Math.floor(2 * Math.random());
         }
 
         /**
-         * Returns the current round.
+         * Calculates and returns the accuracy percentage of the current round.
          */
-        public get currentRound(): number {
-            return this.round;
+        public calcAccuracyPerc(): number {
+            console.log('calcAccuracyPerc: ' + this.droppedCorrectCargoAmount / this.droppedCargoAmount * 100);
+            return this.droppedCorrectCargoAmount / this.droppedCargoAmount * 100;
         }
 
         /**
@@ -96,46 +106,35 @@
         }
 
         /**
-         * Returns the speed of the current round.
+         * Calculates and returns the speed percentage of the current round.
          */
-        public get currentSpeed(): number {
-            console.log(this.leftoverTime);
-            console.log(this.totalTime);
-            this.speed = (this.leftoverTime / this.totalTime * 100);
-            console.log(this.speed);
-            return this.speed;
+        public calcSpeedPerc(): number {
+            let totalPerc: number = 0;
+
+            for (let i: number = 0; i < this.wagonTimeLeftovers.length; i++) {
+                totalPerc += this.wagonTimeLeftovers[i];
+            }
+
+            console.log('calcSpeedPerc: ' + totalPerc / this.wagonTimeLeftovers.length);
+            return totalPerc / this.wagonTimeLeftovers.length;
         }
 
         /**
-         * Returns the accuracy of the current round.
+         * Increments the data regarding the cargo drop accuracy.
+         * @param correctCargo
          */
-        public get currentAccuracy(): number {
-            this.accuracy = (this.correctPickedUpCargo / this.totalPickedUpCargo * 100);
-            return this.accuracy;
+        public droppedCargo(correctCargo: boolean): void {
+            this.droppedCargoAmount++;
+
+            if (correctCargo) {
+                this.droppedCorrectCargoAmount++;
+            }
         }
 
-        public setTotalPickedUpCargo(amount: number): void {
-            this.totalPickedUpCargo += amount;
-        }
-
-        public setCorrectPickedUpCargo(amount: number): void {
-            this.correctPickedUpCargo += amount;
-        }
-
-        public setTotalTime(amount: number): void {
-            this.totalTime += amount;
-        }
-
-        public setLeftoverTime(amount: number): void {
-            this.leftoverTime += amount;
-            console.log(this.leftoverTime);
-        }
-
-        private resetTimeAndPickups(): void {
-            this.totalPickedUpCargo = 0;
-            this.correctPickedUpCargo = 0;
-            this.totalTime = 0;
-            this.leftoverTime = 0;
+        private reset(): void {
+            this.droppedCargoAmount = 0;
+            this.droppedCorrectCargoAmount = 0;
+            this.wagonTimeLeftovers = [];
         }
     }
 }

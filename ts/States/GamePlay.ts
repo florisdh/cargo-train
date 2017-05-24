@@ -17,7 +17,7 @@
         private completedWagons: number;
         private correct: Phaser.Sound;
         private incorrect: Phaser.Sound;
-        private intermissionScreen: IntermissionScreen;
+        private intermissionScreen: Intermission;
 
         /**
          * Adds all game assets and sets up all game elements.
@@ -57,7 +57,7 @@
 
             this.screenFade = new ScreenFade(this.game);
 
-            this.intermissionScreen = new IntermissionScreen(this.game);
+            this.intermissionScreen = new Intermission(this.game);
             this.intermissionScreen.intermissionDone.add(this.onRoundDone, this);
 
             this.game.add.existing(this.timeIndicator);
@@ -72,7 +72,7 @@
         }
 
         private startRound(): void {
-            this.train.reset(this.session.getTrainLength());
+            this.train.reset(this.session.calcTrainLength());
             this.cargo.reset();
             this.moveToNext();
             this.completedWagons = 0;
@@ -100,18 +100,22 @@
 
             if (wagon) {
                 if (wagon.type === WagonTypes.CargoWagon) {
-                    let requiredCargo: CargoTypes[] = (<CargoWagon>wagon).setRandomCargo(this.session.getCargoAmount());
+                    let requiredCargo: CargoTypes[] = (<CargoWagon>wagon).setRandomCargo(this.session.calcCargoAmount());
                     this.cargo.createNext().spawnCargo(requiredCargo);
-
+                    // On MoveIn done
                     wagon.moveInDone.addOnce(() => {
-                        this.timeIndicator.start(this.session.getWagonTime(requiredCargo.length));
-                        this.session.setTotalTime(this.timeIndicator.totalTime);
+                        this.timeIndicator.start(this.session.calcWagonTime(requiredCargo.length));
                     });
+                    // On Wagon objective done
                     wagon.objectiveDone.addOnce(() => {
+<<<<<<< HEAD
                         this.session.nextWagon();
+=======
+                        this.timeIndicator.stop();
+                        this.session.nextWagon(this.timeIndicator.remainingTime, this.timeIndicator.totalTime);
+>>>>>>> Refactured speed and accuracy tracking as well as minor intermission changes.
                         this.completedWagons++;
                         this.wagonIndicator.setWagonAmount(this.train.totalWagons - this.completedWagons);
-                        this.session.setLeftoverTime(this.timeIndicator.remainingTime);
                     });
                 } else if (wagon.type === WagonTypes.Caboose) {
                     this.timeIndicator.stop();
@@ -146,20 +150,27 @@
                 let activeWagon: CargoWagon = <CargoWagon>this.train.activeWagon;
                 if (this.train.isOnDropPoint(<Phaser.Point>cargo.worldPosition)) {
                     if (activeWagon.dropCargo(cargo)) {
+                        // Correct
                         cargo.fadeOut(activeWagon);
                         this.correct.play();
+<<<<<<< HEAD
                         this.session.setTotalPickedUpCargo(1);
                         this.session.setCorrectPickedUpCargo(1);
                         this.session.addMoney(50); // TODO: create particles for money
                         if (activeWagon.nextCargoType === CargoTypes.None) {
                             this.timeIndicator.stop();
                         }
+=======
+                        this.tutorial.resetIdleCheck();
+                        this.session.droppedCargo(true);
+>>>>>>> Refactured speed and accuracy tracking as well as minor intermission changes.
                     } else {
+                        // Incorrect
                         this.shakeScreen();
                         cargo.moveBack();
                         this.timeIndicator.damageTime(1000);
                         this.incorrect.play();
-                        this.session.setTotalPickedUpCargo(1);
+                        this.session.droppedCargo(false);
                     }
                 } else {
                     cargo.moveBack();
