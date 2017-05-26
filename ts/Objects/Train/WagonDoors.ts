@@ -8,6 +8,7 @@
         private openNormal: number;
         private leftDoor: Phaser.Image;
         private rightDoor: Phaser.Image;
+        private soundEffect: Phaser.Sound;
 
         constructor(game: Phaser.Game) {
             super(game);
@@ -18,6 +19,7 @@
             this.rightDoor.scale = this.leftDoor.scale;
             this.leftDoor.anchor.setTo(1, 1);
             this.rightDoor.anchor.setTo(0, 1);
+            this.soundEffect = this.game.add.sound(Sounds.WagonDoor, 1, false);
         }
 
         /**
@@ -28,6 +30,7 @@
                 this.openTween.stop();
             }
             this.openTween = this.game.add.tween(this).to({ openAnim: 1 }, 500, Phaser.Easing.Quadratic.In, true);
+            this.soundEffect.play();
         }
 
         /**
@@ -43,6 +46,7 @@
 
         private onClosed(): void {
             this.closed.dispatch();
+            this.soundEffect.play();
         }
 
         /**

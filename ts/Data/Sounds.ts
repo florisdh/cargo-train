@@ -8,11 +8,23 @@ module ExamAssignmentMA {
         // InGame
         public static CorrectCargo: string = 'correct';
         public static IncorrectCargo: string = 'incorrect';
+        public static PickedupCargo: string = 'pickup';
+        public static DroppedCargo: string = 'drop';
+        public static WagonDoor: string = 'door';
+        public static GameOver: string = 'gameOver';
+        public static TimeLow: string = 'time';
+        public static TrainWhistle: string = 'trainWhistle';
 
         // Add all sounds here
         public static PreloadList: string[] = [
             Sounds.CorrectCargo,
-            Sounds.IncorrectCargo
+            Sounds.IncorrectCargo,
+            Sounds.PickedupCargo,
+            Sounds.DroppedCargo,
+            Sounds.WagonDoor,
+            Sounds.GameOver,
+            Sounds.TimeLow,
+            Sounds.TrainWhistle
         ];
     }
 }

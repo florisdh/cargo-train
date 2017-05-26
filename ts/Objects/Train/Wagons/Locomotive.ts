@@ -9,6 +9,7 @@
         private hornTween: Phaser.Tween;
         private hornNormal: number;
         private timer: Phaser.TimerEvent;
+        private soundEffect: Phaser.Sound;
 
         /**
          * @param game The active game instance to be added to.
@@ -28,6 +29,8 @@
 
             this.hornNormal = 0;
 
+            this.soundEffect = this.game.add.sound(Sounds.TrainWhistle, 1, false);
+
             this.resize();
         }
 
@@ -46,6 +49,7 @@
             }
             this.hornAnim = 0;
             this.hornTween = this.game.add.tween(this).to({ hornAnim: 1 }, 300, Phaser.Easing.Quadratic.InOut, true, 0, 1, true);
+            this.soundEffect.play();
             this.hornTween.onComplete.addOnce(this.onHornComplete, this);
         }
 

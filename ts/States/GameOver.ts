@@ -11,6 +11,7 @@
         private foreground: Phaser.Image;
         private retryButton: Phaser.Image;
         private screenFade: ScreenFade;
+        private soundEffect: Phaser.Sound;
 
         /**
          * Adding all assets that are required for this state.
@@ -44,6 +45,9 @@
 
             this.resize();
             this.screenFade.fadeOut();
+
+            this.soundEffect = this.soundEffect = this.game.add.sound(Sounds.GameOver, 1, false);
+            this.soundEffect.play();
         }
 
         private onRetryDown(): void {

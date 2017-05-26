@@ -19,6 +19,7 @@
         private damageLeft: number;
         private damageTween: Phaser.Tween;
         private glowTween: Phaser.Tween;
+        private soundEffect: Phaser.Sound;
 
         /**
          * @param game The active game instance to be added to.
@@ -60,6 +61,8 @@
 
             this.started = false;
             this.timeTotal = this.timeLeft = 1;
+
+            this.soundEffect = this.game.add.sound(Sounds.TimeLow, 1, true);
         }
 
         /**
@@ -94,6 +97,7 @@
 
                 if (this.timeLeft <= 0) {
                     this.timeOut.dispatch();
+                    this.soundEffect.stop();
                 }
 
                 let leftScalar: number = this.timeLeft / this.timeTotal;
@@ -105,11 +109,13 @@
                         this.timeFill.alpha = 1;
                         this.glowTween = this.game.add.tween(this.timeFill).to({ alpha: 0.7 }, 500, Phaser.Easing.Quadratic.InOut, true, 0, 0, true);
                         this.glowTween.loop(true);
+                        this.soundEffect.play();
                     }
                 } else if (this.glowTween) {
                     this.glowTween.stop();
                     this.glowTween = null;
                     this.timeFill.alpha = 1;
+                    this.soundEffect.stop();
                 }
             }
         }

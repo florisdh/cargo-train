@@ -21,6 +21,8 @@
         private fadeNormal: number;
         private fadeTarget: Wagon;
         private particleEmitter: Phaser.Particles.Arcade.Emitter;
+        private pickup: Phaser.Sound;
+        private drop: Phaser.Sound;
 
         /**
          * @param game The active game instance to be added to.
@@ -81,6 +83,8 @@
             this.fadeNormal = 0;
             this.fadeTween = null;
             this.fadeTarget = null;
+            this.pickup = this.game.add.sound(Sounds.PickedupCargo, 1, false);
+            this.drop = this.game.add.sound(Sounds.DroppedCargo, 1, false);
 
             this.anim.position = this.hitBox.position;
             this.game.time.events.add(this.game.rnd.integerInRange(0, 500), () => {
@@ -144,6 +148,7 @@
             }
             this.isDragging = true;
             this.anim.setAnimationByName(0, 'pickUp', true);
+            this.pickup.play();
         }
 
         private onDragStop(e: Cargo): void {
@@ -168,6 +173,7 @@
             this.moveBackTween = this.game.add.tween(this).to({ moveBackAnim: 0 }, 300, Phaser.Easing.Quadratic.In, true);
             this.moveBackTween.onComplete.addOnce(() => {
                 this.hitBox.inputEnabled = true;
+                this.drop.play();
             });
             this.anim.setAnimationByName(0, 'land');
             this.anim.addAnimationByName(0, 'idle', true);
