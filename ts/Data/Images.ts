@@ -20,7 +20,7 @@ module ExamAssignmentMA {
         // Wagons
         public static Locomotive: string = 'locomotiveEnginedriver.png';
         public static MachinistArm: string = 'locomotiveEnginedriverArm.png';
-        public static Wagon: string = 'wagonCutOff.png';
+        public static Wagon: string = 'wagonVersion1.png';
         public static Caboose: string = 'cabooseCutOff.png';
         public static WagonGlow: string = 'glowWagon.png';
         public static LeftDoor: string = 'wagonDoorLeft.png';
