@@ -17,6 +17,8 @@
         private completedWagons: number;
         private correct: Phaser.Sound;
         private incorrect: Phaser.Sound;
+        private trainRiding: Phaser.Sound;
+        private backgroundMusic: Phaser.Sound;
         private intermissionScreen: Intermission;
 
         /**
@@ -52,6 +54,9 @@
 
             this.correct = this.game.add.sound(Sounds.CorrectCargo, 1, false);
             this.incorrect = this.game.add.sound(Sounds.IncorrectCargo, 1, false);
+            this.trainRiding = this.game.add.sound(Sounds.TrainRiding, 1, false);
+            this.backgroundMusic = this.game.add.sound(Sounds.BackgroundMusic, 0.1, true);
+            this.backgroundMusic.play();
 
             this.tutorial = new IngameTutorial(this.game);
 
@@ -116,6 +121,8 @@
                 } else if (wagon.type === WagonTypes.Caboose) {
                     this.timeIndicator.stop();
                     wagon.moveOutDone.addOnce(this.showIntermission, this);
+                    this.trainRiding.play();
+                    this.trainRiding.fadeOut(4000);
                 }
 
                 if (wagon.type !== WagonTypes.Locomotive) {
@@ -185,7 +192,6 @@
                         wagon.enableGlow(cargo.type);
                     }
                 }
-
                 this.tutorial.resetIdleCheck();
             }
         }
@@ -196,6 +202,7 @@
 
         private onTimeOut(): void {
             this.stop();
+            this.backgroundMusic.stop();
             this.screenFade.fadeIn(() => {
                 this.game.state.start(GameOver.Name, true, false, this.session);
             });

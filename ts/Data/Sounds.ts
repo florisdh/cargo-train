@@ -14,6 +14,8 @@ module ExamAssignmentMA {
         public static GameOver: string = 'gameOver';
         public static TimeLow: string = 'time';
         public static TrainWhistle: string = 'trainWhistle';
+        public static TrainRiding: string = 'trainRiding';
+        public static BackgroundMusic: string = 'backgroundMusic';
 
         // Add all sounds here
         public static PreloadList: string[] = [
@@ -24,7 +26,9 @@ module ExamAssignmentMA {
             Sounds.WagonDoor,
             Sounds.GameOver,
             Sounds.TimeLow,
-            Sounds.TrainWhistle
+            Sounds.TrainWhistle,
+            Sounds.TrainRiding,
+            Sounds.BackgroundMusic
         ];
     }
 }
