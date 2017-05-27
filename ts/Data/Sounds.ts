@@ -14,6 +14,7 @@ module ExamAssignmentMA {
         public static GameOver: string = 'gameOver';
         public static TimeLow: string = 'time';
         public static TrainWhistle: string = 'trainWhistle';
+        public static TrainWhistle2: string = 'trainWhistle2';
         public static TrainRiding: string = 'trainRiding';
         public static BackgroundMusic: string = 'backgroundMusic';
 
@@ -27,6 +28,7 @@ module ExamAssignmentMA {
             Sounds.GameOver,
             Sounds.TimeLow,
             Sounds.TrainWhistle,
+            Sounds.TrainWhistle2,
             Sounds.TrainRiding,
             Sounds.BackgroundMusic
         ];

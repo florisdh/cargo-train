@@ -18,6 +18,7 @@
         private correct: Phaser.Sound;
         private incorrect: Phaser.Sound;
         private trainRiding: Phaser.Sound;
+        private trainWhistle: Phaser.Sound;
         private backgroundMusic: Phaser.Sound;
         private intermissionScreen: Intermission;
 
@@ -55,6 +56,7 @@
             this.correct = this.game.add.sound(Sounds.CorrectCargo, 1, false);
             this.incorrect = this.game.add.sound(Sounds.IncorrectCargo, 1, false);
             this.trainRiding = this.game.add.sound(Sounds.TrainRiding, 1, false);
+            this.trainWhistle = this.game.add.sound(Sounds.TrainWhistle2, 1, false);
             this.backgroundMusic = this.game.add.sound(Sounds.BackgroundMusic, 0.1, true);
             this.backgroundMusic.play();
 
@@ -121,8 +123,10 @@
                 } else if (wagon.type === WagonTypes.Caboose) {
                     this.timeIndicator.stop();
                     wagon.moveOutDone.addOnce(this.showIntermission, this);
-                    this.trainRiding.play();
+                    this.trainRiding.play(null, null, 1);
                     this.trainRiding.fadeOut(4000);
+                    this.trainWhistle.play(null, null, 1);
+                    this.trainWhistle.fadeOut(4000);
                 }
 
                 if (wagon.type !== WagonTypes.Locomotive) {
