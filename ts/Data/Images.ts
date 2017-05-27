@@ -6,6 +6,9 @@ module ExamAssignmentMA {
     export class Images {
         public static WhitePixel: string = 'white.png';
         public static MA_Logo: string = 'ma.png';
+        //SplashScreen
+        public static SplashScreen: string = 'splashScreen.jpg';
+        public static Logo: string = 'logo.png';
         // Tutorial
         public static TutorialFrame1: string = 'tutorialScreen1.jpg';
         public static TutorialFrame2: string = 'tutorialScreen2.jpg';
@@ -57,6 +60,9 @@ module ExamAssignmentMA {
         public static PreloadList: string[] = [
             Images.WhitePixel,
             Images.MA_Logo,
+            //SplashScreen
+            Images.SplashScreen,
+            Images.Logo,
             // Tutorial
             Images.TutorialFrame1,
             Images.TutorialFrame2,

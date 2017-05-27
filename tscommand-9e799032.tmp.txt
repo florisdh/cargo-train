@@ -1,0 +1,1 @@
+vendor\references.ts --removeComments --noImplicitAny --target ES5 --module amd --out _build/dev/examassignmentma.js
