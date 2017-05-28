@@ -102,7 +102,7 @@
          * Resizes all game elements based on the screen size.
          */
         public resize(): void {
-            // Do some resizing
+            this.tutorialHand.scale.setTo(this.game.width / 720);
         }
 
         private get handAnimation(): number {
