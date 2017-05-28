@@ -4,9 +4,9 @@
 A puzzle game where the player has to fill up train wagons with the right cargo in the right order within the time limit. The goal is to achieve the highest score and compete against your friends.
 
 ### Assignment
-This project is made for MediaCollege Amsterdam as an graduation assignment. This game is meant as a prototype for the 'Facebook Instant Games' paltform.
+This project was made for MediaCollege Amsterdam as an graduation assignment. This game is meant as a prototype for the 'Facebook Instant Games' paltform.
   - HTML5 Game
-  - Age 30+ audience
+  - Age 30+ male audience
   - Portrait only
 
 ### Tech
@@ -28,5 +28,5 @@ Artists:
   - Frank Wester
   - Pepijn Terrewee
   - Omar Bentaher
-  - Lorenzo Mourik
-  - Niels de Ruiter
+  - Lorenzo van Mourik
+  - Niels de Ruijter
