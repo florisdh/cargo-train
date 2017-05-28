@@ -34,6 +34,9 @@
             this.resize();
         }
 
+        /**
+         * Resizes all elements based on the screen size.
+         */
         public resize(): void {
             super.resize();
             this.machinistArmImg.x = this.wagonImage.width * 0.6698;

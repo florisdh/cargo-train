@@ -92,13 +92,16 @@
             });
         }
 
-        public destroy(destroyChildren?: boolean, soft?: boolean): void {
+        /**
+         * Properly disposes all cargo dependencies.
+         */
+        public destroy(): void {
             this.anim.destroy(true);
             if (this.moveBackTween) {
                 this.moveBackTween.stop();
             }
             this.hitBox.input.disableDrag();
-            super.destroy(destroyChildren, soft);
+            super.destroy(true);
         }
 
         /**
@@ -230,6 +233,9 @@
             return this.cargo;
         }
 
+        /**
+         * Returns the world space position of the cargo.
+         */
         public get worldPosition(): PIXI.Point {
             return this.hitBox.worldPosition;
         }

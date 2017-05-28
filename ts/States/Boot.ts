@@ -63,10 +63,7 @@ module ExamAssignmentMA {
                 (<PhaserSpine.SpineGame>this.game).load.spine(Spines.PreloadList[i], 'assets/spine/' + Spines.PreloadList[i] + '.json');
             }
         }
-
-        /**
-         * Start the first screen state that will show after load.
-         */
+        
         private onLoaded(): void {
             this.game.state.start(Splash.Name);
         }

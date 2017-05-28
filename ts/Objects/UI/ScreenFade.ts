@@ -13,6 +13,11 @@
             this.alpha = 0;
         }
 
+        /**
+         * Fades from transparent to black.
+         * @param callback The function to be called when it is completed.
+         * @param context The context to call the callback as.
+         */
         public fadeIn(callback: Function = null, context: any = null): void {
             this.stopFade();
             this.alpha = 0;
@@ -22,6 +27,11 @@
             }
         }
 
+        /**
+         * Fades from black to transparent.
+         * @param callback The function to be called when it is completed.
+         * @param context The context to call the callback as.
+         */
         public fadeOut(callback: Function = null, context: any = null): void {
             this.stopFade();
             this.alpha = 1;
@@ -37,6 +47,9 @@
             }
         }
 
+        /**
+         * Resizes the overlay to match screen size.
+         */
         public resize(): void {
             this.width = this.game.width;
             this.height = this.game.height;

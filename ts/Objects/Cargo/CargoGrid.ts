@@ -52,6 +52,10 @@
             this.resize();
         }
 
+        /**
+         * Returns a specific cargo object based on the requested type. Returns null if not found.
+         * @param type The type of cargo requested.
+         */
         public getCargo(type: CargoTypes): Cargo {
             for (let i: number = 0; i < this.cargo.length; i++) {
                 if (this.cargo[i].cargoType === type) {

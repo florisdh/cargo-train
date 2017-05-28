@@ -38,6 +38,10 @@
             this.wagonDoors.open();
         }
 
+        /**
+         * Starts the indication that the cargo is dragging on the right place.
+         * @param cargoType The type of cargo that is dragged above the wagon.
+         */
         public enableGlow(cargoType: CargoTypes): void {
             if (this.glowTween && this.glowTween.isRunning) {
                 this.glowTween.stop();
@@ -46,6 +50,9 @@
             this.glowTween = this.game.add.tween(this).to({ glowAnim: 1 }, 500, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
         }
 
+        /**
+         * Stops the indication that the cargo is dragging on the right place.
+         */
         public disableGlow(): void {
             if (this.glowTween && this.glowTween.isRunning) {
                 this.glowTween.stop();
@@ -124,10 +131,16 @@
             this.glow.alpha = normal;
         }
 
+        /**
+         * Returns if the glow animation is enabled.
+         */
         public get glowEnabled(): boolean {
             return this.glowTween && this.glowTween.isRunning;
         }
 
+        /**
+         * Returns the next required type of cargo. If the last has been reached it returns CargoTypes.None.
+         */
         public get nextCargoType(): CargoTypes {
             return this.cargoIndicator.nextType;
         }

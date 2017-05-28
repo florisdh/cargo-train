@@ -281,6 +281,9 @@
             this.highlightImage.scale.y = this.highlightImage.scale.x;
         }
 
+        /**
+         * Returns the next required type of cargo. If the last has been reached it returns CargoTypes.None.
+         */
         public get nextType(): CargoTypes {
             return this.requestedCargo.length > 0 ? this.requestedCargo[0].cargoType : CargoTypes.None;
         }

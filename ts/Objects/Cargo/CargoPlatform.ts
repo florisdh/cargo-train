@@ -65,6 +65,9 @@
             this.moveNormal = 0;
         }
 
+        /**
+         * Resizes all cargo grids based on screen size.
+         */
         public resize(): void {
             for (let i: number = 0; i < this.cargo.length; i++) {
                 if (this.cargo[i]) {
