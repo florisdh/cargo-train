@@ -87,7 +87,7 @@
          * Calculates the amount of cargo for the current wagon in the current round.
          */
         public calcCargoAmount(): number {
-            return 2 + this.round + Math.floor(2 * Math.random());
+            return 2 + this.round + Math.floor(1 * Math.random());
         }
 
         /**
