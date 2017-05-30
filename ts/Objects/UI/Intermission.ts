@@ -263,7 +263,7 @@
                 this.game.time.events.remove(this.shakeTimer);
                 this.shakeTimer = null;
             }
-            this.shakeTimer = this.game.time.events.add(animationSpeed + 50, this.shakeTimedOut, this);
+            this.shakeTimer = this.game.time.events.add(animationSpeed + 85, this.shakeTimedOut, this);
         }
 
         private shakeTimedOut(): void {

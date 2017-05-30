@@ -10,6 +10,8 @@
         protected wagonImage: Phaser.Image;
         private moveTween: Phaser.Tween;
         private moveNormal: number;
+        protected easeIn: Function = Phaser.Easing.Quadratic.InOut;
+        protected easeOut: Function = Phaser.Easing.Quadratic.InOut;
 
         /**
          * @param game The active game instance to be added to.
@@ -44,7 +46,7 @@
                 this.moveTween.stop();
                 this.moveTween = null;
             }
-            this.moveTween = this.game.add.tween(this).to({ moveAnim: 0 }, 1000, Phaser.Easing.Quadratic.InOut, true);
+            this.moveTween = this.game.add.tween(this).to({ moveAnim: 0 }, 1000, this.easeIn, true);
             this.moveTween.onComplete.addOnce(() => {
                 this.moveInDone.dispatch(this);
             });
@@ -53,12 +55,12 @@
         /**
          * Transitions the wagon out of the screen.
          */
-        public moveOut(): void {
+        public moveOut(forceLinear: boolean = false): void {
             if (this.moveTween != null && this.moveTween.isRunning) {
                 this.moveTween.stop();
                 this.moveTween = null;
             }
-            this.moveTween = this.game.add.tween(this).to({ moveAnim: -1 }, 1000, Phaser.Easing.Quadratic.InOut, true);
+            this.moveTween = this.game.add.tween(this).to({ moveAnim: -1 }, 1000, forceLinear ? Phaser.Easing.Linear.None : this.easeOut, true);
             this.moveTween.onComplete.addOnce(() => {
                 this.moveOutDone.dispatch(this);
             });

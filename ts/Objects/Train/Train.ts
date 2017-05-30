@@ -37,7 +37,8 @@
 
             // Move out
             if (activeWagon) {
-                activeWagon.moveOut();
+                activeWagon.moveOut(false);
+                //this.wagonCounter === this.trainLength + 2);
                 activeWagon.moveOutDone.addOnce(() => {
                     this.removeWagon(activeWagon);
                 });
@@ -118,8 +119,12 @@
         /**
          * Returns the amount of wagons in the current train.
          */
-        public get totalWagons(): number {
+        public get amountOfCargoWagons(): number {
             return this.trainLength;
+        }
+
+        public get currentWagonNmbr(): number {
+            return this.wagonCounter;
         }
     }
 }

@@ -47,18 +47,16 @@
             this.moveNormal = 0;
             this.moveTween = this.game.add.tween(this).to({ moveAnim: -1 }, 1000, Phaser.Easing.Back.InOut, true, 100);
             this.moveTween.onComplete.addOnce(this.moveComplete, this);
-            console.log('moving out');
         }
 
         private moveComplete(): void {
             if (this.cargo.length <= 0) {
                 return;
             }
-            console.log('move complete', this);
+
             let removing: CargoGrid = this.cargo[0];
             this.cargo.splice(0, 1);
             if (removing) {
-                console.log('removing cargoi');
                 this.cargoRemoved.dispatch(removing);
                 removing.destroy(true);
             }

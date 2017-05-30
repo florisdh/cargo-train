@@ -46,7 +46,7 @@
             this.resize();
             this.screenFade.fadeOut();
 
-            this.soundEffect = this.soundEffect = this.game.add.sound(Sounds.GameOver, 1, false);
+            this.soundEffect = this.soundEffect = this.game.add.sound(Sounds.GameOver, 2, false);
             this.soundEffect.play();
         }
 

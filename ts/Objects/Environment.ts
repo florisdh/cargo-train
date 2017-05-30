@@ -42,13 +42,13 @@
         /**
          * Moves the backgrounds while applying parallax.
          */
-        public moveToNext(): void {
+        public moveToNext(forceLinear: boolean): void {
             if (this.moveTween && this.moveTween.isRunning) {
                 this.moveTween.stop();
             }
             this.targetOffset++;
             this.moveLeftNormal = 1;
-            this.moveTween = this.game.add.tween(this).to({ moveAnim: 0 }, 1000, Phaser.Easing.Quadratic.InOut, true);
+            this.moveTween = this.game.add.tween(this).to({ moveAnim: 0 }, 1000, forceLinear ? Phaser.Easing.Linear.None : Phaser.Easing.Quadratic.InOut, true);
         }
 
         /**
@@ -58,13 +58,12 @@
             this.background.width = this.game.width;
             this.background.height = this.game.height * this.bgPercentage;
 
-            // Background is scaled on desired height
             if (this.background.height / this.bgHeight * this.bgWidth >= this.game.width) {
+                // Background is scaled on desired height
                 this.background.tileScale.x = this.background.tileScale.y = this.background.height / this.bgHeight;
                 this.background.tilePosition.y = 0;
-
-                // Background is too short horizontally -> make it overflow vertically up
             } else {
+                // Background is too short horizontally -> make it overflow vertically up
                 this.background.tileScale.x = this.background.tileScale.y = this.background.width / this.bgWidth;
                 this.background.tilePosition.y = (this.background.height - this.bgHeight * this.background.tileScale.y) / this.background.tileScale.y;
             }

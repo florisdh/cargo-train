@@ -83,7 +83,7 @@
             this.cargo.reset();
             this.moveToNext();
             this.completedWagons = 0;
-            this.wagonIndicator.setWagonAmount(this.train.totalWagons);
+            this.wagonIndicator.setWagonAmount(this.train.amountOfCargoWagons);
         }
 
         private stop(): void {
@@ -118,7 +118,7 @@
                         this.timeIndicator.stop();
                         this.session.nextWagon(this.timeIndicator.remainingTime, this.timeIndicator.totalTime);
                         this.completedWagons++;
-                        this.wagonIndicator.setWagonAmount(this.train.totalWagons - this.completedWagons);
+                        this.wagonIndicator.setWagonAmount(this.train.amountOfCargoWagons - this.completedWagons);
                     });
                 } else if (wagon.type === WagonTypes.Caboose) {
                     this.timeIndicator.stop();
@@ -133,7 +133,9 @@
                     this.cargo.moveToNext();
                 }
             }
-            this.environment.moveToNext();
+            if (this.train.currentWagonNmbr !== this.train.amountOfCargoWagons + 2) {
+                this.environment.moveToNext(this.train.currentWagonNmbr === this.train.amountOfCargoWagons + 2);
+            }
             this.tutorial.setActiveWagon(wagon);
         }
 
