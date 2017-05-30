@@ -96,8 +96,9 @@
                 this.scaleMasks();
 
                 if (this.timeLeft <= 0) {
-                    this.timeOut.dispatch();
                     this.soundEffect.stop();
+                    this.timeOut.dispatch();
+                    return;
                 }
 
                 let leftScalar: number = this.timeLeft / this.timeTotal;
@@ -142,6 +143,10 @@
          * @param damage The amount of damage
          */
         public damageTime(damage: number): void {
+            if (this.timeLeft <= 0) {
+                return;
+            }
+
             damage = damage + this.damageAnimTime + this.damageAnimDelay;
             this.timeLeft -= damage;
             this.damageAnim = this.damageLeft + damage;
