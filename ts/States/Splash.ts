@@ -7,6 +7,8 @@ module ExamAssignmentMA {
         public static Name: string = 'splash';
         private bg: Phaser.Image;
         private logo: Phaser.Image;
+        private logoTween: Phaser.Tween;
+        private logoNormal: number;
         private screenFade: ScreenFade;
 
         /**
@@ -14,17 +16,28 @@ module ExamAssignmentMA {
          */
         public init(): void {
             this.bg = this.game.add.image(0, 0, Images.SplashScreen);
-            this.logo = this.game.add.image(this.game.width / 2, 0, Images.Logo);
-            this.logo.anchor.setTo(0.5, 0.5);
-            this.game.add.tween(this.logo).to({ y: this.game.height / 1.45 }, 1000, Phaser.Easing.Bounce.Out, true);
             this.bg.events.onInputUp.add(this.onBgClicked, this);
+
+            this.logo = this.game.add.image(0, 0, Images.Logo);
+            this.logo.anchor.setTo(0.5, 0.5);
+            this.logoAnim = 0;
+
             this.screenFade = new ScreenFade(this.game);
             this.game.add.existing(this.screenFade);
-            this.resize();
-
             this.screenFade.fadeOut(() => {
                 this.bg.inputEnabled = true;
             });
+
+            this.resize();
+            this.startLogoAnim();
+        }
+
+        private startLogoAnim(): void {
+            if (this.logoTween && this.logoTween.isRunning) {
+                this.logoTween.stop();
+            }
+            this.logoAnim = 0;
+            this.logoTween = this.game.add.tween(this).to({ logoAnim: 1 }, 1000, Phaser.Easing.Bounce.Out, true);
         }
 
         private onBgClicked(): void {
@@ -39,10 +52,21 @@ module ExamAssignmentMA {
          */
         public resize(): void {
             this.bg.width = this.game.width;
-            this.bg.scale.y = this.bg.scale.x;
+            this.bg.height = this.game.height;
             this.logo.width = this.game.width;
             this.logo.scale.y = this.logo.scale.x;
+            this.logo.x = this.game.width / 2;
+            this.logoAnim = this.logoAnim;
             this.screenFade.resize();
+        }
+
+        private get logoAnim(): number {
+            return this.logoNormal;
+        }
+
+        private set logoAnim(normal: number) {
+            this.logoNormal = normal;
+            this.logo.y = normal * this.game.height * 0.7;
         }
     }
 }
