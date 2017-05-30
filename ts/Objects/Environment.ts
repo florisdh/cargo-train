@@ -41,6 +41,7 @@
 
         /**
          * Moves the backgrounds while applying parallax.
+         * @param forceLinear If the easing type should be overwritten to use linear easing.
          */
         public moveToNext(forceLinear: boolean): void {
             if (this.moveTween && this.moveTween.isRunning) {

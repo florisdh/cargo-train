@@ -51,6 +51,8 @@
 
         /**
          * Resizes the doors relative to the wagon width, height and scale.
+         * @param wagonWidth The width of the parent wagon.
+         * @param wagonHeight The height of the parent wagon.
          */
         public resize(wagonWidth: number, wagonHeight: number): void {
             this.x = wagonWidth * 0.492;

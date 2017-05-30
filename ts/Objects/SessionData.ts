@@ -53,7 +53,7 @@
 
         /**
          * Increases the money by the given value.
-         * @param value
+         * @param value The amount of money to add.
          */
         public addMoney(value: number): void {
             this.money += value;
@@ -121,7 +121,7 @@
 
         /**
          * Increments the data regarding the cargo drop accuracy.
-         * @param correctCargo
+         * @param correctCargo If the placed cargo is valid.
          */
         public droppedCargo(correctCargo: boolean): void {
             this.droppedCargoAmount++;

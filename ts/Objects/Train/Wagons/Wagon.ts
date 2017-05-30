@@ -54,6 +54,7 @@
 
         /**
          * Transitions the wagon out of the screen.
+         * @param forceLinear If the move tween should be overwritten to use a linear tween.
          */
         public moveOut(forceLinear: boolean = false): void {
             if (this.moveTween != null && this.moveTween.isRunning) {

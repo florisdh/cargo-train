@@ -123,7 +123,10 @@
             return this.trainLength;
         }
 
-        public get currentWagonNmbr(): number {
+        /**
+         * Returns the current wagon index for this train.
+         */
+        public get currentWagonIndex(): number {
             return this.wagonCounter;
         }
     }

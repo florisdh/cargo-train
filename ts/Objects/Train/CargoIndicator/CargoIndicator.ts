@@ -74,6 +74,8 @@
 
         /**
          * Resizes all elements in this object.
+         * @param wagonWidth The width of the parent wagon.
+         * @param wagonHeight The height of the parent wagon.
          */
         public resize(wagonWidth: number, wagonHeight: number): void {
             this.x = wagonWidth * 0.5;

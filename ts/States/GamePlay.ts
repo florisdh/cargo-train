@@ -133,8 +133,8 @@
                     this.cargo.moveToNext();
                 }
             }
-            if (this.train.currentWagonNmbr !== this.train.amountOfCargoWagons + 2) {
-                this.environment.moveToNext(this.train.currentWagonNmbr === this.train.amountOfCargoWagons + 2);
+            if (this.train.currentWagonIndex !== this.train.amountOfCargoWagons + 2) {
+                this.environment.moveToNext(this.train.currentWagonIndex === this.train.amountOfCargoWagons + 2);
             }
             this.tutorial.setActiveWagon(wagon);
         }

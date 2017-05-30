@@ -174,10 +174,16 @@
             this.damageMask.scale.set(this.damageFill.width * ((this.timeLeft + this.damageLeft) / this.timeTotal), this.damageFill.height);
         }
 
+        /**
+         * The total time on this indicator.
+         */
         public get totalTime(): number {
             return this.timeTotal;
         }
 
+        /**
+         * The time left on this indicator.
+         */
         public get remainingTime(): number {
             return this.timeLeft;
         }
