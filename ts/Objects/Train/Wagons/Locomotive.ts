@@ -44,6 +44,7 @@
             this.machinistArmImg.scale.setTo(this.wagonImage.scale.x);
             this.dialogGraphic.x = this.wagonImage.width * 0.775;
             this.dialogGraphic.y = -this.wagonImage.height * 0.58;
+            this.dialogGraphic.scale.setTo(this.game.width / 720);
         }
 
         private horn(): void {
