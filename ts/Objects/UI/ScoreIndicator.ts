@@ -36,7 +36,7 @@
          * @param amount The amount of score you currently have.
          */
         public setScore(amount: number): void {
-            this.text.text = '$' + amount.toString();
+            this.text.text = amount.toString();
 
             if (this.hitTween && this.hitTween.isRunning) {
                 this.hitTween.stop();
@@ -53,7 +53,7 @@
             this.y = y;
             this.x = this.game.width * 0.11;
             this.indicatorImage.scale.setTo(this.game.width / 720);
-            this.text.fontSize = this.indicatorImage.height * 0.4;
+            this.text.fontSize = this.indicatorImage.height * 0.6;
             this.hitAnim = this.hitAnim;
             this.text.setTextBounds(this.indicatorImage.left,
                 this.indicatorImage.top,

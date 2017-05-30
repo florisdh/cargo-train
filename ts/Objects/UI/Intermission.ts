@@ -191,9 +191,19 @@
         }
 
         private onIntermissionClosed(): void {
-            this.clipboard.visible = false;
-            this.resetStars();
+            this.reset();
             this.intermissionDone.dispatch();
+        }
+
+        private reset(): void {
+            this.clipboard.visible = false;
+            this.screenOverlay.visible = false;
+            this.screenOverlay.inputEnabled = false;
+            this.resetStars();
+            this.continueText.alpha = 0;
+            if (this.continueTextTween && this.continueTextTween.isRunning) {
+                this.continueTextTween.stop();
+            }
         }
 
         private resetStars(): void {

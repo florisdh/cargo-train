@@ -62,7 +62,7 @@
             this.y = y;
             this.x = this.game.width * (1 - 0.11);
             this.indicatorImage.scale.setTo(this.game.width / 720);
-            this.lastText.fontSize = this.nextText.fontSize = this.indicatorImage.width * 0.5;
+            this.lastText.fontSize = this.nextText.fontSize = this.indicatorImage.width * 0.375;
             this.moveNextAnim = this.moveNextAnim;
             this.textMask.beginFill(0, 1);
             this.textMask.drawRect(-this.indicatorImage.width / 2, -this.indicatorImage.height * 0.4, this.indicatorImage.width, this.indicatorImage.height * 0.75);
