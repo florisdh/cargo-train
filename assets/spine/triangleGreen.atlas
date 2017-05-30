@@ -1,0 +1,83 @@
+
+triangleGreen.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Green Triangle/GreenTriangleBody
+  rotate: false
+  xy: 2, 2
+  size: 126, 110
+  orig: 126, 110
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleBrauw
+  rotate: false
+  xy: 331, 90
+  size: 62, 22
+  orig: 62, 22
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleEyes
+  rotate: false
+  xy: 262, 80
+  size: 67, 32
+  orig: 67, 32
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleEyesClosed
+  rotate: false
+  xy: 262, 46
+  size: 67, 32
+  orig: 67, 32
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleL_arm
+  rotate: false
+  xy: 196, 59
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleL_arm2
+  rotate: false
+  xy: 196, 4
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleL_leg
+  rotate: true
+  xy: 262, 6
+  size: 38, 43
+  orig: 38, 43
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleMouth
+  rotate: false
+  xy: 395, 92
+  size: 45, 20
+  orig: 45, 20
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleR_arm
+  rotate: false
+  xy: 130, 58
+  size: 64, 54
+  orig: 64, 54
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleR_arm2
+  rotate: false
+  xy: 130, 2
+  size: 64, 54
+  orig: 64, 54
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleR_leg
+  rotate: true
+  xy: 331, 50
+  size: 38, 43
+  orig: 38, 43
+  offset: 0, 0
+  index: -1

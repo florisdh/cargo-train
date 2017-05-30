@@ -1,0 +1,104 @@
+
+squareRed.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Red square/RedCubeArmL
+  rotate: true
+  xy: 138, 8
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+Red square/RedCubeArmL2
+  rotate: true
+  xy: 210, 36
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+Red square/RedCubeArmR
+  rotate: true
+  xy: 383, 89
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+Red square/RedCubeArmR2
+  rotate: true
+  xy: 440, 89
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+Red square/RedCubeBody
+  rotate: true
+  xy: 2, 7
+  size: 118, 134
+  orig: 118, 134
+  offset: 0, 0
+  index: -1
+Red square/RedCubeBrauws
+  rotate: false
+  xy: 300, 108
+  size: 81, 17
+  orig: 81, 17
+  offset: 0, 0
+  index: -1
+Red square/RedCubeBrauws2
+  rotate: false
+  xy: 210, 105
+  size: 88, 20
+  orig: 88, 20
+  offset: 0, 0
+  index: -1
+Red square/RedCubeEyes
+  rotate: false
+  xy: 138, 46
+  size: 70, 29
+  orig: 70, 29
+  offset: 0, 0
+  index: -1
+Red square/RedCubeEyes2
+  rotate: false
+  xy: 138, 77
+  size: 70, 48
+  orig: 70, 48
+  offset: 0, 0
+  index: -1
+Red square/RedCubeEyesClosed
+  rotate: false
+  xy: 210, 74
+  size: 70, 29
+  orig: 70, 29
+  offset: 0, 0
+  index: -1
+Red square/RedCubeLegL
+  rotate: true
+  xy: 267, 36
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Red square/RedCubeLegR
+  rotate: false
+  xy: 304, 71
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Red square/RedCubeMouth
+  rotate: false
+  xy: 250, 17
+  size: 44, 17
+  orig: 44, 17
+  offset: 0, 0
+  index: -1
+Red square/RedCubeMouth2
+  rotate: false
+  xy: 195, 2
+  size: 53, 32
+  orig: 53, 32
+  offset: 0, 0
+  index: -1

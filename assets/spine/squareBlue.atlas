@@ -1,0 +1,76 @@
+
+squareBlue.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Blue square/blueCubeArmL
+  rotate: false
+  xy: 237, 62
+  size: 34, 52
+  orig: 34, 52
+  offset: 0, 0
+  index: -1
+Blue square/blueCubeArmL2
+  rotate: false
+  xy: 127, 6
+  size: 34, 52
+  orig: 34, 52
+  offset: 0, 0
+  index: -1
+Blue square/blueCubeArmR
+  rotate: false
+  xy: 273, 62
+  size: 34, 52
+  orig: 34, 52
+  offset: 0, 0
+  index: -1
+Blue square/blueCubeArmR2
+  rotate: false
+  xy: 163, 6
+  size: 34, 52
+  orig: 34, 52
+  offset: 0, 0
+  index: -1
+Blue square/blueCubeBody
+  rotate: false
+  xy: 2, 2
+  size: 123, 112
+  orig: 123, 112
+  offset: 0, 0
+  index: -1
+Blue square/blueCubeBrauws
+  rotate: false
+  xy: 127, 60
+  size: 108, 16
+  orig: 108, 16
+  offset: 0, 0
+  index: -1
+Blue square/blueCubeGlasses
+  rotate: false
+  xy: 127, 78
+  size: 108, 36
+  orig: 108, 36
+  offset: 0, 0
+  index: -1
+Blue square/blueCubeLegL
+  rotate: false
+  xy: 309, 78
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+Blue square/blueCubeLegR
+  rotate: true
+  xy: 199, 20
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+Blue square/blueCubeMouth
+  rotate: false
+  xy: 237, 44
+  size: 58, 16
+  orig: 58, 16
+  offset: 0, 0
+  index: -1

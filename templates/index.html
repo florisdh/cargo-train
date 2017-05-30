@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, width=device-width" />
+
+    <title>ExamAssignmentMA</title>
+
+    <link rel="stylesheet" href="assets/css/app.css" type="text/css" />
+
+    <script src="phaser/build/phaser.js"></script>
+    <script src="webfontloader/webfontloader.js"></script>
+    <script src="@orange-games/phaser-spine/build/phaser-spine.min.js"></script>
+    <script src="phaser-cachebuster/build/phaser-cachebuster.min.js"></script>
+    <script src="examAssignmentMA.js"></script>
+
+    <script type="text/javascript">
+        /**
+         * Script used for live reloading on development environments
+         * Not used for production!!!!
+         */
+        if (window.location.host !== 'florisdehaan.nl') {
+            (function(d, script) {
+                script = d.createElement('script');
+                script.type = 'text/javascript';
+                script.async = true;
+                script.onload = function(){
+                    // remote script has loaded
+                };
+                script.src = '//' + window.location.hostname + ':35729/livereload.js';
+                d.getElementsByTagName('head')[0].appendChild(script);
+            }(document));
+        }
+    </script>
+
+    <script type="text/javascript">
+        var game = new ExamAssignmentMA.Game()
+            version = 'dev';
+		console.log(game);
+    </script>
+</head>
+<body onload="javascript:game.start();">
+    <div id="content"></div>
+    <div id="dummy" style="position:fixed;right:0;bottom:0"></div>
+</body>
+</html>

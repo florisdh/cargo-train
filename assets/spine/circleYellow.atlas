@@ -1,0 +1,104 @@
+
+circleYellow.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Yellow Circle/yellowCirkelArmL
+  rotate: false
+  xy: 118, 3
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelArmL2
+  rotate: false
+  xy: 157, 3
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelArmR
+  rotate: true
+  xy: 214, 86
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelArmR2
+  rotate: true
+  xy: 298, 86
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelBody
+  rotate: false
+  xy: 2, 2
+  size: 114, 121
+  orig: 114, 121
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelBrauws
+  rotate: false
+  xy: 270, 26
+  size: 56, 14
+  orig: 56, 14
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelEyes
+  rotate: false
+  xy: 382, 89
+  size: 75, 34
+  orig: 75, 34
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelEyesClosed
+  rotate: true
+  xy: 196, 10
+  size: 75, 14
+  orig: 75, 14
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelLegL
+  rotate: false
+  xy: 270, 42
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelLegR
+  rotate: false
+  xy: 314, 42
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelMouth
+  rotate: false
+  xy: 459, 99
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelMouth2
+  rotate: false
+  xy: 212, 21
+  size: 56, 29
+  orig: 56, 29
+  offset: 0, 0
+  index: -1
+Yellow Circle/yellowCirkelMouth3
+  rotate: false
+  xy: 212, 52
+  size: 56, 32
+  orig: 56, 32
+  offset: 0, 0
+  index: -1
+blue Circle/Hat
+  rotate: false
+  xy: 118, 87
+  size: 94, 36
+  orig: 94, 36
+  offset: 0, 0
+  index: -1

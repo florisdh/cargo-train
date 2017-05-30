@@ -1,0 +1,111 @@
+
+circleBlue.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Green Circle/GreenCirkelArmL2
+  rotate: true
+  xy: 305, 88
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+Green Circle/GreenCirkelArmR2
+  rotate: true
+  xy: 389, 88
+  size: 37, 82
+  orig: 37, 82
+  offset: 0, 0
+  index: -1
+blue Circle/Circle Blue kopiëren
+  rotate: false
+  xy: 2, 19
+  size: 127, 106
+  orig: 127, 106
+  offset: 0, 0
+  index: -1
+blue Circle/Eyes
+  rotate: false
+  xy: 131, 68
+  size: 76, 57
+  orig: 76, 57
+  offset: 0, 0
+  index: -1
+blue Circle/Hat
+  rotate: false
+  xy: 209, 89
+  size: 94, 36
+  orig: 94, 36
+  offset: 0, 0
+  index: -1
+blue Circle/L_arm
+  rotate: true
+  xy: 347, 59
+  size: 27, 59
+  orig: 27, 59
+  offset: 0, 0
+  index: -1
+blue Circle/L_arm kopiëren 8
+  rotate: true
+  xy: 285, 59
+  size: 27, 60
+  orig: 27, 60
+  offset: 0, 0
+  index: -1
+blue Circle/L_leg kopiëren 10
+  rotate: true
+  xy: 462, 47
+  size: 38, 40
+  orig: 38, 40
+  offset: 0, 0
+  index: -1
+blue Circle/L_leg kopiëren 11
+  rotate: true
+  xy: 285, 19
+  size: 38, 40
+  orig: 38, 40
+  offset: 0, 0
+  index: -1
+blue Circle/Mouth
+  rotate: false
+  xy: 408, 55
+  size: 52, 31
+  orig: 52, 31
+  offset: 0, 0
+  index: -1
+blue Circle/Mouth2
+  rotate: false
+  xy: 131, 13
+  size: 74, 53
+  orig: 74, 53
+  offset: 0, 0
+  index: -1
+blue Circle/Mouth3
+  rotate: true
+  xy: 473, 87
+  size: 38, 33
+  orig: 38, 33
+  offset: 0, 0
+  index: -1
+blue Circle/Mouth4
+  rotate: false
+  xy: 209, 42
+  size: 74, 45
+  orig: 74, 45
+  offset: 0, 0
+  index: -1
+blue Circle/circleBlueBrauw
+  rotate: false
+  xy: 207, 27
+  size: 75, 13
+  orig: 75, 13
+  offset: 0, 0
+  index: -1
+blue Circle/circleBlueEyesClosed
+  rotate: false
+  xy: 2, 2
+  size: 80, 15
+  orig: 80, 15
+  offset: 0, 0
+  index: -1

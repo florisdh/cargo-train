@@ -1,0 +1,104 @@
+
+triangleBlue.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Blue Triangle/Body
+  rotate: false
+  xy: 2, 11
+  size: 127, 115
+  orig: 127, 115
+  offset: 0, 0
+  index: -1
+Blue Triangle/Brauw
+  rotate: false
+  xy: 339, 73
+  size: 70, 14
+  orig: 70, 14
+  offset: 0, 0
+  index: -1
+Blue Triangle/Eyes
+  rotate: false
+  xy: 339, 89
+  size: 73, 37
+  orig: 73, 37
+  offset: 0, 0
+  index: -1
+Blue Triangle/EyesClosed
+  rotate: false
+  xy: 414, 89
+  size: 73, 37
+  orig: 73, 37
+  offset: 0, 0
+  index: -1
+Blue Triangle/L_arm
+  rotate: false
+  xy: 207, 25
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1
+Blue Triangle/L_leg kopiëren 14
+  rotate: true
+  xy: 258, 2
+  size: 38, 41
+  orig: 38, 41
+  offset: 0, 0
+  index: -1
+Blue Triangle/L_leg kopiëren 3
+  rotate: false
+  xy: 462, 46
+  size: 38, 41
+  orig: 38, 41
+  offset: 0, 0
+  index: -1
+Blue Triangle/Mouth2
+  rotate: false
+  xy: 131, 73
+  size: 74, 53
+  orig: 74, 53
+  offset: 0, 0
+  index: -1
+Blue Triangle/Mouth3
+  rotate: true
+  xy: 301, 2
+  size: 38, 33
+  orig: 38, 33
+  offset: 0, 0
+  index: -1
+Blue Triangle/Mouth4
+  rotate: false
+  xy: 131, 26
+  size: 74, 45
+  orig: 74, 45
+  offset: 0, 0
+  index: -1
+Blue Triangle/R_arm
+  rotate: false
+  xy: 411, 42
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1
+Blue Triangle/mouth
+  rotate: false
+  xy: 131, 12
+  size: 38, 12
+  orig: 38, 12
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleL_arm2
+  rotate: false
+  xy: 273, 73
+  size: 64, 53
+  orig: 64, 53
+  offset: 0, 0
+  index: -1
+Green Triangle/GreenTriangleR_arm2
+  rotate: false
+  xy: 207, 72
+  size: 64, 54
+  orig: 64, 54
+  offset: 0, 0
+  index: -1
