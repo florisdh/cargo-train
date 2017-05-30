@@ -192,7 +192,16 @@
 
         private onIntermissionClosed(): void {
             this.clipboard.visible = false;
+            this.resetStars();
             this.intermissionDone.dispatch();
+        }
+
+        private resetStars(): void {
+            this.starImgFull.visible = false;
+            for (let i: number = 0; i < this.starsAmount; i++) {
+                this.ratingAccuracyStars[i].loadTexture(Images.RatingStarEmpty);
+                this.ratingSpeedStars[i].loadTexture(Images.RatingStarEmpty);
+            }
         }
 
         private calculateRating(): void {
@@ -267,7 +276,7 @@
         }
 
         private shakeTimedOut(): void {
-            this.game.camera.shake(0.03, 30, true, Phaser.Camera.SHAKE_BOTH);
+            this.game.camera.shake(0.025, 50, true, Phaser.Camera.SHAKE_BOTH);
         }
 
         private get starAnim(): number {
