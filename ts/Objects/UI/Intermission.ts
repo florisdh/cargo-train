@@ -6,9 +6,6 @@
 
         public intermissionDone: Phaser.Signal;
 
-        private backgroundWidth: number;
-        private backgroundHeight: number;
-
         private moveNormal: number;
         private tween: Phaser.Tween;
         private clipboard: Phaser.Image;
@@ -20,8 +17,12 @@
         private accuracyBonus: number;
 
         private starsAmount: number = 3;
+        private starIsAnimating: boolean = false;
+        private starTween: Phaser.Tween;
+        private starNorm: number;
         private starScale: number = 0.6;
         private starFull: Phaser.Image;
+        private starsToPlace: Phaser.Image[];
         private ratingSpeedStars: Phaser.Image[];
         private ratingAccuracyStars: Phaser.Image[];
 
@@ -33,17 +34,17 @@
             this.clipboard = this.game.add.image(0, 0, Images.IntermissionScreen);
             this.clipboard.anchor.setTo(0.5, 0.5);
             this.clipboard.visible = false;
+            this.moveNormal = 0;
 
             // Screen overlay
             this.screenOverlay = this.game.add.image(0, 0, Images.WhitePixel);
             this.screenOverlay.anchor.setTo(0.5, 0.5);
             this.screenOverlay.alpha = 0;
-            this.screenOverlay.inputEnabled = true;
             this.screenOverlay.events.onInputUp.add(this.closeIntermission, this);
             this.screenOverlay.visible = false;
             this.add(this.screenOverlay);
 
-            // Text
+            // Speed Text
             this.speedBonusText = new Phaser.Text(this.game, 0, 0, 'Speed', {
                 font: '25pt Arial',
                 fill: '#791909',
@@ -52,7 +53,13 @@
             });
             this.speedBonusText.anchor.setTo(0.0, 0.5);
             this.clipboard.addChild(this.speedBonusText);
+            this.speedBonusText.setTextBounds(
+                -this.clipboard.width * 0.3 / this.clipboard.scale.x,
+                this.clipboard.height * 0.075 / this.clipboard.scale.y,
+                this.clipboard.width * 0.3, this.speedBonusText.height
+            );
 
+            // Accuracy Text
             this.accuracyBonusText = new Phaser.Text(this.game, 0, 0, 'Accuracy', {
                 font: '25pt Arial',
                 fill: '#791909',
@@ -61,9 +68,11 @@
             });
             this.accuracyBonusText.anchor.setTo(0.0, 0.5);
             this.clipboard.addChild(this.accuracyBonusText);
-
-            // Stars
-            this.starFull = new Phaser.Image(this.game, 0, 0, Images.RatingStarFull);
+            this.accuracyBonusText.setTextBounds(
+                -this.clipboard.width * 0.3 / this.clipboard.scale.x,
+                -this.clipboard.height * 0.075 / this.clipboard.scale.y,
+                this.clipboard.width * 0.3, this.accuracyBonusText.height
+            );
 
             // Set empty star frames
             this.ratingSpeedStars = [];
@@ -83,6 +92,22 @@
                 this.clipboard.addChild(ratingStarSpeed);
             }
 
+            // Full Star
+            this.starFull = new Phaser.Image(this.game, 0, 0, Images.RatingStarFull);
+            this.starFull.anchor.setTo(0.5, 0.5);
+            this.starFull.visible = false;
+            this.clipboard.addChild(this.starFull);
+            this.starsToPlace = [];
+
+            // Empty Stars
+            for (let i: number = 0; i < this.starsAmount; i++) {
+                let heightPercAcc: number = 0.155;
+                let heightPercSpeed: number = -0.145;
+                this.ratingSpeedStars[i].x = this.ratingAccuracyStars[i].x = i * (this.clipboard.width / 2) / 4 / this.clipboard.scale.x;
+                this.ratingAccuracyStars[i].y = -(this.clipboard.height / 2 * heightPercAcc) / this.clipboard.scale.y;
+                this.ratingSpeedStars[i].y = -(this.clipboard.height / 2 * heightPercSpeed) / this.clipboard.scale.y;
+            }
+
             //this.openIntermission(new SessionData(0, 0, 0, 0, 0, 0, 0, 0));
             this.resize();
         }
@@ -97,12 +122,12 @@
             this.accuracyBonus = session.calcAccuracyPerc();
 
             // Open the clipboard
-            this.clipboard.scale.setTo(0);
-            this.clipboard.visible = true;
+            this.moveAnim = 0;
             this.tween = this.game.add.tween(this).to({ moveAnim: 1 }, 1000, Phaser.Easing.Bounce.Out, true);
             this.tween.onComplete.addOnce(this.onCompletedAnim, this, 0, session);
+            this.clipboard.visible = true;
 
-            // Set stars
+            // Set star frames
             this.showEmptyStars();
         }
 
@@ -118,7 +143,6 @@
                 this.ratingSpeedStars[i].visible = true;
                 this.ratingAccuracyStars[i].visible = true;
             }
-            this.resize();
         }
 
         /**
@@ -129,56 +153,99 @@
             this.screenOverlay.visible = false;
 
             // Close clipboard
-            this.tween = this.game.add.tween(this).to({ moveAnim: 0 }, 750, Phaser.Easing.Back.In, true);
-            this.tween.onComplete.addOnce(this.intermissionDone.dispatch, this);
+            this.tween = this.game.add.tween(this).to({ moveAnim: 0 }, 500, Phaser.Easing.Back.In, true);
+            this.tween.onComplete.addOnce(this.onIntermissionClosed, this);
         }
 
-        // Todo: Rework for star tween
+        private onIntermissionClosed(): void {
+            this.clipboard.visible = false;
+            this.intermissionDone.dispatch();
+        }
+
         private calculateRating(): void {
-            if (this.speedBonus >= 50) {
-                this.placeRatingStar(this.speedBonusText, 3, this.ratingSpeedStars);
-            } else if (this.speedBonus >= 25) {
-                this.placeRatingStar(this.speedBonusText, 2, this.ratingSpeedStars);
+            let amountOfStars: number;
+            
+            // Accuracy stars
+            if (this.accuracyBonus >= 90) {
+                amountOfStars = 3;
+            } else if (this.accuracyBonus >= 60) {
+                amountOfStars = 2;
             } else {
-                this.placeRatingStar(this.speedBonusText, 1, this.ratingSpeedStars);
+                amountOfStars = 1;
             }
 
-            if (this.accuracyBonus >= 90) {
-                this.placeRatingStar(this.accuracyBonusText, 3, this.ratingAccuracyStars);
-            } else if (this.accuracyBonus >= 60) {
-                this.placeRatingStar(this.accuracyBonusText, 2, this.ratingAccuracyStars);
+            for (let i: number = 0; i < amountOfStars; i++) {
+                this.starsToPlace.push(this.ratingAccuracyStars[i]);
+            }
+
+            // Speed stars
+            if (this.speedBonus >= 50) {
+                amountOfStars = 3;
+            } else if (this.speedBonus >= 25) {
+                amountOfStars = 2;
             } else {
-                this.placeRatingStar(this.accuracyBonusText, 1, this.ratingAccuracyStars);
+                amountOfStars = 1;
+            }
+
+            for (let i: number = 0; i < amountOfStars; i++) {
+                this.starsToPlace.push(this.ratingSpeedStars[i]);
+            }
+
+            this.placeStars();
+        }
+
+        private placeStars(): void {
+            if (this.starsToPlace.length <= 0) {
+                return null;
+            }
+
+            if (this.starsToPlace.length > 0 && this.starIsAnimating === false) {
+                this.placeStar(this.starsToPlace[0], 0);
             }
         }
 
-        // Todo: Rework for star tween
-        private placeRatingStar(text: Phaser.Text, amount: number, stars: Phaser.Image[]): void {
-            switch (amount) {
-                default:
-                    stars[0].loadTexture(Images.RatingStarEmpty);
-                    stars[1].loadTexture(Images.RatingStarEmpty);
-                    stars[2].loadTexture(Images.RatingStarEmpty);
-                    break;
-                case 1:
-                    stars[0].loadTexture(Images.RatingStarFull);
-                    stars[1].loadTexture(Images.RatingStarEmpty);
-                    stars[2].loadTexture(Images.RatingStarEmpty);
-                    break;
-                case 2:
-                    stars[0].loadTexture(Images.RatingStarFull);
-                    stars[1].loadTexture(Images.RatingStarFull);
-                    stars[2].loadTexture(Images.RatingStarEmpty);
-                    break;
-                case 3:
-                    stars[0].loadTexture(Images.RatingStarFull);
-                    stars[1].loadTexture(Images.RatingStarFull);
-                    stars[2].loadTexture(Images.RatingStarFull);
-                    break;
+        private placeStar(spot: Phaser.Image, delay: number): void {
+            // Set star on spot
+            this.starFull.x = spot.x;
+            this.starFull.y = spot.y;
+            this.starAnim = 1;
+
+            if (this.starTween && this.starTween.isRunning) {
+                this.starTween.stop();
             }
-            for (let i: number = 0; i < stars.length; i++) {
-                //stars[i].position.setTo(this.clipboard.x + (i * (stars[i].width + (this.game.width * 0.01))), text.worldPosition.y);
-                this.game.add.tween(stars[i]).to({ alpha: 1.0 }, 50, Phaser.Easing.Linear.None, true);
+
+            this.starIsAnimating = true;
+            this.starTween = this.game.add.tween(this).to({ starAnim: 0 }, 400, Phaser.Easing.Quintic.Out, true, delay);
+            this.starTween.onComplete.addOnce(() => { this.starTweenDone(spot) }, this);
+            this.starFull.visible = true;
+        }
+
+        private get starAnim(): number {
+            return this.starNorm;
+        }
+
+        private set starAnim(norm: number) {
+            this.starNorm = norm;
+            this.starFull.scale.x = this.starScale * (15 * norm + 1);
+            this.starFull.scale.y = this.starFull.scale.x;
+        }
+
+        private starTweenDone(spot: Phaser.Image): void {
+            console.log('starTweenDone');
+            this.game.camera.shake(0.025, 25, true, Phaser.Camera.SHAKE_BOTH);
+            spot.loadTexture(Images.RatingStarFull);
+            this.starsToPlace.splice(this.starsToPlace.indexOf(spot), 1);
+            this.starIsAnimating = false;
+
+            // Reset and place next star
+            if (this.starsToPlace.length > 0) {
+                console.log('starsToPlace > 0');
+                this.starFull.visible = false;
+                this.starFull.scale.x = this.starScale * 10;
+                this.starFull.scale.y = this.starFull.scale.x;
+                this.placeStar(this.starsToPlace[0], 0);
+            } else {
+                this.screenOverlay.inputEnabled = true;
             }
         }
 
@@ -200,43 +267,16 @@
          * Resizes the objects in the scene.
          */
         public resize(): void {
-            this.backgroundWidth = this.clipboard.width;
-            this.backgroundHeight = this.clipboard.height;
-
             this.clipboard.x = this.game.width / 2;
             this.clipboard.y = this.game.height / 2;
-            this.clipboard.width = this.game.width * 0.95;
-            if (this.clipboard.height > this.game.height) {
-                this.clipboard.height = this.game.height;
+            if (!this.tween || !this.tween.isRunning) {
+                this.moveAnim = this.moveAnim;
             }
-            this.clipboard.scale.y = this.clipboard.scale.x;
 
             this.screenOverlay.x = this.game.width / 2;
             this.screenOverlay.y = this.game.height / 2;
             this.screenOverlay.width = this.game.width;
             this.screenOverlay.height = this.game.height;
-
-            // Text
-            this.speedBonusText.setTextBounds(
-                -this.clipboard.width * 0.3 / this.clipboard.scale.x,
-                this.clipboard.height * 0.075 / this.clipboard.scale.y,
-                this.clipboard.width * 0.3, this.speedBonusText.height
-            );
-
-            this.accuracyBonusText.setTextBounds(
-                -this.clipboard.width * 0.3 / this.clipboard.scale.x,
-                -this.clipboard.height * 0.075 / this.clipboard.scale.y,
-                this.clipboard.width * 0.3, this.accuracyBonusText.height
-            );
-
-            // Stars
-            for (let i: number = 0; i < this.starsAmount; i++) {
-                let heightPercAcc: number = 0.155;
-                let heightPercSpeed: number = -0.145;
-                this.ratingSpeedStars[i].x = this.ratingAccuracyStars[i].x = i * (this.clipboard.width / 2) / 4 / this.clipboard.scale.x;
-                this.ratingAccuracyStars[i].y = -(this.clipboard.height / 2 * heightPercAcc) / this.clipboard.scale.y;
-                this.ratingSpeedStars[i].y = -(this.clipboard.height / 2 * heightPercSpeed) / this.clipboard.scale.y;
-            }
         }
     }
 }
